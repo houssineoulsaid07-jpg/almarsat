@@ -1,0 +1,9 @@
+{
+  "_ملاحظة": "ضع هنا تواريخ الراحة البيولوجية الرسمية من وزارة الصيد، وغيّر official إلى true، وغيّر showUnofficial إلى false قبل النشر للناس.",
+  "showUnofficial": true,
+  "restPeriods": [
+    { "start": "2026-10-01", "end": "2026-11-30", "official": false }
+  ],
+  "remoteConfigUrl": "",
+  "seaTtlMinutes": 30
+}
