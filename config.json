@@ -1,8 +1,17 @@
 {
-  "_ملاحظة": "ضع هنا تواريخ الراحة البيولوجية الرسمية من وزارة الصيد، وغيّر official إلى true، وغيّر showUnofficial إلى false قبل النشر للناس.",
-  "showUnofficial": true,
+  "showUnofficial": false,
   "restPeriods": [
-    { "start": "2026-10-01", "end": "2026-11-30", "official": false }
+    {
+      "start": "2026-10-10",
+      "end": null,
+      "official": true,
+      "scope_ar": "صيد الأخطبوط ورأسيات الأرجل (الأخطبوط والحبار والسيبيا) والصيد بشباك الجر القاعي، في كل المياه الموريتانية",
+      "scope_fr": "pêche des céphalopodes (poulpe, calmar, seiche) et chalut de fond, dans toutes les eaux mauritaniennes",
+      "penalty_ar": "مخالفة التوقيف البيولوجي مخالفة جسيمة جداً (مدونة الصيد، المادة 84)، وقد تؤدي إلى سحب الرخصة وغرامة ومنع من الصيد (المادة 88). للتفاصيل راجع وزارة الصيد.",
+      "penalty_fr": "Pêcher pendant l’arrêt biologique est une infraction très grave (Code des pêches, art. 84) pouvant entraîner retrait de licence, amende et interdiction de pêcher (art. 88). Renseignez-vous auprès du ministère.",
+      "expected_ar": "قد تنتهي في بداية ديسمبر 2026، وقد تمتد 10 إلى 15 يوماً بعده. القرار الرسمي هو المعتمد.",
+      "expected_fr": "Fin possible début décembre 2026, avec une prolongation possible de 10 à 15 jours. Seule la décision officielle fait foi."
+    }
   ],
   "remoteConfigUrl": "",
   "seaTtlMinutes": 30

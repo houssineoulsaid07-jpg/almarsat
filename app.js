@@ -6,7 +6,9 @@ var T={
  ar:{
   dir:'rtl', loc:'ar-u-nu-latn', name:'المرساة', tagline:'ثبت رزقك في البحر',
   tabs:['الرئيسية','الصلاة','السجل','الإعدادات'],
-  restTitle:function(d){return 'البحر في راحة بيولوجية - ممنوع الصيد حتى '+d},
+  restTitle:function(d){return 'راحة بيولوجية - ممنوع الصيد حتى '+d},
+  restOpen:function(d){return 'توقيف بيولوجي قائم منذ '+d},
+  scopeL:'يشمل:', penL:'العقوبة:', refer:'التطبيق للتذكير فقط. المرجع هو بلاغ وزارة الصيد (هاتف 45 25 99 70).', since:'يوم منذ البداية', noEnd:'تاريخ النهاية لم يُعلن بعد', expL:'المتوقع (تقدير غير رسمي):', exempt:'مصايد أخرى مستثناة بحسب بلاغ الوزارة (القشريات، النازلي الأسود، سرطان الأعماق، جراد البحر الوردي).',
   left:'يوم متبقٍ', prep:'جهز معداتك للموسم الجديد', unofficial:'تواريخ تجريبية للاختبار فقط',
   today:'نسبة الصيد اليوم', wind:'الرياح', wave:'الموج', moonL:'القمر',
   excellent:'ممتاز', good:'جيد', stay:'لا تخرج', none:'لا توجد بيانات',
@@ -30,7 +32,7 @@ var T={
   qNote:'الأوقات بطريقة رابطة العالم الإسلامي، وقد تختلف دقائق عن الرسمية. تعمل بدون إنترنت.',
   compassOn:'تفعيل البوصلة الحية', compassOff:'إيقاف البوصلة الحية', compassWait:'حرّك الهاتف بشكل ثمانية لمعايرتها.',
   compassNo:'جهازك لا يدعم البوصلة الحية. السهم يُظهر الاتجاه من الشمال.', compassDenied:'لم يُسمح بالوصول للبوصلة.',
-  log:'سجل الصيد', species:'نوع السمك', weight:'الوزن (كغ)', date:'التاريخ', noteL:'ملاحظة (اختياري)', add:'إضافة للسجل',
+  log:'سجل الصيد', species:'نوع السمك', weight:'الوزن (كغ)', date:'التاريخ', noteL:'ملاحظة (اختياري)', placeL:'المكان (اختياري)', add:'إضافة للسجل',
   needSpecies:'اكتب نوع السمك.', added:'تمت الإضافة.', empty:'لا توجد رحلات مسجلة بعد. أضف أول صيدة.',
   del:'حذف', sure:'تأكيد؟', total:'هذا الشهر', trips:'صيدة', kg:'كغ', top:'الأكثر',
   logNote:'السجل محفوظ على هاتفك فقط. مسح بيانات المتصفح يحذفه.',
@@ -46,7 +48,9 @@ var T={
  fr:{
   dir:'ltr', loc:'fr-FR', name:'Al Marsat', tagline:'Ancre ta richesse en mer',
   tabs:['Accueil','Prière','Journal','Réglages'],
-  restTitle:function(d){return 'Repos biologique en mer - pêche interdite jusqu’au '+d},
+  restTitle:function(d){return 'Repos biologique - pêche interdite jusqu’au '+d},
+  restOpen:function(d){return 'Arrêt biologique en cours depuis le '+d},
+  scopeL:'Concerne :', penL:'Sanctions :', refer:'L’application sert de rappel. La référence est le communiqué du ministère des Pêches (tél. 45 25 99 70).', since:'jours depuis le début', noEnd:'Date de fin pas encore annoncée', expL:'Prévision (estimation non officielle) :', exempt:'D’autres pêcheries sont exemptées selon le communiqué du ministère (crustacés, merlu noir, crabe profond, crevette rose).',
   left:'jours restants', prep:'Préparez votre matériel pour la nouvelle saison', unofficial:'Dates de test uniquement',
   today:'Chances de pêche aujourd’hui', wind:'Vent', wave:'Houle', moonL:'Lune',
   excellent:'Excellent', good:'Bon', stay:'Ne sortez pas', none:'Pas de données',
@@ -70,7 +74,7 @@ var T={
   qNote:'Horaires selon la Ligue islamique mondiale, ils peuvent différer de quelques minutes des horaires officiels. Fonctionne hors ligne.',
   compassOn:'Activer la boussole en direct', compassOff:'Arrêter la boussole', compassWait:'Faites un huit avec le téléphone pour la calibrer.',
   compassNo:'Votre appareil ne prend pas en charge la boussole. La flèche indique la direction depuis le Nord.', compassDenied:'Accès à la boussole refusé.',
-  log:'Journal de pêche', species:'Espèce', weight:'Poids (kg)', date:'Date', noteL:'Note (facultatif)', add:'Ajouter au journal',
+  log:'Journal de pêche', species:'Espèce', weight:'Poids (kg)', date:'Date', noteL:'Note (facultatif)', placeL:'Lieu (facultatif)', add:'Ajouter au journal',
   needSpecies:'Saisissez l’espèce.', added:'Ajouté.', empty:'Aucune sortie enregistrée. Ajoutez votre première prise.',
   del:'Supprimer', sure:'Confirmer ?', total:'Ce mois-ci', trips:'prises', kg:'kg', top:'Principale',
   logNote:'Le journal est enregistré uniquement sur votre téléphone. Effacer les données du navigateur le supprime.',
@@ -139,10 +143,10 @@ function parseD(s){var p=(s||'').split('-');return p.length===3?new Date(+p[0],+
 function restInfo(){
   var now=new Date(), t=new Date(now.getFullYear(),now.getMonth(),now.getDate()), ps=S.cfg.restPeriods||[];
   for(var i=0;i<ps.length;i++){
-    var a=parseD(ps[i].start), b=parseD(ps[i].end);
+    var a=parseD(ps[i].start), open=!ps[i].end, b=open?new Date(9999,0,1):parseD(ps[i].end);
     if(!a||!b||isNaN(a)||isNaN(b)||b<a)continue;
     if(t>=a&&t<=b&&(ps[i].official||S.cfg.showUnofficial))
-      return {active:true,end:b,days:Math.round((b-t)/86400000)+1,official:!!ps[i].official};
+      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:Math.round((b-t)/86400000)+1,official:!!ps[i].official,scope:{ar:ps[i].scope_ar||'',fr:ps[i].scope_fr||''},penalty:{ar:ps[i].penalty_ar||'',fr:ps[i].penalty_fr||''},expected:{ar:ps[i].expected_ar||'',fr:ps[i].expected_fr||''}};
   }
   return {active:false};
 }
@@ -243,7 +247,7 @@ function paintStatus(){
 
 /* ---------- Build UI ---------- */
 function logoSvg(){
-  return '<svg width="42" height="42" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="12" fill="#020617"/><g fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="11" r="3.5"/><path d="M24 15v22M17 22h14M11 29c1 7 6 10 13 10s12-3 13-10"/></g><path d="M4 43c5-3 8 3 14 0s8-3 13 0 8 3 13 0" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/></svg>';
+  return '<img src="icon-192.png" width="42" height="42" alt="" style="border-radius:10px">';
 }
 function build(){
   var t=L();
@@ -287,6 +291,7 @@ function build(){
     '<label class="field" for="fSpecies">'+t.species+'<input id="fSpecies" type="text" list="spList" autocomplete="off" maxlength="40"></label><datalist id="spList">'+spOpts+'</datalist>'+
     '<div class="two"><label class="field" for="fKg">'+t.weight+'<input id="fKg" type="number" inputmode="decimal" min="0" step="0.1"></label>'+
     '<label class="field" for="fDate">'+t.date+'<input id="fDate" type="date" value="'+todayStr()+'"></label></div>'+
+    '<label class="field" for="fPlace">'+t.placeL+'<input id="fPlace" type="text" maxlength="60"></label>'+
     '<label class="field" for="fNote">'+t.noteL+'<input id="fNote" type="text" maxlength="120"></label>'+
     '<div class="btns"><button class="btn" id="bAdd" type="button">'+t.add+'</button></div><div id="logMsg" aria-live="polite"></div></section>'+
    '<section class="card" id="logSummary"></section>'+
@@ -350,11 +355,18 @@ function updateHome(){
   $('placeTag').textContent=placeName();
 
   if(r.active){
-    var ds=r.end.toLocaleDateString(t.loc,{day:'numeric',month:'long',year:'numeric'});
-    $('restBox').innerHTML='<div class="rest"><h2>'+t.restTitle(ds)+'</h2><div class="count"><b>'+r.days+'</b><span>'+t.left+'</span></div><p>'+t.prep+'</p>'+(r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>';
+    var fm={day:'numeric',month:'long',year:'numeric'};
+    var sc=(S.lang==='fr'?r.scope.fr:r.scope.ar);
+    var head=r.open?t.restOpen(r.start.toLocaleDateString(t.loc,fm)):t.restTitle(r.end.toLocaleDateString(t.loc,fm));
+    var cnt=r.open?'<div class="count"><b>'+r.days+'</b><span>'+t.since+'</span></div>':'<div class="count"><b>'+r.days+'</b><span>'+t.left+'</span></div>';
+    $('restBox').innerHTML='<div class="rest"><h2>'+esc(head)+'</h2>'+cnt+
+      (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p><p class="note">'+t.exempt+'</p>':'<p>'+t.prep+'</p>')+
+      (r.penalty[S.lang==='fr'?'fr':'ar']?'<p class="note"><b>'+t.penL+'</b> '+esc(r.penalty[S.lang==='fr'?'fr':'ar'])+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>':'')+
+      (r.open&&r.expected[S.lang==='fr'?'fr':'ar']?'<p class="note"><b>'+t.expL+'</b> '+esc(r.expected[S.lang==='fr'?'fr':'ar'])+'</p>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
+      (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>';
   }else $('restBox').innerHTML='';
-  $('scoreCard').hidden=r.active;
-  $('seaSub').textContent=r.active?t.seaLearn:'';
+  $('scoreCard').hidden=r.active&&!(r.scope.ar||r.scope.fr);
+  $('seaSub').textContent=(r.active&&!(r.scope.ar||r.scope.fr))?t.seaLearn:'';
 
   var vd=$('verdict'), arc=$('arc');
   if(d&&fresh){
@@ -447,7 +459,7 @@ function renderLog(){
   var items=S.log.slice().sort(function(a,b){return a.date<b.date?1:(a.date>b.date?-1:b.id-a.id)});
   if(!items.length){el.innerHTML='<li><span class="sub">'+t.empty+'</span></li>'}
   else el.innerHTML=items.map(function(e){
-    return '<li><div class="l"><b>'+esc(e.species)+'</b><small>'+esc(e.date)+(e.note?' - '+esc(e.note):'')+'</small></div>'+
+    return '<li><div class="l"><b>'+esc(e.species)+'</b><small>'+esc(e.date)+(e.place?' - '+esc(e.place):'')+(e.note?' - '+esc(e.note):'')+'</small></div>'+
       '<span class="kg">'+(e.kg!=null?e.kg+' '+t.kg:'')+'</span><button class="del" type="button" data-del="'+e.id+'">'+t.del+'</button></li>';
   }).join('');
   Array.prototype.forEach.call(el.querySelectorAll('[data-del]'),function(b){
@@ -463,14 +475,14 @@ function renderLog(){
   $('logSummary').innerHTML='<h2>'+t.total+'</h2><div class="grid3"><div class="stat"><b>'+(Math.round(tot*10)/10)+'</b><small>'+t.kg+'</small></div><div class="stat"><b>'+month.length+'</b><small>'+t.trips+'</small></div><div class="stat"><b style="font-size:1rem;direction:inherit">'+(top?esc(top):'-')+'</b><small>'+t.top+'</small></div></div>';
 }
 function addEntry(){
-  var t=L(), sp=$('fSpecies').value.trim(), kgv=$('fKg').value.trim(), dt=$('fDate').value||todayStr(), note=$('fNote').value.trim();
+  var t=L(), sp=$('fSpecies').value.trim(), kgv=$('fKg').value.trim(), dt=$('fDate').value||todayStr(), note=$('fNote').value.trim(), place=$('fPlace').value.trim();
   var box=$('logMsg');
   if(!sp){box.innerHTML='<div class="msg">'+t.needSpecies+'</div>';$('fSpecies').focus();return}
   var kg=kgv===''?null:Math.max(0,Math.round(parseFloat(kgv)*10)/10);
   if(kg!=null&&isNaN(kg))kg=null;
-  S.log.push({id:Date.now(),species:sp.slice(0,40),kg:kg,date:dt,note:note.slice(0,120)});
+  S.log.push({id:Date.now(),species:sp.slice(0,40),kg:kg,date:dt,place:place.slice(0,60),note:note.slice(0,120)});
   save();
-  $('fSpecies').value='';$('fKg').value='';$('fNote').value='';
+  $('fSpecies').value='';$('fKg').value='';$('fNote').value='';$('fPlace').value='';
   box.innerHTML='<div class="msg">'+t.added+'</div>';
   renderLog();
 }
@@ -517,7 +529,7 @@ function splash(){
   if(S.low)return;
   try{if(sessionStorage.getItem('marsat.splash'))return;sessionStorage.setItem('marsat.splash','1')}catch(e){}
   var t=L(), d=document.createElement('div'); d.id='splash'; d.setAttribute('aria-hidden','true');
-  d.innerHTML='<div class="sea"></div><div class="stage"><div class="chain"></div><svg class="anchor" viewBox="0 0 48 56" fill="none" stroke="#f59e0b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="5"/><path d="M24 14v34M15 22h18M7 34c1 9 8 14 17 14s16-5 17-14"/></svg></div><div class="word"><b>'+t.name+'</b><span>'+t.tagline+'</span></div>';
+  d.innerHTML='<div class="sea"></div><div class="stage"><div class="chain"></div><svg class="anchor" viewBox="0 0 48 56" fill="none" stroke="#ffffff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="9" r="5"/><path d="M24 14v34M15 22h18M7 34c1 9 8 14 17 14s16-5 17-14"/></svg></div><div class="word"><b>'+t.name+'</b><span>'+t.tagline+'</span></div>';
   document.body.appendChild(d);
   function end(){d.classList.add('out');setTimeout(function(){if(d.parentNode)d.parentNode.removeChild(d)},700)}
   d.onclick=end; setTimeout(end,2800);
