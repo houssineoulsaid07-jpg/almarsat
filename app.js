@@ -24,6 +24,7 @@ var T={
   card5:'القمر', lit:'إضاءة القمر', moonDark:'ممتاز للصيد الليلي', moonBright:'قمر ساطع، الصيد الليلي أضعف',
   disclaimer:'نسبة الصيد تقدير بسيط ولا تغني عن نشرات الأرصاد الرسمية. قرار الخروج للبحر مسؤوليتك.',
   attr:'بيانات الطقس والبحر: Open-Meteo.com',
+  copy:'© 2026 المرساة. جميع الحقوق محفوظة',
   dirs:['شمال','شمال شرق','شرق','جنوب شرق','جنوب','جنوب غرب','غرب','شمال غرب'],
   where:'الموقع', change:'تغيير', gps:'موقعي (GPS)',
   prayer:'أوقات الصلاة', next:'القادمة',
@@ -66,6 +67,7 @@ var T={
   card5:'Lune', lit:'Illumination de la lune', moonDark:'Excellent pour la pêche de nuit', moonBright:'Lune brillante, pêche de nuit moins bonne',
   disclaimer:'Le pourcentage est une estimation simple et ne remplace pas les bulletins météo officiels. La décision de sortir en mer vous appartient.',
   attr:'Données météo et marines : Open-Meteo.com',
+  copy:'© 2026 Al Marsat. Tous droits réservés',
   dirs:['Nord','Nord-Est','Est','Sud-Est','Sud','Sud-Ouest','Ouest','Nord-Ouest'],
   where:'Lieu', change:'Changer', gps:'Ma position (GPS)',
   prayer:'Horaires de prière', next:'Prochaine',
@@ -304,7 +306,7 @@ function build(){
     '<div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div></section>'+
    '<section class="card"><h2>'+t.low+'</h2><label class="switch" for="lowSw"><input id="lowSw" type="checkbox"'+(S.low?' checked':'')+'><span>'+t.low+'</span></label><p class="note" style="margin-top:8px">'+t.lowInfo+'</p></section>'+
    '<section class="card" id="installCard"><h2>'+t.install+'</h2><p class="sub">'+t.installInfo+'</p><div class="btns"><button class="btn" id="bInstall" type="button" hidden>'+t.install+'</button></div><p class="note" id="iosNote" style="margin-top:8px" hidden>'+t.installIos+'</p></section>'+
-   '<section class="card"><h2>'+t.about+'</h2><p class="sub">'+t.aboutTxt+'</p><p class="note" style="margin-top:8px">'+t.attr+'</p></section>'+
+   '<section class="card"><h2>'+t.about+'</h2><p class="sub">'+t.aboutTxt+'</p><p class="note" style="margin-top:8px">'+t.attr+'</p><p class="note" style="margin-top:8px">'+t.copy+'</p></section>'+
   '</div>'+
 
   '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'">'+n+'</button>'}).join('')+'</div></nav>';
