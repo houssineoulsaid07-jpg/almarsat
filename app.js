@@ -24,7 +24,7 @@ var T={
   card5:'القمر', lit:'إضاءة القمر', moonDark:'ممتاز للصيد الليلي', moonBright:'قمر ساطع، الصيد الليلي أضعف',
   disclaimer:'نسبة الصيد تقدير بسيط ولا تغني عن نشرات الأرصاد الرسمية. قرار الخروج للبحر مسؤوليتك.',
   attr:'بيانات الطقس والبحر: Open-Meteo.com',
-  copy:'© 2026 المرساة. جميع الحقوق محفوظة', priv:'سياسة الخصوصية وإخلاء المسؤولية',
+  copy:'© 2026 المرساة. جميع الحقوق محفوظة', alertT:'تنبيه الصلاة', alertInfo:'اهتزاز ونغمة قصيرة عند دخول وقت الصلاة. يعمل فقط والتطبيق مفتوح على الشاشة، ولا يعمل وهو مغلق.', alertNow:function(n){return 'حان وقت صلاة '+n}, priv:'سياسة الخصوصية وإخلاء المسؤولية',
   dirs:['شمال','شمال شرق','شرق','جنوب شرق','جنوب','جنوب غرب','غرب','شمال غرب'],
   where:'الموقع', change:'تغيير', gps:'موقعي (GPS)',
   prayer:'أوقات الصلاة', next:'القادمة',
@@ -67,7 +67,7 @@ var T={
   card5:'Lune', lit:'Illumination de la lune', moonDark:'Excellent pour la pêche de nuit', moonBright:'Lune brillante, pêche de nuit moins bonne',
   disclaimer:'Le pourcentage est une estimation simple et ne remplace pas les bulletins météo officiels. La décision de sortir en mer vous appartient.',
   attr:'Données météo et marines : Open-Meteo.com',
-  copy:'© 2026 Al Marsat. Tous droits réservés', priv:'Confidentialité et avertissement',
+  copy:'© 2026 Al Marsat. Tous droits réservés', alertT:'Alerte de prière', alertInfo:'Vibration et courte sonnerie à l’heure de la prière. Fonctionne uniquement quand l’application est ouverte à l’écran, pas lorsqu’elle est fermée.', alertNow:function(n){return 'C’est l’heure de '+n}, priv:'Confidentialité et avertissement',
   dirs:['Nord','Nord-Est','Est','Sud-Est','Sud','Sud-Ouest','Ouest','Nord-Ouest'],
   where:'Lieu', change:'Changer', gps:'Ma position (GPS)',
   prayer:'Horaires de prière', next:'Prochaine',
@@ -103,7 +103,7 @@ var SEA_POINTS=[CITIES[0],CITIES[1]];
 
 /* ---------- State and storage ---------- */
 var KEY='marsat.v1';
-var S={lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
+var S={alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30},
        status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
@@ -112,12 +112,12 @@ try{
   if(typeof sv.city==='number'&&CITIES[sv.city])S.city=sv.city;
   if(sv.mode==='gps'&&sv.gps)S.mode='gps';
   if(sv.gps&&typeof sv.gps.lat==='number')S.gps=sv.gps;
-  S.low=!!sv.low; S.lowHintOff=!!sv.lowHintOff;
+  S.low=!!sv.low;S.alert=!!sv.alert; S.lowHintOff=!!sv.lowHintOff;
   if(Array.isArray(sv.log))S.log=sv.log;
   if(sv.sea&&typeof sv.sea.t==='number')S.sea=sv.sea;
 }catch(e){}
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
+  try{localStorage.setItem(KEY,JSON.stringify({lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
 }
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -271,7 +271,7 @@ function build(){
     '<ul class="factors"><li><span>'+t.wind+'</span><span id="fw">-</span></li><li><span>'+t.wave+'</span><span id="fh">-</span></li><li><span>'+t.moonL+'</span><span id="fm">-</span></li></ul></section>'+
    '<div class="danger" id="danger" role="alert" hidden>'+t.danger+'</div>'+
    '<section class="card"><h2>'+t.sea+'</h2><p class="sub" id="seaSub"></p>'+
-    '<div class="grid3"><div class="stat"><b id="sWind">-</b><small>'+t.speed+'</small></div><div class="stat"><b id="sWave">-</b><small>'+t.height+'</small></div><div class="stat"><b id="sPer">-</b><small>'+t.period+'</small></div></div>'+
+    '<div class="viz" id="seaViz" hidden></div><div class="grid3"><div class="stat"><b id="sWind">-</b><small>'+t.speed+'</small></div><div class="stat"><b id="sWave">-</b><small>'+t.height+'</small></div><div class="stat"><b id="sPer">-</b><small>'+t.period+'</small></div></div>'+
     '<div class="compass"><svg class="deco" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="var(--tint)" stroke="var(--line)" stroke-width="2"/><g font-size="11" fill="var(--muted)" text-anchor="middle" font-family="Tajawal,sans-serif"><text x="50" y="17">N</text><text x="50" y="92">S</text><text x="88" y="54">E</text><text x="12" y="54">W</text></g><g id="arrow"><path d="M50 22v50M50 72l-9-12M50 72l9-12" fill="none" stroke="var(--primary)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></g></svg>'+
     '<div><b id="dirName" style="font-size:1.05rem">-</b><p class="sub" id="dirSub"></p></div></div>'+
     '<p class="note" id="seaNote" style="margin-top:10px"></p></section>'+
@@ -305,6 +305,7 @@ function build(){
     '<label class="field" for="citySel">'+t.city+'<select id="citySel">'+(S.mode==='gps'?'<option value="gps" selected>'+t.gps+'</option>':'')+cityOpts+'</select></label>'+
     '<div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div></section>'+
    '<section class="card"><h2>'+t.low+'</h2><label class="switch" for="lowSw"><input id="lowSw" type="checkbox"'+(S.low?' checked':'')+'><span>'+t.low+'</span></label><p class="note" style="margin-top:8px">'+t.lowInfo+'</p></section>'+
+   '<section class="card"><h2>'+t.alertT+'</h2><label class="switch" for="alSw"><input id="alSw" type="checkbox"'+(S.alert?' checked':'')+'><span>'+t.alertT+'</span></label><p class="note" style="margin-top:8px">'+t.alertInfo+'</p></section>'+
    '<section class="card" id="installCard"><h2>'+t.install+'</h2><p class="sub">'+t.installInfo+'</p><div class="btns"><button class="btn" id="bInstall" type="button" hidden>'+t.install+'</button></div><p class="note" id="iosNote" style="margin-top:8px" hidden>'+t.installIos+'</p></section>'+
    '<section class="card"><h2>'+t.about+'</h2><p class="sub">'+t.aboutTxt+'</p><p class="note" style="margin-top:8px">'+t.attr+'</p><p class="note" style="margin-top:8px">'+t.copy+'</p><p class="note" style="margin-top:8px"><a href="privacy.html'+(S.lang==='fr'?'':'#ar')+'" style="color:inherit;text-decoration:underline">'+t.priv+'</a></p></section>'+
   '</div>'+
@@ -320,6 +321,7 @@ function build(){
   };
   $('bGps').onclick=useGps;
   $('lowSw').onchange=function(){S.low=this.checked;save();document.body.classList.toggle('low',S.low);updateHint()};
+  $('alSw').onchange=function(){S.alert=this.checked;save();if(S.alert)beep(true)};
   $('bAdd').onclick=addEntry;
   $('bCompass').onclick=toggleCompass;
   $('bInstall').onclick=doInstall;
@@ -393,9 +395,11 @@ function updateHome(){
     $('dirName').textContent=t.dirs[idx]; $('dirSub').textContent=t.from+' '+t.dirs[idx]+' ('+d.windDir+'°)';
     $('arrow').setAttribute('transform','rotate('+((d.windDir+180)%360)+' 50 50)');
     $('seaNote').textContent=d.fallback?t.fallbackNote:'';
+    paintViz(d);
   }else{
     $('sWind').textContent='-';$('sWave').textContent='-';$('sPer').textContent='-';
     $('dirName').textContent='-';$('dirSub').textContent='';$('seaNote').textContent='';
+    if($('seaViz'))$('seaViz').hidden=true;
   }
   $('moonP').setAttribute('d',moonPath(age));
   $('mPct').textContent=Math.round(il*100)+'%';
@@ -552,6 +556,38 @@ refreshSea(false);
 document.addEventListener('visibilitychange',function(){if(!document.hidden){refreshSea(false);updatePrayer();updateHome()}});
 window.addEventListener('online',function(){refreshSea(false)});
 setInterval(function(){updatePrayer();updateHome()},60000);
+function paintViz(d){
+  var el=$('seaViz'); if(!el)return;
+  var amp=Math.max(3,Math.min(26,d.wave*9)), dur=Math.max(3,Math.min(10,(d.period||7)*0.7));
+  var wd=Math.max(1.1,9-d.wind*0.22), to=(d.windDir+180)%360, dirx=Math.sin(to*Math.PI/180)>=0?1:-1;
+  var col=d.wave>2?'var(--bad)':(d.wave>1.5?'var(--warn)':'var(--primary)');
+  function wave(a,y,ph){var p='M0 '+y,i,x;for(x=0;x<=800;x+=10){p+=' L'+x+' '+(y+a*Math.sin((x/200)*Math.PI*2+ph)).toFixed(1)}return p+' L800 150 L0 150Z'}
+  var streaks='',n=Math.max(3,Math.min(9,Math.round(2+d.wind/6))),i;
+  for(i=0;i<n;i++){var y=14+(i*53%52),len=40+(i*29%50);streaks+='<line class="wk" x1="0" y1="'+y+'" x2="'+len+'" y2="'+y+'" style="animation-duration:'+wd.toFixed(2)+'s;animation-delay:-'+(i*wd/n).toFixed(2)+'s"/>'}
+  el.innerHTML='<svg viewBox="0 0 400 150" preserveAspectRatio="none" aria-hidden="true"><rect width="400" height="150" fill="var(--tint)"/>'+
+    '<g class="wg'+(dirx<0?' rev':'')+'" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" opacity=".7">'+streaks+'</g>'+
+    '<g class="wv" style="animation-duration:'+(dur*1.5).toFixed(1)+'s" fill="'+col+'" opacity=".35"><path d="'+wave(amp*0.7,88,1.2)+'"/></g>'+
+    '<g class="wv" style="animation-duration:'+dur.toFixed(1)+'s" fill="'+col+'" opacity=".75"><path d="'+wave(amp,104,0)+'"/></g></svg>';
+  el.hidden=false;
+}
+var _ac=null;
+function beep(test){
+  try{if(navigator.vibrate)navigator.vibrate(test?[150]:[500,200,500,200,500]);
+    var A=window.AudioContext||window.webkitAudioContext;if(!A)return;_ac=_ac||new A();
+    [0,.35,.7].slice(0,test?1:3).forEach(function(t0){var o=_ac.createOscillator(),g=_ac.createGain();o.frequency.value=660;o.connect(g);g.connect(_ac.destination);
+      var t=_ac.currentTime+t0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.start(t);o.stop(t+.32)});
+  }catch(e){}
+}
+var _fired='';
+function checkAlert(){
+  if(!S.alert||document.hidden)return;
+  var c=coords(),now=new Date(),tz=-now.getTimezoneOffset()/60,pt=prayerTimes(c.lat,c.lng,now,tz),h=now.getHours()+now.getMinutes()/60,i;
+  for(i=0;i<6;i++){if(i===1)continue;var diff=h-fix24(pt[i]);
+    if(diff>=0&&diff<0.03){var k=now.toDateString()+i;if(_fired===k)return;_fired=k;beep(false);
+      var b=document.createElement('div');b.className='danger';b.style.cssText='position:fixed;top:10px;left:10px;right:10px;z-index:50;text-align:center';b.textContent=L().alertNow(L().prayers[i]);b.onclick=function(){b.remove()};document.body.appendChild(b);setTimeout(function(){b.remove()},60000);return}}
+}
+setInterval(checkAlert,15000);
+
 
 if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
   window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});

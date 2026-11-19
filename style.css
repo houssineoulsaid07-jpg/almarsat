@@ -126,3 +126,13 @@ body.low *{animation:none!important; transition:none!important}
 @keyframes spDrop{to{transform:translateY(210px)}}
 @keyframes spFade{to{opacity:1}}
 @media (prefers-reduced-motion: reduce){#splash .chain,#splash .anchor,#splash .word{animation-duration:.01s; animation-delay:0s}}
+
+.viz{margin-top:12px;border-radius:12px;overflow:hidden;border:1px solid var(--line);height:130px}
+.viz svg{display:block;width:100%;height:100%}
+.wv{animation:wvm linear infinite}
+@keyframes wvm{from{transform:translateX(0)}to{transform:translateX(-400px)}}
+.wk{animation:wkm linear infinite}
+.wg.rev{transform:scale(-1,1);transform-origin:200px 0}
+@keyframes wkm{from{transform:translateX(-90px)}to{transform:translateX(440px)}}
+body.low .viz{display:none}
+@media (prefers-reduced-motion:reduce){.wv,.wk{animation:none}}
