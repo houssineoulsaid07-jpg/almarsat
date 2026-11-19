@@ -3,8 +3,8 @@
   --bg:#070b33; --surface:#0d1654; --ink:#e8f1fb; --muted:#9bb0cf; --line:#1d3070;
   --primary:#38c9c9; --on-primary:#06103a; --tint:#13286a; --sky:#5ccfee;
   --good:#4cc38a; --warn:#f0b24a; --bad:#ef7a66; --on-bad:#1a0904;
-  --font-display:'Reem Kufi','Tajawal',system-ui,sans-serif;
-  --font-body:'Tajawal',system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans Arabic',sans-serif;
+  --font-display:'Reem Kufi','Almarai',system-ui,sans-serif;
+  --font-body:'Almarai',system-ui,-apple-system,'Segoe UI',Roboto,'Noto Sans Arabic',sans-serif;
   color-scheme:dark;
 }
 @media (prefers-color-scheme: light){
@@ -41,11 +41,11 @@ nav.tabs{position:fixed; left:0; right:0; bottom:0; z-index:20; background:var(-
   display:flex; justify-content:center;
   padding:8px max(16px, env(safe-area-inset-left,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(16px, env(safe-area-inset-right,0px))}
 nav.tabs .in{display:flex; gap:6px; width:100%; max-width:520px}
-nav.tabs button{flex:1; min-width:0; font:inherit; font-size:.88rem; border:0; border-radius:10px; background:transparent; color:var(--muted); min-height:44px; cursor:pointer; padding:0 4px}
+nav.tabs button{flex:1; min-width:0; font:inherit; font-family:var(--font-display); font-size:.88rem; border:0; border-radius:10px; background:transparent; color:var(--muted); min-height:44px; cursor:pointer; padding:0 4px}
 nav.tabs button[aria-current="page"]{background:var(--tint); color:var(--primary); font-weight:700}
 
 .card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:18px}
-.card h2{margin:0 0 4px; font-size:1.05rem; font-weight:700}
+.card h2{font-family:var(--font-display); margin:0 0 4px; font-size:1.05rem; font-weight:700}
 .sub{margin:0; color:var(--muted); font-size:.88rem}
 .tag{display:inline-block; font-size:.72rem; letter-spacing:.04em; padding:2px 10px; border-radius:999px; background:var(--tint); color:var(--primary); font-weight:500}
 .tag.warn{background:transparent; border:1px solid var(--warn); color:var(--warn)}

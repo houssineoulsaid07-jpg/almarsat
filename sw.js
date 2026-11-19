@@ -1,6 +1,6 @@
 /* Offline support: app shell is cached; config.json is network-first so rest dates can change without a new install. */
-var V='marsat-v5';
-var SHELL=['./','index.html','style.css','app.js','config.json','manifest.webmanifest','icon-192.png','icon-512.png','maskable-512.png'];
+var V='marsat-v8';
+var SHELL=['./','index.html','privacy.html','style.css','app.js','config.json','manifest.webmanifest','icon-192.png','icon-512.png','maskable-512.png'];
 
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL)}).then(function(){return self.skipWaiting()}));
@@ -13,7 +13,8 @@ self.addEventListener('activate',function(e){
 self.addEventListener('fetch',function(e){
   var req=e.request, url=new URL(req.url);
   if(req.method!=='GET')return;
-  if(url.origin!==location.origin)return;
+  var FONT=url.hostname==='fonts.googleapis.com'||url.hostname==='fonts.gstatic.com';
+  if(url.origin!==location.origin&&!FONT)return;
   if(url.pathname.slice(-11)==='config.json'){
     e.respondWith(fetch(req).then(function(r){
       var copy=r.clone(); caches.open(V).then(function(c){c.put('config.json',copy)}); return r;
