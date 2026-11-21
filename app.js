@@ -1,7 +1,7 @@
 (function(){
 'use strict';
 
-/* ---------- Strings (Arabic + French only) ---------- */
+/* ---------- Strings (Arabic + French; others in lang-extra.js) ---------- */
 var T={
  ar:{
   dir:'rtl', loc:'ar-u-nu-latn', name:'المرساة', tagline:'ثبت رزقك في البحر',
@@ -103,12 +103,14 @@ var SEA_POINTS=[CITIES[0],CITIES[1]];
 
 /* ---------- State and storage ---------- */
 var KEY='marsat.v1';
+if(window.T_EXTRA)for(var _k in window.T_EXTRA)T[_k]=window.T_EXTRA[_k];
+var LANGS=[['ar','العربية'],['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['zh','中文']];
 var S={hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30},
        status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
   var sv=JSON.parse(localStorage.getItem(KEY)||'{}');
-  if(sv.lang==='fr'||sv.lang==='ar')S.lang=sv.lang;
+  if(typeof sv.lang==='string'&&T[sv.lang])S.lang=sv.lang;
   if(typeof sv.city==='number'&&CITIES[sv.city])S.city=sv.city;
   if(sv.mode==='gps'&&sv.gps)S.mode='gps';
   if(sv.gps&&typeof sv.gps.lat==='number')S.gps=sv.gps;
@@ -122,6 +124,9 @@ function save(){
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function L(){return T[S.lang]}
+function cfgPick(p,k){var o={};['ar','fr','en','es','pt','zh'].forEach(function(l){o[l]=p[k+'_'+l]||''});return o}
+function pickTxt(o){return o[S.lang]||o.en||o.fr||o.ar||''}
+function anyTxt(o){return !!(o.ar||o.fr||o.en)}
 function pad(n){return (n<10?'0':'')+n}
 function fmtClock(ts){return new Date(ts).toLocaleTimeString(L().loc,{hour:'2-digit',minute:'2-digit'})}
 function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
@@ -148,7 +153,7 @@ function restInfo(){
     var a=parseD(ps[i].start), open=!ps[i].end, b=open?new Date(9999,0,1):parseD(ps[i].end);
     if(!a||!b||isNaN(a)||isNaN(b)||b<a)continue;
     if(t>=a&&t<=b&&(ps[i].official||S.cfg.showUnofficial))
-      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:Math.round((b-t)/86400000)+1,official:!!ps[i].official,scope:{ar:ps[i].scope_ar||'',fr:ps[i].scope_fr||''},penalty:{ar:ps[i].penalty_ar||'',fr:ps[i].penalty_fr||''},expected:{ar:ps[i].expected_ar||'',fr:ps[i].expected_fr||''}};
+      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:Math.round((b-t)/86400000)+1,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected')};
   }
   return {active:false};
 }
@@ -259,8 +264,7 @@ function build(){
   var spOpts=t.speciesList.map(function(s){return '<option value="'+esc(s)+'"></option>'}).join('');
   var cityOpts=t.cities.map(function(c,i){return '<option value="'+i+'"'+(S.mode==='city'&&i===S.city?' selected':'')+'>'+c+'</option>'}).join('');
   $('app').innerHTML=
-  '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+
-   '<div class="lang" role="group" aria-label="Langue"><button id="bAr" type="button" aria-pressed="'+(S.lang==='ar')+'">العربية</button><button id="bFr" type="button" aria-pressed="'+(S.lang==='fr')+'">Français</button></div></header>'+
+  '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+'</header>'+
 
   '<div class="tab" id="tab0">'+
    '<div id="hint"></div><div id="restBox"></div>'+
@@ -307,7 +311,7 @@ function build(){
   '<div class="tab" id="tab3" hidden>'+
    '<input class="spill" id="setSearch" type="search" placeholder="'+t.setSearch+'" aria-label="'+t.setSearch+'" autocomplete="off">'+
    '<div class="sgroup"><h3 class="sh">'+t.gBasic+'</h3><div class="slist">'+
-    sRow({title:t.lang,sub:t.langName,tap:1,body:'<div class="btns"><button class="btn'+(S.lang==='ar'?'':' ghost')+'" id="sAr" type="button">العربية</button><button class="btn'+(S.lang==='fr'?'':' ghost')+'" id="sFr" type="button">Français</button></div>'})+
+    sRow({title:t.lang,sub:t.langName,tap:1,body:'<div class="btns">'+LANGS.map(function(l){return '<button class="btn'+(S.lang===l[0]?'':' ghost')+'" data-lang="'+l[0]+'" type="button" lang="'+l[0]+'">'+l[1]+'</button>'}).join('')+'</div>'})+
     sRow({title:t.locT,sub:(S.mode==='gps'?t.gps:t.cities[S.city]),k:t.city+' gps',tap:1,body:'<label class="field" for="citySel">'+t.city+'<select id="citySel">'+(S.mode==='gps'?'<option value="gps" selected>'+t.gps+'</option>':'')+cityOpts+'</select></label><div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div>'})+
     sRow({title:t.low,sub:t.lowInfo,sw:'lowSw',on:S.low})+
    '</div></div>'+
@@ -318,7 +322,7 @@ function build(){
     sRow({id:'installCard',title:t.install,sub:t.installInfo,open:1,body:'<div class="btns"><button class="btn" id="bInstall" type="button" hidden>'+t.install+'</button></div><p class="note" id="iosNote" style="margin-top:8px" hidden>'+t.installIos+'</p>'})+
    '</div></div>'+
    '<div class="sgroup"><h3 class="sh">'+t.gInfo+'</h3><div class="slist">'+
-    sRow({title:t.priv,sub:t.privSub,href:'privacy.html'+(S.lang==='fr'?'':'#ar')})+
+    sRow({title:t.priv,sub:t.privSub,href:'privacy.html#'+S.lang})+
     sRow({title:t.about,sub:t.aboutTxt,tap:1,body:'<p class="note">'+t.attr+'</p>'})+
     sRow({title:t.copy,sub:''})+
    '</div></div>'+
@@ -327,9 +331,7 @@ function build(){
 
   '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'">'+n+'</button>'}).join('')+'</div></nav>';
 
-  $('bAr').onclick=function(){S.lang='ar';save();rebuild()};
-  $('bFr').onclick=function(){S.lang='fr';save();rebuild()};
-  $('bRefresh').onclick=function(){refreshSea(true)};
+      $('bRefresh').onclick=function(){refreshSea(true)};
   $('citySel').onchange=function(){
     if(this.value==='gps')return;
     S.mode='city';S.city=+this.value;S.sea=null;save();rebuild();refreshSea(true);
@@ -378,17 +380,17 @@ function updateHome(){
 
   if(r.active){
     var fm={day:'numeric',month:'long',year:'numeric'};
-    var sc=(S.lang==='fr'?r.scope.fr:r.scope.ar);
+    var sc=pickTxt(r.scope);
     var head=r.open?t.restOpen(r.start.toLocaleDateString(t.loc,fm)):t.restTitle(r.end.toLocaleDateString(t.loc,fm));
     var cnt=r.open?'<div class="count"><b>'+r.days+'</b><span>'+t.since+'</span></div>':'<div class="count"><b>'+r.days+'</b><span>'+t.left+'</span></div>';
     $('restBox').innerHTML='<div class="rest"><h2>'+esc(head)+'</h2>'+cnt+
       (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p><p class="note">'+t.exempt+'</p>':'<p>'+t.prep+'</p>')+
-      (r.penalty[S.lang==='fr'?'fr':'ar']?'<p class="note"><b>'+t.penL+'</b> '+esc(r.penalty[S.lang==='fr'?'fr':'ar'])+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>':'')+
-      (r.open&&r.expected[S.lang==='fr'?'fr':'ar']?'<p class="note"><b>'+t.expL+'</b> '+esc(r.expected[S.lang==='fr'?'fr':'ar'])+'</p>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
+      (pickTxt(r.penalty)?'<p class="note"><b>'+t.penL+'</b> '+esc(pickTxt(r.penalty))+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>':'')+
+      (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
       (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>';
   }else $('restBox').innerHTML='';
-  $('scoreCard').hidden=r.active&&!(r.scope.ar||r.scope.fr);
-  $('seaSub').textContent=(r.active&&!(r.scope.ar||r.scope.fr))?t.seaLearn:'';
+  $('scoreCard').hidden=r.active&&!anyTxt(r.scope);
+  $('seaSub').textContent=(r.active&&!anyTxt(r.scope))?t.seaLearn:'';
 
   var vd=$('verdict'), arc=$('arc');
   if(d&&fresh){
@@ -519,8 +521,7 @@ function bindSettings(){
     function tog(){var r=h.parentNode,b=r.querySelector('.sbody');if(!b)return;b.hidden=!b.hidden;r.classList.toggle('open',!b.hidden)}
     h.onclick=tog;h.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}};
   });
-  $('sAr').onclick=function(){S.lang='ar';save();rebuild()};
-  $('sFr').onclick=function(){S.lang='fr';save();rebuild()};
+  Array.prototype.forEach.call(tab.querySelectorAll('[data-lang]'),function(b){b.onclick=function(){S.lang=b.getAttribute('data-lang');save();rebuild()}});
   $('setSearch').oninput=function(){
     var q=this.value.trim().toLowerCase(),any=false;
     Array.prototype.forEach.call(tab.querySelectorAll('.sgroup'),function(g){
@@ -542,12 +543,12 @@ function logGps(){
   },function(){box.innerHTML='<div class="msg">'+t.gpsLogFail+'</div>'},{enableHighAccuracy:true,timeout:20000,maximumAge:60000});
 }
 function distKm(a,b,c,d){var R=6371,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(h))}
-function isCeph(n){return /أخطبوط|سبيط|حبار|سيبيا|poulpe|seiche|calmar/i.test(n||'')}
+function isCeph(n){return /أخطبوط|سبيط|حبار|سيبيا|poulpe|seiche|calmar|octopus|cuttlefish|squid|pulpo|sepia|choco|calamar|polvo|章鱼|乌贼|鱿鱼/i.test(n||'')}
 function updateSim(){
   var card=$('simCard'); if(!card)return;
   card.hidden=true;
   var d=S.sea; if(!d||Date.now()-d.t>6*3600000)return;
-  var r=restInfo(), blockCeph=r.active&&(r.scope.ar||r.scope.fr);
+  var r=restInfo(), blockCeph=r.active&&anyTxt(r.scope);
   var list=S.log.filter(function(e){return e.snap&&e.kg!=null&&!(blockCeph&&isCeph(e.species))});
   if(list.length<5)return;
   var kgs=list.map(function(e){return e.kg}).sort(function(a,b){return a-b}), med=kgs[Math.floor(kgs.length/2)];

@@ -15,7 +15,7 @@ p,li{margin:.4em 0}ul{padding-inline-start:1.3em}
 .box{background:#fff;border:1px solid #d5e3ea;border-radius:12px;padding:12px 14px;margin:12px 0}
 small{color:#566}
 [data-l]{display:none}
-html[lang=ar] [data-l=ar],html[lang=fr] [data-l=fr]{display:block}
+html[lang=ar] [data-l=ar],html[lang=fr] [data-l=fr],html[lang=en] [data-l=en]{display:block}
 </style>
 </head>
 <body>
@@ -23,6 +23,7 @@ html[lang=ar] [data-l=ar],html[lang=fr] [data-l=fr]{display:block}
 <div class="tabs">
 <button id="bar" class="on" onclick="L('ar')">العربية</button>
 <button id="bfr" onclick="L('fr')">Français</button>
+<button id="ben" onclick="L('en')">English</button>
 </div>
 
 <div data-l="ar">
@@ -72,6 +73,55 @@ html[lang=ar] [data-l=ar],html[lang=fr] [data-l=fr]{display:block}
 
 <h2>9. التغييرات والقانون</h2>
 <p>قد نحدّث هذه السياسة وسيظهر تاريخ التحديث أعلاه. يخضع الاستخدام للقانون الموريتاني.</p>
+</div>
+
+<div data-l="en">
+<h1>Privacy Policy and Disclaimer – Al Marsat</h1>
+<small>Last updated: 19 November 2026</small>
+
+<h2>1. Who we are</h2>
+<p>"Al Marsat" is a free app for fishermen in Mauritania: prayer times, qibla, moon, sea state, biological-rest information and a personal fishing log. Developer: <b>Al Marsat</b> (Mauritania). Contact: <b>almarsat.app@gmail.com</b></p>
+
+<h2>2. Data collected</h2>
+<div class="box"><b>In short: we collect no data on our servers. No account, no ads, no trackers.</b></div>
+<ul>
+<li><b>Location:</b> used only if you tap the location button, for qibla, prayer times and sea state. Stored only on your device.</li>
+<li><b>Fishing log and settings</b> (city, language, notes, place names, catch coordinates and associated weather): stored only on your phone, never received by us.</li>
+<li><b>Orientation sensor (compass):</b> read locally to show the qibla, never transmitted.</li>
+<li>We do <b>not</b> ask for name, phone number, email, photos or contacts.</li>
+</ul>
+
+<h2>3. Third-party services</h2>
+<ul>
+<li><b>Open-Meteo</b> (open-meteo.com): to get waves and wind, approximate coordinates of the chosen place are sent to it, with no name or identifier. Its own policy applies.</li>
+<li><b>Google Fonts:</b> the interface fonts are downloaded from Google the first time; Google may receive your IP address. They are then cached on your device.</li>
+<li><b>Hosting (GitHub Pages):</b> the app files are served by GitHub, which may log IP addresses for technical purposes under its own policy.</li>
+</ul>
+
+<h2>4. Sharing and sale</h2>
+<p>We do not sell or share your data for advertising or commercial purposes.</p>
+
+<h2>5. Deleting your data</h2>
+<p>Your data is only on your device. Delete it at any time by uninstalling the app or clearing the site data in your browser. We have nothing to delete on our side.</p>
+
+<h2>6. Children</h2>
+<p>The app is intended for adult fishermen; we knowingly collect no data about anyone.</p>
+
+<h2>7. Disclaimer (important)</h2>
+<div class="box">
+<ul>
+<li>The app is a <b>simple aid</b>, unofficial and not linked to any public authority.</li>
+<li><b>Biological rest:</b> indicative information only; only official decisions of the Ministry of Fisheries and Maritime Economy are binding. Check before going out. We accept no liability for any offence or fine.</li>
+<li><b>Sea state, weather, fishing index:</b> model-based estimates that may be inaccurate or late. <b>Do not rely on them alone for your safety.</b> Consult the coast guard, weather services and your experience, and use safety equipment.</li>
+<li><b>Qibla and prayers:</b> approximate calculations; verify locally if needed.</li>
+<li>The app is provided "as is" without warranty; to the extent permitted by law, the developer is not liable for losses or damages linked to its use.</li>
+</ul></div>
+
+<h2>8. Ownership</h2>
+<p>© 2026 Al Marsat. All rights reserved (name, logo, design, code). Any copy or republication without written permission is prohibited. Weather/marine data: Open-Meteo.</p>
+
+<h2>9. Changes and governing law</h2>
+<p>This policy may be updated; the date is shown above. Use is governed by Mauritanian law.</p>
 </div>
 
 <div data-l="fr">
@@ -125,8 +175,11 @@ html[lang=ar] [data-l=ar],html[lang=fr] [data-l=fr]{display:block}
 </main>
 <script>
 function L(l){var d=document.documentElement;d.lang=l;d.dir=l==='ar'?'rtl':'ltr';
-document.getElementById('bar').className=l==='ar'?'on':'';document.getElementById('bfr').className=l==='fr'?'on':'';}
-if(/^fr/i.test(navigator.language||'')&&location.hash!=='#ar')L('fr');
+['ar','fr','en'].forEach(function(x){document.getElementById('b'+x).className=l===x?'on':''});}
+var hl=(location.hash||'').slice(1),nl=(navigator.language||'').slice(0,2);
+if(['ar','fr','en'].indexOf(hl)>-1)L(hl);
+else if(['es','pt','zh'].indexOf(hl)>-1)L('en');
+else if(nl==='fr')L('fr');else if(nl==='en')L('en');
 </script>
 </body>
 </html>

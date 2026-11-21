@@ -1,6 +1,6 @@
 /* Offline support: app shell is cached; config.json is network-first so rest dates can change without a new install. */
-var V='marsat-v11';
-var SHELL=['./','index.html','privacy.html','style.css','app.js','config.json','manifest.webmanifest','icon-192.png','icon-512.png','maskable-512.png'];
+var V='marsat-v12';
+var SHELL=['./','index.html','privacy.html','style.css','app.js','lang-extra.js','config.json','manifest.webmanifest','icon-192.png','icon-512.png','maskable-512.png'];
 
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL)}).then(function(){return self.skipWaiting()}));
