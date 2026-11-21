@@ -8,7 +8,7 @@ var T={
   tabs:['الرئيسية','الصلاة','السجل','الإعدادات'],
   restTitle:function(d){return 'راحة بيولوجية - ممنوع الصيد حتى '+d},
   restOpen:function(d){return 'توقيف بيولوجي قائم منذ '+d},
-  scopeL:'يشمل:', penL:'العقوبة:', refer:'التطبيق للتذكير فقط. المرجع هو بلاغ وزارة الصيد (هاتف +222 45 25 24 76).', since:'يوم منذ البداية', noEnd:'تاريخ النهاية لم يُعلن بعد', expL:'المتوقع (تقدير غير رسمي):', exempt:'مصايد أخرى مستثناة بحسب بلاغ الوزارة (القشريات، النازلي الأسود، سرطان الأعماق، جراد البحر الوردي).',
+  scopeL:'يشمل:', penL:'العقوبة:', refer:'التطبيق للتذكير فقط. المرجع هو بلاغ وزارة الصيد (هاتف +222 45 25 99 70).', since:'يوم منذ البداية', noEnd:'تاريخ النهاية لم يُعلن بعد', expL:'المتوقع (تقدير غير رسمي):', exempt:'مصايد أخرى مستثناة بحسب بلاغ الوزارة (القشريات، النازلي الأسود، سرطان الأعماق، جراد البحر الوردي).',
   left:'يوم متبقٍ', prep:'جهز معداتك للموسم الجديد', unofficial:'تواريخ تجريبية للاختبار فقط',
   today:'نسبة الصيد اليوم', wind:'الرياح', wave:'الموج', moonL:'القمر',
   excellent:'ممتاز', good:'جيد', stay:'لا تخرج', none:'لا توجد بيانات',
@@ -37,6 +37,7 @@ var T={
   needSpecies:'اكتب نوع السمك.', added:'تمت الإضافة.', empty:'لا توجد رحلات مسجلة بعد. أضف أول صيدة.',
   del:'حذف', sure:'تأكيد؟', total:'هذا الشهر', trips:'صيدة', kg:'كغ', top:'الأكثر',
   logNote:'السجل محفوظ على هاتفك فقط. مسح بيانات المتصفح يحذفه.',
+  soonT:"اقترب موعد استئناف الصيد", soonD:"استعدوا للانطلاق: راجعوا تراخيص القوارب ومعدات السلامة البحرية. التوقيف ما زال ساريًا حتى صدور القرار الرسمي.", openT:"موسم الصيد مفتوح حاليًا", openD:"يُسمح بالصيد وفق القوانين المعمول بها، مع احترام الأحجام القانونية للأسماك.", 
   exemptL:"الاستثناءات (غير مشمولة):", moreL:"عرض العقوبات والاستثناءات", quickSp:["أخطبوط","كوربين","دنيس","سبيط","بوري"],
   speciesList:['اسقمري','أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
   settings:'الإعدادات', lang:'اللغة', locT:'الموقع', city:'المدينة', useGps:'استخدم موقعي', gpsBusy:'جارٍ تحديد الموقع...',
@@ -52,7 +53,7 @@ var T={
   tabs:['Accueil','Prière','Journal','Réglages'],
   restTitle:function(d){return 'Repos biologique - pêche interdite jusqu’au '+d},
   restOpen:function(d){return 'Arrêt biologique en cours depuis le '+d},
-  scopeL:'Concerne :', penL:'Sanctions :', refer:'L’application sert de rappel. La référence est le communiqué du ministère des Pêches (tél. +222 45 25 24 76).', since:'jours depuis le début', noEnd:'Date de fin pas encore annoncée', expL:'Prévision (estimation non officielle) :', exempt:'D’autres pêcheries sont exemptées selon le communiqué du ministère (crustacés, merlu noir, crabe profond, crevette rose).',
+  scopeL:'Concerne :', penL:'Sanctions :', refer:'L’application sert de rappel. La référence est le communiqué du ministère des Pêches (tél. +222 45 25 99 70).', since:'jours depuis le début', noEnd:'Date de fin pas encore annoncée', expL:'Prévision (estimation non officielle) :', exempt:'D’autres pêcheries sont exemptées selon le communiqué du ministère (crustacés, merlu noir, crabe profond, crevette rose).',
   left:'jours restants', prep:'Préparez votre matériel pour la nouvelle saison', unofficial:'Dates de test uniquement',
   today:'Chances de pêche aujourd’hui', wind:'Vent', wave:'Houle', moonL:'Lune',
   excellent:'Excellent', good:'Bon', stay:'Ne sortez pas', none:'Pas de données',
@@ -81,6 +82,7 @@ var T={
   needSpecies:'Saisissez l’espèce.', added:'Ajouté.', empty:'Aucune sortie enregistrée. Ajoutez votre première prise.',
   del:'Supprimer', sure:'Confirmer ?', total:'Ce mois-ci', trips:'prises', kg:'kg', top:'Principale',
   logNote:'Le journal est enregistré uniquement sur votre téléphone. Effacer les données du navigateur le supprime.',
+  soonT:"Reprise de la pêche imminente", soonD:"Préparez vos embarcations ; vérifiez vos licences et équipements de sécurité. L’arrêt reste en vigueur jusqu’à la décision officielle.", openT:"Saison de pêche ouverte", openD:"La pêche est autorisée conformément à la réglementation et aux tailles légales.", 
   exemptL:"Exemptions (non concernées) :", moreL:"Voir les sanctions et exemptions", quickSp:["Poulpe","Courbine","Dorade","Calmar","Mulet"],
   speciesList:['Maquereau','Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
   settings:'Réglages', lang:'Langue', locT:'Lieu', city:'Ville', useGps:'Utiliser ma position', gpsBusy:'Localisation en cours...',
@@ -113,7 +115,7 @@ if(window.T_EXTRA)for(var _k in window.T_EXTRA)T[_k]=window.T_EXTRA[_k];
 var NAVI=["<path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10v9.5h13V10\"/><path d=\"M10 19.5v-5h4v5\"/>", "<path d=\"M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z\"/>", "<path d=\"M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z\"/><path d=\"M9 9h6M9 13h6\"/>", "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8\"/>"];
 var LANGS=[['ar','العربية'],['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['zh','中文']];
 var S={hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
-       cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30},
+       cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30,soonDays:7,openDays:3},
        status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
   var sv=JSON.parse(localStorage.getItem(KEY)||'{}');
@@ -134,7 +136,7 @@ function L(){return T[S.lang]}
 function cfgPick(p,k){var o={};['ar','fr','en','es','pt','zh'].forEach(function(l){o[l]=p[k+'_'+l]||''});return o}
 function cfgList(p,k){var o={};['ar','fr','en','es','pt','zh'].forEach(function(l){o[l]=Array.isArray(p[k+'_'+l])?p[k+'_'+l]:null});return o}
 function pickList(o){return o[S.lang]||o.en||o.fr||o.ar||null}
-var MIN={phone:'+222 45 25 24 76',website:'https://peches.gov.mr'};
+var MIN={phone:'+222 45 25 99 70',website:'https://peches.gov.mr'};
 function ministryLinks(){return '<p class="note mlinks"><a href="tel:'+MIN.phone.replace(/\s/g,'')+'">'+esc(MIN.phone)+'</a> · <a href="'+esc(MIN.website)+'" target="_blank" rel="noopener">peches.gov.mr</a></p>'}
 function pickTxt(o){return o[S.lang]||o.en||o.fr||o.ar||''}
 function anyTxt(o){return !!(o.ar||o.fr||o.en)}
@@ -160,11 +162,16 @@ function seaCandidates(){
 function parseD(s){var p=(s||'').split('-');return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null}
 function restInfo(){
   var now=new Date(), t=new Date(now.getFullYear(),now.getMonth(),now.getDate()), ps=S.cfg.restPeriods||[];
+  var soonN=+S.cfg.soonDays>0?+S.cfg.soonDays:7, openN=+S.cfg.openDays>0?+S.cfg.openDays:3;
   for(var i=0;i<ps.length;i++){
     var a=parseD(ps[i].start), open=!ps[i].end, b=open?new Date(9999,0,1):parseD(ps[i].end);
     if(!a||!b||isNaN(a)||isNaN(b)||b<a)continue;
-    if(t>=a&&t<=b&&(ps[i].official||S.cfg.showUnofficial))
-      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:Math.round((b-t)/86400000)+1,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected'),exc:cfgList(ps[i],'exceptions')};
+    if(!(ps[i].official||S.cfg.showUnofficial))continue;
+    if(t>=a&&t<=b){
+      var left=open?0:Math.round((b-t)/86400000)+1;
+      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:left,soon:!open&&left<=soonN,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected'),exc:cfgList(ps[i],'exceptions')};
+    }
+    if(!open&&t>b&&Math.round((t-b)/86400000)<=openN)return {active:false,justOpened:true};
   }
   return {active:false};
 }
@@ -394,13 +401,16 @@ function updateHome(){
     var sc=pickTxt(r.scope);
     var head=r.open?t.restOpen(r.start.toLocaleDateString(t.loc,fm)):t.restTitle(r.end.toLocaleDateString(t.loc,fm));
     var cnt=r.open?'<div class="count"><b>'+r.days+'</b><span>'+t.since+'</span></div>':'<div class="count"><b>'+r.days+'</b><span>'+t.left+'</span></div>';
-    $('restBox').innerHTML='<div class="rest"><h2>'+esc(head)+'</h2>'+cnt+
+    if(r.soon)head=t.soonT;
+    var soonNote=r.soon?'<p>'+t.soonD+'</p>':'';
+    $('restBox').innerHTML='<div class="rest'+(r.soon?' soon':'')+'"><h2>'+esc(head)+'</h2>'+cnt+soonNote+
       (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p>':'<p>'+t.prep+'</p>')+
       ((sc||pickTxt(r.penalty)||(r.open&&pickTxt(r.expected)))?'<details class="more"><summary>'+t.moreL+'</summary>'+(sc?'<p class="note"><b>'+t.exemptL+'</b></p>'+(pickList(r.exc)?'<ul class="exl">'+pickList(r.exc).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'<p class="note">'+t.exempt+'</p>'):'')+
       (pickTxt(r.penalty)?'<p class="note"><b>'+t.penL+'</b> '+esc(pickTxt(r.penalty))+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>'+ministryLinks():'')+
       (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+'</details>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
       (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>';
-  }else $('restBox').innerHTML='';
+  }else if(r.justOpened)$('restBox').innerHTML='<div class="rest opened"><h2>'+t.openT+'</h2><p>'+t.openD+'</p></div>';
+  else $('restBox').innerHTML='';
   $('scoreCard').hidden=r.active&&!anyTxt(r.scope);
   $('seaSub').textContent=(r.active&&!anyTxt(r.scope))?t.seaLearn:'';
 
@@ -625,6 +635,8 @@ function loadConfig(){
     if(c&&Array.isArray(c.restPeriods))S.cfg.restPeriods=c.restPeriods;
     S.cfg.showUnofficial=!!(c&&c.showUnofficial);
     if(c&&c.seaTtlMinutes)S.cfg.seaTtlMinutes=c.seaTtlMinutes;
+    if(c&&c.soonDays)S.cfg.soonDays=c.soonDays;
+    if(c&&c.openDays)S.cfg.openDays=c.openDays;
     try{localStorage.setItem(KEY+'.cfg',JSON.stringify(S.cfg))}catch(e){}
     if(c&&c.remoteConfigUrl)return getJSON(c.remoteConfigUrl,6000).then(function(r){
       if(r&&Array.isArray(r.restPeriods)){S.cfg.restPeriods=r.restPeriods;S.cfg.showUnofficial=!!r.showUnofficial;try{localStorage.setItem(KEY+'.cfg',JSON.stringify(S.cfg))}catch(e){}}

@@ -183,3 +183,8 @@ nav.tabs .ni{width:24px; height:24px; fill:none; stroke:currentColor; stroke-wid
 .rest .exl{margin:4px 0 0; padding-inline-start:20px; font-size:.92rem}
 .rest .mlinks a{color:var(--primary); font-weight:700}
 .rest .mlinks a{direction:ltr; unicode-bidi:isolate; display:inline-block}
+
+.rest.soon{border-color:#f59e0b; background:color-mix(in srgb,#f59e0b 14%,var(--surface))}
+.rest.soon .count b{color:#b45309}
+.rest.opened{border-color:#10b981; background:color-mix(in srgb,#10b981 14%,var(--surface))}
+.rest.opened h2{color:#047857}

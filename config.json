@@ -60,8 +60,10 @@
   "remoteConfigUrl": "",
   "seaTtlMinutes": 30,
   "ministry": {
-    "phone": "+222 45 25 24 76",
+    "phone": "+222 45 25 99 70",
     "website": "https://peches.gov.mr"
   },
-  "lastUpdated": "2026-11-21"
+  "lastUpdated": "2026-11-21",
+  "soonDays": 7,
+  "openDays": 3
 }
