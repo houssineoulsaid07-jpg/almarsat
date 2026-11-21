@@ -7,24 +7,61 @@
       "official": true,
       "scope_ar": "صيد الأخطبوط ورأسيات الأرجل (الأخطبوط والحبار والسيبيا) والصيد بشباك الجر القاعي، في كل المياه الموريتانية",
       "scope_fr": "pêche des céphalopodes (poulpe, calmar, seiche) et chalut de fond, dans toutes les eaux mauritaniennes",
-      "penalty_ar": "مخالفة التوقيف البيولوجي مخالفة جسيمة جداً (مدونة الصيد، المادة 84)، وقد تؤدي إلى سحب الرخصة وغرامة ومنع من الصيد (المادة 88). للتفاصيل راجع وزارة الصيد.",
-      "penalty_fr": "Pêcher pendant l’arrêt biologique est une infraction très grave (Code des pêches, art. 84) pouvant entraîner retrait de licence, amende et interdiction de pêcher (art. 88). Renseignez-vous auprès du ministère.",
-      "expected_ar": "قد تنتهي في بداية ديسمبر 2026، وقد تمتد 10 إلى 15 يوماً بعده. القرار الرسمي هو المعتمد.",
-      "expected_fr": "Fin possible début décembre 2026, avec une prolongation possible de 10 à 15 jours. Seule la décision officielle fait foi.",
+      "penalty_ar": "المادتان 84 و 88 من مدونة الصيد البحري: غرامات مالية ومصادرة المعدات والمحجوزات.",
+      "penalty_fr": "Articles 84 et 88 du Code des Pêches : amendes et saisie du matériel et des captures.",
+      "expected_ar": "حوالي 10 ديسمبر 2026 (غير مؤكد). القرار الرسمي هو المعتمد.",
+      "expected_fr": "Vers le 10 décembre 2026 (non confirmée). Seule la décision officielle fait foi.",
       "scope_en": "fishing of cephalopods (octopus, squid, cuttlefish) and bottom trawling, in all Mauritanian waters",
       "scope_es": "pesca de cefalópodos (pulpo, calamar, sepia) y arrastre de fondo, en todas las aguas mauritanas",
       "scope_pt": "pesca de cefalópodes (polvo, lula, choco) e arrasto de fundo, em todas as águas mauritanas",
       "scope_zh": "头足类（章鱼、鱿鱼、乌贼）捕捞和底拖网作业，适用于毛里塔尼亚全部水域",
-      "penalty_en": "Fishing during the biological rest is a very serious offence (Fisheries Code, art. 84) that may lead to licence withdrawal, a fine and a fishing ban (art. 88). Ask the Ministry for details.",
-      "penalty_es": "Pescar durante el descanso biológico es una infracción muy grave (Código de Pesca, art. 84) que puede conllevar retirada de licencia, multa y prohibición de pescar (art. 88). Consulte al Ministerio.",
-      "penalty_pt": "Pescar durante o defeso biológico é uma infração muito grave (Código das Pescas, art. 84) que pode levar à retirada da licença, multa e proibição de pescar (art. 88). Informe-se junto do Ministério.",
-      "penalty_zh": "在生物休渔期捕鱼属于非常严重的违法行为（《渔业法典》第84条），可能被吊销许可证、罚款并禁止捕鱼（第88条）。详情请咨询渔业部。",
-      "expected_en": "May end in early December 2026, with a possible extension of 10 to 15 days. Only the official decision applies.",
-      "expected_es": "Podría terminar a principios de diciembre de 2026, con una posible prórroga de 10 a 15 días. Solo vale la decisión oficial.",
-      "expected_pt": "Pode terminar no início de dezembro de 2026, com possível prolongamento de 10 a 15 dias. Só a decisão oficial é válida.",
-      "expected_zh": "可能于2026年12月初结束，也可能再延长10至15天。以官方决定为准。"
+      "penalty_en": "Articles 84 and 88 of the Fisheries Code: fines and seizure of equipment and catch.",
+      "penalty_es": "Artículos 84 y 88 del Código de Pesca: multas y decomiso de equipos y capturas.",
+      "penalty_pt": "Artigos 84.º e 88.º do Código das Pescas: multas e apreensão de equipamentos e capturas.",
+      "penalty_zh": "《渔业法典》第84条和第88条：罚款，并没收渔具和渔获。",
+      "expected_en": "Around 10 December 2026 (not confirmed). Only the official decision applies.",
+      "expected_es": "Hacia el 10 de diciembre de 2026 (sin confirmar). Solo vale la decisión oficial.",
+      "expected_pt": "Por volta de 10 de dezembro de 2026 (por confirmar). Só a decisão oficial é válida.",
+      "expected_zh": "约2026年12月10日（未确认）。以官方决定为准。",
+      "exceptions_ar": [
+        "القشريات (باستثناء جراد البحر وسرطان البحر من الفئة الأولى)",
+        "سمك النازلي الأسود بالجر والخيط في الأعماق",
+        "سرطان الأعماق"
+      ],
+      "exceptions_fr": [
+        "Crustacés (hors langoustes et crabes de 1ère catégorie)",
+        "Merlu noir au chalut et à la palangre en eaux profondes",
+        "Crabe profond"
+      ],
+      "exceptions_en": [
+        "Crustaceans (excluding lobsters and first-category crabs)",
+        "Black hake by trawl and longline in deep waters",
+        "Deep-sea crab"
+      ],
+      "exceptions_es": [
+        "Crustáceos (excepto langostas y cangrejos de 1.ª categoría)",
+        "Merluza negra con arrastre y palangre en aguas profundas",
+        "Cangrejo de profundidad"
+      ],
+      "exceptions_pt": [
+        "Crustáceos (exceto lagostas e caranguejos de 1.ª categoria)",
+        "Pescada-negra com arrasto e palangre em águas profundas",
+        "Caranguejo de profundidade"
+      ],
+      "exceptions_zh": [
+        "甲壳类（龙虾和一级蟹除外）",
+        "深水拖网和延绳钓黑鳕鱼",
+        "深海蟹"
+      ],
+      "expected_end": "2026-12-10",
+      "end_confirmed": false
     }
   ],
   "remoteConfigUrl": "",
-  "seaTtlMinutes": 30
+  "seaTtlMinutes": 30,
+  "ministry": {
+    "phone": "+222 45 25 24 76",
+    "website": "https://peches.gov.mr"
+  },
+  "lastUpdated": "2026-11-21"
 }

@@ -168,3 +168,18 @@ input:checked + .tgl{background:var(--primary); border-color:var(--primary)}
 input:checked + .tgl::after{inset-inline-start:24px; top:2px; width:22px; height:22px; background:var(--on-primary)}
 input:focus-visible + .tgl{outline:2px solid var(--primary); outline-offset:2px}
 body.low .shead,body.low .tgl,body.low .tgl::after,body.low .chev{transition:none}
+
+nav.tabs button{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:.78rem; padding:4px 2px}
+nav.tabs .ni{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round}
+.rest details.more{border-top:1px solid var(--line); padding-top:8px}
+.rest details.more summary{cursor:pointer; font-weight:700; color:var(--primary); min-height:44px; display:flex; align-items:center; list-style:none}
+.rest details.more summary::-webkit-details-marker{display:none}
+.rest details.more summary::after{content:"+"; margin-inline-start:auto; font-size:1.4rem; line-height:1}
+.rest details.more[open] summary::after{content:"\2212"}
+.rest details.more p{margin-top:8px}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 12px}
+.chip{font:inherit; font-size:.9rem; border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:999px; padding:8px 14px; min-height:40px; cursor:pointer}
+.chip:active{background:var(--tint); border-color:var(--primary)}
+.rest .exl{margin:4px 0 0; padding-inline-start:20px; font-size:.92rem}
+.rest .mlinks a{color:var(--primary); font-weight:700}
+.rest .mlinks a{direction:ltr; unicode-bidi:isolate; display:inline-block}

@@ -8,7 +8,7 @@ var T={
   tabs:['الرئيسية','الصلاة','السجل','الإعدادات'],
   restTitle:function(d){return 'راحة بيولوجية - ممنوع الصيد حتى '+d},
   restOpen:function(d){return 'توقيف بيولوجي قائم منذ '+d},
-  scopeL:'يشمل:', penL:'العقوبة:', refer:'التطبيق للتذكير فقط. المرجع هو بلاغ وزارة الصيد (هاتف 45 25 99 70).', since:'يوم منذ البداية', noEnd:'تاريخ النهاية لم يُعلن بعد', expL:'المتوقع (تقدير غير رسمي):', exempt:'مصايد أخرى مستثناة بحسب بلاغ الوزارة (القشريات، النازلي الأسود، سرطان الأعماق، جراد البحر الوردي).',
+  scopeL:'يشمل:', penL:'العقوبة:', refer:'التطبيق للتذكير فقط. المرجع هو بلاغ وزارة الصيد (هاتف +222 45 25 24 76).', since:'يوم منذ البداية', noEnd:'تاريخ النهاية لم يُعلن بعد', expL:'المتوقع (تقدير غير رسمي):', exempt:'مصايد أخرى مستثناة بحسب بلاغ الوزارة (القشريات، النازلي الأسود، سرطان الأعماق، جراد البحر الوردي).',
   left:'يوم متبقٍ', prep:'جهز معداتك للموسم الجديد', unofficial:'تواريخ تجريبية للاختبار فقط',
   today:'نسبة الصيد اليوم', wind:'الرياح', wave:'الموج', moonL:'القمر',
   excellent:'ممتاز', good:'جيد', stay:'لا تخرج', none:'لا توجد بيانات',
@@ -37,6 +37,7 @@ var T={
   needSpecies:'اكتب نوع السمك.', added:'تمت الإضافة.', empty:'لا توجد رحلات مسجلة بعد. أضف أول صيدة.',
   del:'حذف', sure:'تأكيد؟', total:'هذا الشهر', trips:'صيدة', kg:'كغ', top:'الأكثر',
   logNote:'السجل محفوظ على هاتفك فقط. مسح بيانات المتصفح يحذفه.',
+  exemptL:"الاستثناءات (غير مشمولة):", moreL:"عرض العقوبات والاستثناءات", quickSp:["أخطبوط","كوربين","دنيس","سبيط","بوري"],
   speciesList:['اسقمري','أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
   settings:'الإعدادات', lang:'اللغة', locT:'الموقع', city:'المدينة', useGps:'استخدم موقعي', gpsBusy:'جارٍ تحديد الموقع...',
   gpsFail:'تعذّر تحديد الموقع. اسمح بالوصول للموقع واختر مدينة بدلاً منه.', gpsOk:'تم تحديد موقعك.',
@@ -51,7 +52,7 @@ var T={
   tabs:['Accueil','Prière','Journal','Réglages'],
   restTitle:function(d){return 'Repos biologique - pêche interdite jusqu’au '+d},
   restOpen:function(d){return 'Arrêt biologique en cours depuis le '+d},
-  scopeL:'Concerne :', penL:'Sanctions :', refer:'L’application sert de rappel. La référence est le communiqué du ministère des Pêches (tél. 45 25 99 70).', since:'jours depuis le début', noEnd:'Date de fin pas encore annoncée', expL:'Prévision (estimation non officielle) :', exempt:'D’autres pêcheries sont exemptées selon le communiqué du ministère (crustacés, merlu noir, crabe profond, crevette rose).',
+  scopeL:'Concerne :', penL:'Sanctions :', refer:'L’application sert de rappel. La référence est le communiqué du ministère des Pêches (tél. +222 45 25 24 76).', since:'jours depuis le début', noEnd:'Date de fin pas encore annoncée', expL:'Prévision (estimation non officielle) :', exempt:'D’autres pêcheries sont exemptées selon le communiqué du ministère (crustacés, merlu noir, crabe profond, crevette rose).',
   left:'jours restants', prep:'Préparez votre matériel pour la nouvelle saison', unofficial:'Dates de test uniquement',
   today:'Chances de pêche aujourd’hui', wind:'Vent', wave:'Houle', moonL:'Lune',
   excellent:'Excellent', good:'Bon', stay:'Ne sortez pas', none:'Pas de données',
@@ -80,6 +81,7 @@ var T={
   needSpecies:'Saisissez l’espèce.', added:'Ajouté.', empty:'Aucune sortie enregistrée. Ajoutez votre première prise.',
   del:'Supprimer', sure:'Confirmer ?', total:'Ce mois-ci', trips:'prises', kg:'kg', top:'Principale',
   logNote:'Le journal est enregistré uniquement sur votre téléphone. Effacer les données du navigateur le supprime.',
+  exemptL:"Exemptions (non concernées) :", moreL:"Voir les sanctions et exemptions", quickSp:["Poulpe","Courbine","Dorade","Calmar","Mulet"],
   speciesList:['Maquereau','Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
   settings:'Réglages', lang:'Langue', locT:'Lieu', city:'Ville', useGps:'Utiliser ma position', gpsBusy:'Localisation en cours...',
   gpsFail:'Position introuvable. Autorisez la localisation ou choisissez une ville.', gpsOk:'Position trouvée.',
@@ -99,11 +101,16 @@ var CITIES=[
  {lat:20.5169,lng:-13.0499,sea:null},
  {lat:16.6167,lng:-11.4000,sea:null}
 ];
+var SPOTS=[{"ar": "نواذيبو - خليج الراحة (الصيد التقليدي)", "fr": "Nouadhibou - Baie du Repos", "en": "Nouadhibou - Baie du Repos", "lat": 20.9167, "lng": -17.0333}, {"ar": "نواذيبو - الكانصادو", "fr": "Nouadhibou - Cansado", "en": "Nouadhibou - Cansado", "lat": 20.8486, "lng": -17.0319}, {"ar": "رأس نواذيبو (كاب بلان)", "fr": "Cap Blanc (Ras Nouadhibou)", "en": "Cap Blanc", "lat": 20.7714, "lng": -17.0481}, {"ar": "حوض أركين - إيويك", "fr": "Banc d'Arguin - Iwik", "en": "Banc d'Arguin - Iwik", "lat": 19.8833, "lng": -16.3}, {"ar": "حوض أركين - مامغار", "fr": "Banc d'Arguin - Mamghar", "en": "Banc d'Arguin - Mamghar", "lat": 19.3667, "lng": -16.5167}, {"ar": "البلواخ", "fr": "Blawakh", "en": "Blawakh", "lat": 18.8833, "lng": -16.2167}, {"ar": "ميناء تانييت", "fr": "Port de Tanit", "en": "Port of Tanit", "lat": 18.6139, "lng": -16.1228}, {"ar": "نواكشوط - شاطئ الصيادين", "fr": "Nouakchott - Plage des Pêcheurs", "en": "Nouakchott - Fishermen's Beach", "lat": 18.0858, "lng": -16.0264}, {"ar": "نواكشوط - ميناء الصداقة", "fr": "Nouakchott - Port de l'Amitié", "en": "Nouakchott - Friendship Port", "lat": 17.9917, "lng": -16.025}, {"ar": "ميناء انجاغو (مصب النهر)", "fr": "Port de N'Diago", "en": "Port of N'Diago", "lat": 16.1667, "lng": -16.5083}];
+SPOTS.forEach(function(p){CITIES.push({lat:p.lat,lng:p.lng,sea:[p.lat,p.lng],spot:p})});
+var SPOTSL={ar:'مواقع الصيد',fr:'Sites de pêche',en:'Fishing spots',es:'Zonas de pesca',pt:'Locais de pesca',zh:'渔场'};
+function cityName(i){var c=CITIES[i];return c.spot?(c.spot[S.lang]||c.spot.en):L().cities[i]}
 var SEA_POINTS=[CITIES[0],CITIES[1]];
 
 /* ---------- State and storage ---------- */
 var KEY='marsat.v1';
 if(window.T_EXTRA)for(var _k in window.T_EXTRA)T[_k]=window.T_EXTRA[_k];
+var NAVI=["<path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10v9.5h13V10\"/><path d=\"M10 19.5v-5h4v5\"/>", "<path d=\"M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z\"/>", "<path d=\"M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z\"/><path d=\"M9 9h6M9 13h6\"/>", "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8\"/>"];
 var LANGS=[['ar','العربية'],['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['zh','中文']];
 var S={hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30},
@@ -125,6 +132,10 @@ function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function L(){return T[S.lang]}
 function cfgPick(p,k){var o={};['ar','fr','en','es','pt','zh'].forEach(function(l){o[l]=p[k+'_'+l]||''});return o}
+function cfgList(p,k){var o={};['ar','fr','en','es','pt','zh'].forEach(function(l){o[l]=Array.isArray(p[k+'_'+l])?p[k+'_'+l]:null});return o}
+function pickList(o){return o[S.lang]||o.en||o.fr||o.ar||null}
+var MIN={phone:'+222 45 25 24 76',website:'https://peches.gov.mr'};
+function ministryLinks(){return '<p class="note mlinks"><a href="tel:'+MIN.phone.replace(/\s/g,'')+'">'+esc(MIN.phone)+'</a> · <a href="'+esc(MIN.website)+'" target="_blank" rel="noopener">peches.gov.mr</a></p>'}
 function pickTxt(o){return o[S.lang]||o.en||o.fr||o.ar||''}
 function anyTxt(o){return !!(o.ar||o.fr||o.en)}
 function pad(n){return (n<10?'0':'')+n}
@@ -133,7 +144,7 @@ function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()
 
 /* ---------- Location ---------- */
 function coords(){return S.mode==='gps'&&S.gps?{lat:S.gps.lat,lng:S.gps.lng}:{lat:CITIES[S.city].lat,lng:CITIES[S.city].lng}}
-function placeName(){return S.mode==='gps'&&S.gps?L().gps:L().cities[S.city]}
+function placeName(){return S.mode==='gps'&&S.gps?L().gps:cityName(S.city)}
 function distKm(a,b,c,d){var R=6371,p=Math.PI/180,x=(c-a)*p,y=(d-b)*p*Math.cos((a+c)/2*p);return R*Math.sqrt(x*x+y*y)}
 function seaCandidates(){
   var list=[], c=coords();
@@ -153,7 +164,7 @@ function restInfo(){
     var a=parseD(ps[i].start), open=!ps[i].end, b=open?new Date(9999,0,1):parseD(ps[i].end);
     if(!a||!b||isNaN(a)||isNaN(b)||b<a)continue;
     if(t>=a&&t<=b&&(ps[i].official||S.cfg.showUnofficial))
-      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:Math.round((b-t)/86400000)+1,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected')};
+      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:Math.round((b-t)/86400000)+1,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected'),exc:cfgList(ps[i],'exceptions')};
   }
   return {active:false};
 }
@@ -262,7 +273,7 @@ function build(){
   document.title=t.name+' Al Marsat';
   document.body.classList.toggle('low',S.low);
   var spOpts=t.speciesList.map(function(s){return '<option value="'+esc(s)+'"></option>'}).join('');
-  var cityOpts=t.cities.map(function(c,i){return '<option value="'+i+'"'+(S.mode==='city'&&i===S.city?' selected':'')+'>'+c+'</option>'}).join('');
+  var cityOpts=CITIES.map(function(c,i){return (i===5?'<optgroup label="'+SPOTSL[S.lang]+'">':'')+'<option value="'+i+'"'+(S.mode==='city'&&i===S.city?' selected':'')+'>'+esc(cityName(i))+'</option>'}).join('')+'</optgroup>';
   $('app').innerHTML=
   '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+'</header>'+
 
@@ -295,7 +306,7 @@ function build(){
 
   '<div class="tab" id="tab2" hidden>'+
    '<section class="card"><h2>'+t.log+'</h2>'+
-    '<label class="field" for="fSpecies">'+t.species+'<input id="fSpecies" type="text" list="spList" autocomplete="off" maxlength="40"></label><datalist id="spList">'+spOpts+'</datalist>'+
+    '<label class="field" for="fSpecies">'+t.species+'<input id="fSpecies" type="text" list="spList" autocomplete="off" maxlength="40"></label><datalist id="spList">'+spOpts+'</datalist>'+'<div class="chips" role="group">'+t.quickSp.map(function(n){return '<button type="button" class="chip" data-sp="'+esc(n)+'">'+esc(n)+'</button>'}).join('')+'</div>'+
     '<div class="two"><label class="field" for="fKg">'+t.weight+'<input id="fKg" type="number" inputmode="decimal" min="0" step="0.1"></label>'+
     '<label class="field" for="fDate">'+t.date+'<input id="fDate" type="date" value="'+todayStr()+'"></label></div>'+
     '<label class="field" for="fPlace">'+t.placeL+'<input id="fPlace" type="text" maxlength="60"></label>'+
@@ -312,7 +323,7 @@ function build(){
    '<input class="spill" id="setSearch" type="search" placeholder="'+t.setSearch+'" aria-label="'+t.setSearch+'" autocomplete="off">'+
    '<div class="sgroup"><h3 class="sh">'+t.gBasic+'</h3><div class="slist">'+
     sRow({title:t.lang,sub:t.langName,tap:1,body:'<div class="btns">'+LANGS.map(function(l){return '<button class="btn'+(S.lang===l[0]?'':' ghost')+'" data-lang="'+l[0]+'" type="button" lang="'+l[0]+'">'+l[1]+'</button>'}).join('')+'</div>'})+
-    sRow({title:t.locT,sub:(S.mode==='gps'?t.gps:t.cities[S.city]),k:t.city+' gps',tap:1,body:'<label class="field" for="citySel">'+t.city+'<select id="citySel">'+(S.mode==='gps'?'<option value="gps" selected>'+t.gps+'</option>':'')+cityOpts+'</select></label><div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div>'})+
+    sRow({title:t.locT,sub:(S.mode==='gps'?t.gps:cityName(S.city)),k:t.city+' gps',tap:1,body:'<label class="field" for="citySel">'+t.city+'<select id="citySel">'+(S.mode==='gps'?'<option value="gps" selected>'+t.gps+'</option>':'')+cityOpts+'</select></label><div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div>'})+
     sRow({title:t.low,sub:t.lowInfo,sw:'lowSw',on:S.low})+
    '</div></div>'+
    '<div class="sgroup"><h3 class="sh">'+t.gAlert+'</h3><div class="slist">'+
@@ -329,7 +340,7 @@ function build(){
    '<p class="sub" id="noSet" hidden style="text-align:center;margin-top:20px">'+t.noSet+'</p>'+
   '</div>'+
 
-  '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'">'+n+'</button>'}).join('')+'</div></nav>';
+  '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true">'+NAVI[i]+'</svg><span>'+n+'</span></button>'}).join('')+'</div></nav>';
 
       $('bRefresh').onclick=function(){refreshSea(true)};
   $('citySel').onchange=function(){
@@ -384,9 +395,10 @@ function updateHome(){
     var head=r.open?t.restOpen(r.start.toLocaleDateString(t.loc,fm)):t.restTitle(r.end.toLocaleDateString(t.loc,fm));
     var cnt=r.open?'<div class="count"><b>'+r.days+'</b><span>'+t.since+'</span></div>':'<div class="count"><b>'+r.days+'</b><span>'+t.left+'</span></div>';
     $('restBox').innerHTML='<div class="rest"><h2>'+esc(head)+'</h2>'+cnt+
-      (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p><p class="note">'+t.exempt+'</p>':'<p>'+t.prep+'</p>')+
-      (pickTxt(r.penalty)?'<p class="note"><b>'+t.penL+'</b> '+esc(pickTxt(r.penalty))+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>':'')+
-      (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
+      (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p>':'<p>'+t.prep+'</p>')+
+      ((sc||pickTxt(r.penalty)||(r.open&&pickTxt(r.expected)))?'<details class="more"><summary>'+t.moreL+'</summary>'+(sc?'<p class="note"><b>'+t.exemptL+'</b></p>'+(pickList(r.exc)?'<ul class="exl">'+pickList(r.exc).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'<p class="note">'+t.exempt+'</p>'):'')+
+      (pickTxt(r.penalty)?'<p class="note"><b>'+t.penL+'</b> '+esc(pickTxt(r.penalty))+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>'+ministryLinks():'')+
+      (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+'</details>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
       (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>';
   }else $('restBox').innerHTML='';
   $('scoreCard').hidden=r.active&&!anyTxt(r.scope);
@@ -521,6 +533,7 @@ function bindSettings(){
     function tog(){var r=h.parentNode,b=r.querySelector('.sbody');if(!b)return;b.hidden=!b.hidden;r.classList.toggle('open',!b.hidden)}
     h.onclick=tog;h.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}};
   });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sp]'),function(b){b.onclick=function(){var f=$('fSpecies');f.value=b.getAttribute('data-sp');f.focus()}});
   Array.prototype.forEach.call(tab.querySelectorAll('[data-lang]'),function(b){b.onclick=function(){S.lang=b.getAttribute('data-lang');save();rebuild()}});
   $('setSearch').oninput=function(){
     var q=this.value.trim().toLowerCase(),any=false;
