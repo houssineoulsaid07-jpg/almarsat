@@ -136,3 +136,35 @@ body.low *{animation:none!important; transition:none!important}
 @keyframes wkm{from{transform:translateX(-90px)}to{transform:translateX(440px)}}
 body.low .viz{display:none}
 @media (prefers-reduced-motion:reduce){.wv,.wk{animation:none}}
+
+.entries .l small.sn{display:block}
+
+/* settings: grouped cards (Material You style) */
+.spill{width:100%; font:inherit; padding:13px 20px; border-radius:999px; border:1px solid var(--line); background:var(--surface); color:var(--ink); min-height:48px}
+.spill:focus-visible{outline:2px solid var(--primary)}
+.sgroup{margin-top:22px}
+.sh{font-size:.82rem; font-weight:700; color:var(--primary); margin:0 8px 8px; letter-spacing:.02em}
+.slist{display:grid; gap:3px}
+.srow{background:var(--surface); border-radius:6px; overflow:hidden}
+.srow:first-child{border-top-left-radius:20px; border-top-right-radius:20px}
+.srow:last-child{border-bottom-left-radius:20px; border-bottom-right-radius:20px}
+.srow[hidden],.sgroup[hidden]{display:none}
+.shead{display:flex; align-items:center; gap:14px; padding:14px 18px; min-height:64px; cursor:pointer; color:inherit; text-decoration:none; width:100%; box-sizing:border-box; -webkit-tap-highlight-color:transparent; transition:background .15s}
+.shead.nohit{cursor:default}
+.shead:not(.nohit):active{background:rgba(127,150,200,.22)}
+.shead:focus-visible{outline:2px solid var(--primary); outline-offset:-2px}
+.stx{flex:1; min-width:0}
+.stx b{display:block; font-weight:700; font-size:1rem}
+.stx small{display:block; color:var(--muted); font-size:.86rem; margin-top:2px; line-height:1.5; overflow-wrap:anywhere}
+.chev{width:9px; height:9px; border-inline-end:2px solid var(--muted); border-bottom:2px solid var(--muted); transition:transform .2s; flex:none; margin:0 6px; transform:rotate(-45deg)}
+[dir=rtl] .chev{transform:rotate(45deg)}
+.srow.open .chev{transform:rotate(45deg)}
+[dir=rtl] .srow.open .chev{transform:rotate(-45deg)}
+.sbody{padding:0 18px 16px}
+.shead input[type=checkbox]{position:absolute; opacity:0; width:1px; height:1px}
+.tgl{position:relative; width:50px; height:30px; border-radius:999px; background:var(--tint); border:2px solid var(--muted); flex:none; transition:background .2s,border-color .2s}
+.tgl::after{content:''; position:absolute; top:4px; inset-inline-start:4px; width:18px; height:18px; border-radius:50%; background:var(--muted); transition:inset-inline-start .2s,background .2s,width .2s,height .2s,top .2s}
+input:checked + .tgl{background:var(--primary); border-color:var(--primary)}
+input:checked + .tgl::after{inset-inline-start:24px; top:2px; width:22px; height:22px; background:var(--on-primary)}
+input:focus-visible + .tgl{outline:2px solid var(--primary); outline-offset:2px}
+body.low .shead,body.low .tgl,body.low .tgl::after,body.low .chev{transition:none}

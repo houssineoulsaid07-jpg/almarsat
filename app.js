@@ -24,7 +24,7 @@ var T={
   card5:'القمر', lit:'إضاءة القمر', moonDark:'ممتاز للصيد الليلي', moonBright:'قمر ساطع، الصيد الليلي أضعف',
   disclaimer:'نسبة الصيد تقدير بسيط ولا تغني عن نشرات الأرصاد الرسمية. قرار الخروج للبحر مسؤوليتك.',
   attr:'بيانات الطقس والبحر: Open-Meteo.com',
-  copy:'© 2026 المرساة. جميع الحقوق محفوظة', alertT:'تنبيه الصلاة', alertInfo:'اهتزاز ونغمة قصيرة عند دخول وقت الصلاة. يعمل فقط والتطبيق مفتوح على الشاشة، ولا يعمل وهو مغلق.', alertNow:function(n){return 'حان وقت صلاة '+n}, priv:'سياسة الخصوصية وإخلاء المسؤولية',
+  copy:'© 2026 المرساة. جميع الحقوق محفوظة', gpsLog:'📍 سجّل موقعي الآن', gpsLogOk:'تم حفظ الموقع (تقريبي ~100 م) وسيُرفق بالصيدة.', gpsLogFail:'تعذّر تحديد الموقع. فعّل الموقع وجرّب مرة أخرى.', hideLoc:'إخفاء الإحداثيات على الشاشة', autoNote:'عند الإضافة يسجّل التطبيق تلقائياً الرياح والموج والقمر إن كان تاريخ الصيدة اليوم.', tideN:{spring:'مد قوي (تقريبي)',neap:'مد ضعيف (تقريبي)',mid:'مد متوسط (تقريبي)'}, simT:'اليوم يشبه أيامك الناجحة', simTxt:function(n,sp){return 'ظروف اليوم قريبة من '+n+' من أفضل صيداتك السابقة'+(sp?' (أكثرها: '+sp+')':'')+'.'}, simNote:'مقارنة بسجلك الشخصي فقط، وليست توقعاً مضموناً. كلما سجّلت أكثر صارت أفضل.', setSearch:'ابحث في الإعدادات', noSet:'لا توجد نتائج', gBasic:'الأساسيات', gAlert:'التنبيهات', gApp:'التطبيق', gInfo:'المعلومات والخصوصية', langName:'العربية', privSub:'كيف نتعامل مع بياناتك، وإخلاء المسؤولية', alertT:'تنبيه الصلاة', alertInfo:'اهتزاز ونغمة قصيرة عند دخول وقت الصلاة. يعمل فقط والتطبيق مفتوح على الشاشة، ولا يعمل وهو مغلق.', alertNow:function(n){return 'حان وقت صلاة '+n}, priv:'سياسة الخصوصية وإخلاء المسؤولية',
   dirs:['شمال','شمال شرق','شرق','جنوب شرق','جنوب','جنوب غرب','غرب','شمال غرب'],
   where:'الموقع', change:'تغيير', gps:'موقعي (GPS)',
   prayer:'أوقات الصلاة', next:'القادمة',
@@ -37,7 +37,7 @@ var T={
   needSpecies:'اكتب نوع السمك.', added:'تمت الإضافة.', empty:'لا توجد رحلات مسجلة بعد. أضف أول صيدة.',
   del:'حذف', sure:'تأكيد؟', total:'هذا الشهر', trips:'صيدة', kg:'كغ', top:'الأكثر',
   logNote:'السجل محفوظ على هاتفك فقط. مسح بيانات المتصفح يحذفه.',
-  speciesList:['أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
+  speciesList:['اسقمري','أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
   settings:'الإعدادات', lang:'اللغة', locT:'الموقع', city:'المدينة', useGps:'استخدم موقعي', gpsBusy:'جارٍ تحديد الموقع...',
   gpsFail:'تعذّر تحديد الموقع. اسمح بالوصول للموقع واختر مدينة بدلاً منه.', gpsOk:'تم تحديد موقعك.',
   cities:['نواكشوط','نواذيبو','روصو','أطار','كيفه'],
@@ -67,7 +67,7 @@ var T={
   card5:'Lune', lit:'Illumination de la lune', moonDark:'Excellent pour la pêche de nuit', moonBright:'Lune brillante, pêche de nuit moins bonne',
   disclaimer:'Le pourcentage est une estimation simple et ne remplace pas les bulletins météo officiels. La décision de sortir en mer vous appartient.',
   attr:'Données météo et marines : Open-Meteo.com',
-  copy:'© 2026 Al Marsat. Tous droits réservés', alertT:'Alerte de prière', alertInfo:'Vibration et courte sonnerie à l’heure de la prière. Fonctionne uniquement quand l’application est ouverte à l’écran, pas lorsqu’elle est fermée.', alertNow:function(n){return 'C’est l’heure de '+n}, priv:'Confidentialité et avertissement',
+  copy:'© 2026 Al Marsat. Tous droits réservés', gpsLog:'📍 Enregistrer ma position', gpsLogOk:'Position enregistrée (approx. ~100 m), elle sera jointe à la prise.', gpsLogFail:'Position indisponible. Activez la localisation et réessayez.', hideLoc:'Masquer les coordonnées à l’écran', autoNote:'À l’ajout, l’application enregistre automatiquement vent, houle et lune si la date est aujourd’hui.', tideN:{spring:'Marée forte (approx.)',neap:'Marée faible (approx.)',mid:'Marée moyenne (approx.)'}, simT:'Aujourd’hui ressemble à vos bons jours', simTxt:function(n,sp){return 'Les conditions du jour ressemblent à '+n+' de vos meilleures prises'+(sp?' (surtout : '+sp+')':'')+'.'}, simNote:'Comparaison avec votre journal personnel uniquement, pas une prévision garantie. Plus vous notez, plus c’est utile.', setSearch:'Rechercher dans les réglages', noSet:'Aucun résultat', gBasic:'Général', gAlert:'Alertes', gApp:'Application', gInfo:'Infos et confidentialité', langName:'Français', privSub:'Vos données et avertissement', alertT:'Alerte de prière', alertInfo:'Vibration et courte sonnerie à l’heure de la prière. Fonctionne uniquement quand l’application est ouverte à l’écran, pas lorsqu’elle est fermée.', alertNow:function(n){return 'C’est l’heure de '+n}, priv:'Confidentialité et avertissement',
   dirs:['Nord','Nord-Est','Est','Sud-Est','Sud','Sud-Ouest','Ouest','Nord-Ouest'],
   where:'Lieu', change:'Changer', gps:'Ma position (GPS)',
   prayer:'Horaires de prière', next:'Prochaine',
@@ -80,7 +80,7 @@ var T={
   needSpecies:'Saisissez l’espèce.', added:'Ajouté.', empty:'Aucune sortie enregistrée. Ajoutez votre première prise.',
   del:'Supprimer', sure:'Confirmer ?', total:'Ce mois-ci', trips:'prises', kg:'kg', top:'Principale',
   logNote:'Le journal est enregistré uniquement sur votre téléphone. Effacer les données du navigateur le supprime.',
-  speciesList:['Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
+  speciesList:['Maquereau','Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
   settings:'Réglages', lang:'Langue', locT:'Lieu', city:'Ville', useGps:'Utiliser ma position', gpsBusy:'Localisation en cours...',
   gpsFail:'Position introuvable. Autorisez la localisation ou choisissez une ville.', gpsOk:'Position trouvée.',
   cities:['Nouakchott','Nouadhibou','Rosso','Atar','Kiffa'],
@@ -103,7 +103,7 @@ var SEA_POINTS=[CITIES[0],CITIES[1]];
 
 /* ---------- State and storage ---------- */
 var KEY='marsat.v1';
-var S={alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
+var S={hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30},
        status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
@@ -112,12 +112,12 @@ try{
   if(typeof sv.city==='number'&&CITIES[sv.city])S.city=sv.city;
   if(sv.mode==='gps'&&sv.gps)S.mode='gps';
   if(sv.gps&&typeof sv.gps.lat==='number')S.gps=sv.gps;
-  S.low=!!sv.low;S.alert=!!sv.alert; S.lowHintOff=!!sv.lowHintOff;
+  S.low=!!sv.low;S.alert=!!sv.alert;S.hideLoc=!!sv.hideLoc; S.lowHintOff=!!sv.lowHintOff;
   if(Array.isArray(sv.log))S.log=sv.log;
   if(sv.sea&&typeof sv.sea.t==='number')S.sea=sv.sea;
 }catch(e){}
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
+  try{localStorage.setItem(KEY,JSON.stringify({lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
 }
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -269,6 +269,7 @@ function build(){
     '<div class="gauge"><svg viewBox="0 0 120 120" role="img" aria-label="'+t.today+'"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--tint)" stroke-width="12"/><circle id="arc" cx="60" cy="60" r="52" fill="none" stroke="var(--good)" stroke-width="12" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 327"/><text id="pct" x="60" y="68" text-anchor="middle" font-size="28" font-weight="700" fill="var(--ink)" font-family="Tajawal,sans-serif">--</text></svg>'+
     '<div class="txt"><p class="verdict" id="verdict"></p><p class="sub" id="vtext"></p></div></div>'+
     '<ul class="factors"><li><span>'+t.wind+'</span><span id="fw">-</span></li><li><span>'+t.wave+'</span><span id="fh">-</span></li><li><span>'+t.moonL+'</span><span id="fm">-</span></li></ul></section>'+
+   '<section class="card" id="simCard" hidden><h2 id="simH"></h2><p class="verdict good" id="simP" style="font-size:1.05rem"></p><p class="note" id="simN"></p></section>'+
    '<div class="danger" id="danger" role="alert" hidden>'+t.danger+'</div>'+
    '<section class="card"><h2>'+t.sea+'</h2><p class="sub" id="seaSub"></p>'+
     '<div class="viz" id="seaViz" hidden></div><div class="grid3"><div class="stat"><b id="sWind">-</b><small>'+t.speed+'</small></div><div class="stat"><b id="sWave">-</b><small>'+t.height+'</small></div><div class="stat"><b id="sPer">-</b><small>'+t.period+'</small></div></div>'+
@@ -295,19 +296,33 @@ function build(){
     '<label class="field" for="fDate">'+t.date+'<input id="fDate" type="date" value="'+todayStr()+'"></label></div>'+
     '<label class="field" for="fPlace">'+t.placeL+'<input id="fPlace" type="text" maxlength="60"></label>'+
     '<label class="field" for="fNote">'+t.noteL+'<input id="fNote" type="text" maxlength="120"></label>'+
+    '<div class="btns"><button class="btn ghost" id="bLogGps" type="button">'+t.gpsLog+'</button></div><div id="logGpsMsg" aria-live="polite"></div>'+
+    '<label class="switch" for="hideSw" style="margin-top:10px"><input id="hideSw" type="checkbox"'+(S.hideLoc?' checked':'')+'><span>'+t.hideLoc+'</span></label>'+
+    '<p class="note" style="margin-top:8px">'+t.autoNote+'</p>'+
     '<div class="btns"><button class="btn" id="bAdd" type="button">'+t.add+'</button></div><div id="logMsg" aria-live="polite"></div></section>'+
    '<section class="card" id="logSummary"></section>'+
    '<section class="card"><ul class="entries" id="entries" style="margin-top:0"></ul><p class="note" style="margin-top:12px">'+t.logNote+'</p></section>'+
   '</div>'+
 
   '<div class="tab" id="tab3" hidden>'+
-   '<section class="card"><h2>'+t.locT+'</h2>'+
-    '<label class="field" for="citySel">'+t.city+'<select id="citySel">'+(S.mode==='gps'?'<option value="gps" selected>'+t.gps+'</option>':'')+cityOpts+'</select></label>'+
-    '<div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div></section>'+
-   '<section class="card"><h2>'+t.low+'</h2><label class="switch" for="lowSw"><input id="lowSw" type="checkbox"'+(S.low?' checked':'')+'><span>'+t.low+'</span></label><p class="note" style="margin-top:8px">'+t.lowInfo+'</p></section>'+
-   '<section class="card"><h2>'+t.alertT+'</h2><label class="switch" for="alSw"><input id="alSw" type="checkbox"'+(S.alert?' checked':'')+'><span>'+t.alertT+'</span></label><p class="note" style="margin-top:8px">'+t.alertInfo+'</p></section>'+
-   '<section class="card" id="installCard"><h2>'+t.install+'</h2><p class="sub">'+t.installInfo+'</p><div class="btns"><button class="btn" id="bInstall" type="button" hidden>'+t.install+'</button></div><p class="note" id="iosNote" style="margin-top:8px" hidden>'+t.installIos+'</p></section>'+
-   '<section class="card"><h2>'+t.about+'</h2><p class="sub">'+t.aboutTxt+'</p><p class="note" style="margin-top:8px">'+t.attr+'</p><p class="note" style="margin-top:8px">'+t.copy+'</p><p class="note" style="margin-top:8px"><a href="privacy.html'+(S.lang==='fr'?'':'#ar')+'" style="color:inherit;text-decoration:underline">'+t.priv+'</a></p></section>'+
+   '<input class="spill" id="setSearch" type="search" placeholder="'+t.setSearch+'" aria-label="'+t.setSearch+'" autocomplete="off">'+
+   '<div class="sgroup"><h3 class="sh">'+t.gBasic+'</h3><div class="slist">'+
+    sRow({title:t.lang,sub:t.langName,tap:1,body:'<div class="btns"><button class="btn'+(S.lang==='ar'?'':' ghost')+'" id="sAr" type="button">العربية</button><button class="btn'+(S.lang==='fr'?'':' ghost')+'" id="sFr" type="button">Français</button></div>'})+
+    sRow({title:t.locT,sub:(S.mode==='gps'?t.gps:t.cities[S.city]),k:t.city+' gps',tap:1,body:'<label class="field" for="citySel">'+t.city+'<select id="citySel">'+(S.mode==='gps'?'<option value="gps" selected>'+t.gps+'</option>':'')+cityOpts+'</select></label><div class="btns"><button class="btn ghost" id="bGps" type="button">'+t.useGps+'</button></div><div id="gpsMsg" aria-live="polite"></div>'})+
+    sRow({title:t.low,sub:t.lowInfo,sw:'lowSw',on:S.low})+
+   '</div></div>'+
+   '<div class="sgroup"><h3 class="sh">'+t.gAlert+'</h3><div class="slist">'+
+    sRow({title:t.alertT,sub:t.alertInfo,sw:'alSw',on:S.alert})+
+   '</div></div>'+
+   '<div class="sgroup"><h3 class="sh">'+t.gApp+'</h3><div class="slist">'+
+    sRow({id:'installCard',title:t.install,sub:t.installInfo,open:1,body:'<div class="btns"><button class="btn" id="bInstall" type="button" hidden>'+t.install+'</button></div><p class="note" id="iosNote" style="margin-top:8px" hidden>'+t.installIos+'</p>'})+
+   '</div></div>'+
+   '<div class="sgroup"><h3 class="sh">'+t.gInfo+'</h3><div class="slist">'+
+    sRow({title:t.priv,sub:t.privSub,href:'privacy.html'+(S.lang==='fr'?'':'#ar')})+
+    sRow({title:t.about,sub:t.aboutTxt,tap:1,body:'<p class="note">'+t.attr+'</p>'})+
+    sRow({title:t.copy,sub:''})+
+   '</div></div>'+
+   '<p class="sub" id="noSet" hidden style="text-align:center;margin-top:20px">'+t.noSet+'</p>'+
   '</div>'+
 
   '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'">'+n+'</button>'}).join('')+'</div></nav>';
@@ -320,15 +335,18 @@ function build(){
     S.mode='city';S.city=+this.value;S.sea=null;save();rebuild();refreshSea(true);
   };
   $('bGps').onclick=useGps;
+  bindSettings();
   $('lowSw').onchange=function(){S.low=this.checked;save();document.body.classList.toggle('low',S.low);updateHint()};
   $('alSw').onchange=function(){S.alert=this.checked;save();if(S.alert)beep(true)};
   $('bAdd').onclick=addEntry;
+  $('bLogGps').onclick=logGps;
+  $('hideSw').onchange=function(){S.hideLoc=this.checked;save();renderLog()};
   $('bCompass').onclick=toggleCompass;
   $('bInstall').onclick=doInstall;
   Array.prototype.forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tab=+b.getAttribute('data-go');showTab();window.scrollTo(0,0)}});
   if(deferredPrompt)$('bInstall').hidden=false;
   if(isIos()&&!isStandalone())$('iosNote').hidden=false;
-  if(isStandalone()){$('installCard').querySelector('.sub').textContent=t.installed}
+  if(isStandalone()){$('installCard').querySelector('small').textContent=t.installed}
 }
 function rebuild(){stopCompass();build();showTab();updateAll();setStatus();}
 
@@ -402,6 +420,7 @@ function updateHome(){
     if($('seaViz'))$('seaViz').hidden=true;
   }
   $('moonP').setAttribute('d',moonPath(age));
+  updateSim();
   $('mPct').textContent=Math.round(il*100)+'%';
   $('mTxt').textContent=il<0.4?t.moonDark:t.moonBright;
 }
@@ -465,7 +484,9 @@ function renderLog(){
   var items=S.log.slice().sort(function(a,b){return a.date<b.date?1:(a.date>b.date?-1:b.id-a.id)});
   if(!items.length){el.innerHTML='<li><span class="sub">'+t.empty+'</span></li>'}
   else el.innerHTML=items.map(function(e){
-    return '<li><div class="l"><b>'+esc(e.species)+'</b><small>'+esc(e.date)+(e.place?' - '+esc(e.place):'')+(e.note?' - '+esc(e.note):'')+'</small></div>'+
+    var sn=e.snap?('<small class="sn">'+t.wind+' '+e.snap.w+' '+t.kmh+' • '+t.wave+' '+e.snap.h+' '+t.m+' • '+t.tideN[e.snap.td]+'</small>'):'';
+    var loc=(e.lat!=null&&!S.hideLoc)?('<small class="sn">📍 '+e.lat+', '+e.lng+'</small>'):(e.lat!=null?'<small class="sn">📍 …</small>':'');
+    return '<li><div class="l"><b>'+esc(e.species)+'</b><small>'+esc(e.date)+(e.place?' - '+esc(e.place):'')+(e.note?' - '+esc(e.note):'')+'</small>'+sn+loc+'</div>'+
       '<span class="kg">'+(e.kg!=null?e.kg+' '+t.kg:'')+'</span><button class="del" type="button" data-del="'+e.id+'">'+t.del+'</button></li>';
   }).join('');
   Array.prototype.forEach.call(el.querySelectorAll('[data-del]'),function(b){
@@ -480,17 +501,86 @@ function renderLog(){
   var top=Object.keys(by).sort(function(a,b){return by[b]-by[a]})[0];
   $('logSummary').innerHTML='<h2>'+t.total+'</h2><div class="grid3"><div class="stat"><b>'+(Math.round(tot*10)/10)+'</b><small>'+t.kg+'</small></div><div class="stat"><b>'+month.length+'</b><small>'+t.trips+'</small></div><div class="stat"><b style="font-size:1rem;direction:inherit">'+(top?esc(top):'-')+'</b><small>'+t.top+'</small></div></div>';
 }
+
+
+function sRow(o){
+  var k=((o.title||'')+' '+(o.sub||'')+' '+(o.k||'')).replace(/<[^>]+>/g,' ').toLowerCase();
+  var tx='<div class="stx"><b>'+o.title+'</b>'+(o.sub?'<small>'+o.sub+'</small>':'')+'</div>';
+  var head;
+  if(o.sw)head='<label class="shead" for="'+o.sw+'">'+tx+'<input id="'+o.sw+'" type="checkbox"'+(o.on?' checked':'')+'><span class="tgl"></span></label>';
+  else if(o.href)head='<a class="shead" href="'+o.href+'">'+tx+'<span class="chev"></span></a>';
+  else if(o.tap)head='<div class="shead" role="button" tabindex="0" data-tap="1">'+tx+'<span class="chev"></span></div>';
+  else head='<div class="shead nohit">'+tx+'</div>';
+  return '<div class="srow"'+(o.id?' id="'+o.id+'"':'')+' data-k="'+esc(k)+'">'+head+(o.body?'<div class="sbody"'+(o.open?'':' hidden')+'>'+o.body+'</div>':'')+'</div>';
+}
+function bindSettings(){
+  var tab=$('tab3'); if(!tab)return;
+  Array.prototype.forEach.call(tab.querySelectorAll('[data-tap]'),function(h){
+    function tog(){var r=h.parentNode,b=r.querySelector('.sbody');if(!b)return;b.hidden=!b.hidden;r.classList.toggle('open',!b.hidden)}
+    h.onclick=tog;h.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tog()}};
+  });
+  $('sAr').onclick=function(){S.lang='ar';save();rebuild()};
+  $('sFr').onclick=function(){S.lang='fr';save();rebuild()};
+  $('setSearch').oninput=function(){
+    var q=this.value.trim().toLowerCase(),any=false;
+    Array.prototype.forEach.call(tab.querySelectorAll('.sgroup'),function(g){
+      var n=0;Array.prototype.forEach.call(g.querySelectorAll('.srow'),function(r){var m=!q||r.getAttribute('data-k').indexOf(q)>-1;r.hidden=!m;if(m)n++});
+      g.hidden=!n;if(n)any=true});
+    $('noSet').hidden=any;
+  };
+}
+
+var _pos=null;
+function tideClass(il){return (il<0.12||il>0.88)?'spring':((il>0.38&&il<0.62)?'neap':'mid')}
+function logGps(){
+  var t=L(),box=$('logGpsMsg');
+  if(!navigator.geolocation){box.innerHTML='<div class="msg">'+t.gpsLogFail+'</div>';return}
+  box.innerHTML='<div class="msg">'+t.gpsBusy+'</div>';
+  navigator.geolocation.getCurrentPosition(function(p){
+    _pos={lat:Math.round(p.coords.latitude*1000)/1000,lng:Math.round(p.coords.longitude*1000)/1000};
+    box.innerHTML='<div class="msg">'+L().gpsLogOk+'</div>';
+  },function(){box.innerHTML='<div class="msg">'+t.gpsLogFail+'</div>'},{enableHighAccuracy:true,timeout:20000,maximumAge:60000});
+}
+function distKm(a,b,c,d){var R=6371,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)*Math.sin(y/2);return 2*R*Math.asin(Math.sqrt(h))}
+function isCeph(n){return /أخطبوط|سبيط|حبار|سيبيا|poulpe|seiche|calmar/i.test(n||'')}
+function updateSim(){
+  var card=$('simCard'); if(!card)return;
+  card.hidden=true;
+  var d=S.sea; if(!d||Date.now()-d.t>6*3600000)return;
+  var r=restInfo(), blockCeph=r.active&&(r.scope.ar||r.scope.fr);
+  var list=S.log.filter(function(e){return e.snap&&e.kg!=null&&!(blockCeph&&isCeph(e.species))});
+  if(list.length<5)return;
+  var kgs=list.map(function(e){return e.kg}).sort(function(a,b){return a-b}), med=kgs[Math.floor(kgs.length/2)];
+  var good=list.filter(function(e){return e.kg>=med&&e.kg>0});
+  var c=coords(), il=moonIllum(moonAge(new Date())), td=tideClass(il);
+  var match=good.filter(function(e){
+    if(Math.abs(e.snap.w-d.wind)>8||Math.abs(e.snap.h-d.wave)>0.5)return false;
+    if(e.snap.td!==td&&Math.abs(e.snap.il-il)>0.25)return false;
+    if(e.lat!=null&&distKm(e.lat,e.lng,c.lat,c.lng)>40)return false;
+    return true});
+  if(match.length<2)return;
+  var by={};match.forEach(function(e){by[e.species]=(by[e.species]||0)+1});
+  var top=Object.keys(by).sort(function(a,b){return by[b]-by[a]})[0], t=L();
+  $('simH').textContent=t.simT; $('simP').textContent=t.simTxt(match.length,top); $('simN').textContent=t.simNote;
+  card.hidden=false;
+}
 function addEntry(){
   var t=L(), sp=$('fSpecies').value.trim(), kgv=$('fKg').value.trim(), dt=$('fDate').value||todayStr(), note=$('fNote').value.trim(), place=$('fPlace').value.trim();
   var box=$('logMsg');
   if(!sp){box.innerHTML='<div class="msg">'+t.needSpecies+'</div>';$('fSpecies').focus();return}
   var kg=kgv===''?null:Math.max(0,Math.round(parseFloat(kgv)*10)/10);
   if(kg!=null&&isNaN(kg))kg=null;
-  S.log.push({id:Date.now(),species:sp.slice(0,40),kg:kg,date:dt,place:place.slice(0,60),note:note.slice(0,120)});
+  var en={id:Date.now(),species:sp.slice(0,40),kg:kg,date:dt,place:place.slice(0,60),note:note.slice(0,120)};
+  if(_pos){en.lat=_pos.lat;en.lng=_pos.lng}
+  var d=S.sea;
+  if(d&&dt===todayStr()&&(Date.now()-d.t<6*3600000)){var il=moonIllum(moonAge(new Date()));
+    en.snap={w:d.wind,wd:d.windDir,h:d.wave,p:d.period,il:Math.round(il*100)/100,td:tideClass(il)}}
+  S.log.push(en);
   save();
-  $('fSpecies').value='';$('fKg').value='';$('fNote').value='';$('fPlace').value='';
+  $('fSpecies').value='';$('fKg').value='';$('fNote').value='';$('fPlace').value='';_pos=null;$('logGpsMsg').innerHTML='';
   box.innerHTML='<div class="msg">'+t.added+'</div>';
   renderLog();
+  updateSim();
 }
 
 /* ---------- GPS ---------- */
