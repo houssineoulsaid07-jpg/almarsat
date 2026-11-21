@@ -188,3 +188,7 @@ nav.tabs .ni{width:24px; height:24px; fill:none; stroke:currentColor; stroke-wid
 .rest.soon .count b{color:#b45309}
 .rest.opened{border-color:#10b981; background:color-mix(in srgb,#10b981 14%,var(--surface))}
 .rest.opened h2{color:#047857}
+
+.factors li>span:last-child{display:flex; gap:10px; align-items:baseline; direction:inherit}
+.factors .fv{unicode-bidi:plaintext}
+.factors .fp{direction:ltr; unicode-bidi:isolate; color:var(--muted); min-width:2.4em; text-align:end}

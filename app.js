@@ -423,7 +423,8 @@ function updateHome(){
     vd.textContent=cls==='good'?t.excellent:(cls==='mid'?t.good:t.stay);
     $('vtext').textContent=cls==='good'?t.tExc:(cls==='mid'?t.tGood:t.tBad);
     var sg=function(n){return n>0?'+'+n:(n<0?'−'+Math.abs(n):'0')};
-    $('fw').textContent=sg(-sc.w);$('fh').textContent=sg(-sc.h);$('fm').textContent=sg(sc.m);
+    var fv=function(v,p){return '<span class="fv">'+esc(v)+'</span><span class="fp">'+p+'</span>'};
+    $('fw').innerHTML=fv(Math.round(d.wind)+' '+t.kmh,sg(-sc.w));$('fh').innerHTML=fv((Math.round(d.wave*10)/10)+' '+t.m,sg(-sc.h));$('fm').innerHTML=fv(Math.round(il*100)+'%',sg(sc.m));
   }else{
     arc.setAttribute('stroke-dasharray','0 327'); $('pct').textContent='--';
     vd.className='verdict none'; vd.textContent=t.none; $('vtext').textContent=d?t.tOld:t.tNone;
