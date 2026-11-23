@@ -205,3 +205,56 @@ body.low .upd{animation:none}
 .snd svg{width:22px; height:22px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round}
 .snd[aria-pressed=false]{color:var(--muted)}
 .snd:active{background:var(--tint)}
+
+/* ---- Fishing spots / guidance: big, high-contrast, readable in sunlight ---- */
+nav.tabs button[data-go="3"]{order:9}
+nav.tabs button[data-go="4"]{order:5}
+.nv h2{font-size:1.5rem; margin:0 0 6px}
+.nv .nvwarn{font-size:.85rem; margin:0 0 14px; color:var(--muted)}
+.nvbtn{display:block; width:100%; min-height:78px; margin:0 0 12px; border:3px solid transparent; border-radius:18px; font:inherit; font-family:var(--font-display); font-size:1.4rem; font-weight:800; line-height:1.2; cursor:pointer; padding:10px 14px}
+.nvbtn.catch{background:#ffd23f; color:#101010}
+.nvbtn.home{background:#ffffff; color:#06103a; border-color:#38c9c9}
+.nvbtn.go{background:#38c9c9; color:#06103a; margin-top:14px}
+.nvbtn.go.stop{background:#ff6b57; color:#101010}
+.nvbtn:active{transform:scale(.985)}
+.nvmsg{min-height:1.4em; font-size:1.05rem; font-weight:700; color:var(--ink); margin:2px 0 8px}
+.nvlive{border:2px solid var(--line); border-radius:18px; padding:12px; margin:8px 0 14px; text-align:center}
+.nvtgt{font-size:1.1rem; color:var(--muted)} .nvtgt b{color:var(--ink); font-size:1.25rem}
+.nvdial{width:min(78vw,300px); height:auto; display:block; margin:8px auto}
+.nvdial .rg{fill:none; stroke:var(--muted); stroke-width:5}
+.nvdial .lb text{fill:var(--ink); font-size:24px; font-weight:800}
+.nvdial .ar path{fill:#ffd23f; stroke:#101010; stroke-width:4; stroke-linejoin:round}
+.nvdial .ar.off path{fill:var(--line)}
+.nvdist{display:flex; align-items:baseline; justify-content:center; gap:10px; direction:ltr}
+.nvdist .n{font-size:4rem; font-weight:800; line-height:1; color:var(--ink); font-variant-numeric:tabular-nums}
+.nvdist .u{font-size:1.8rem; font-weight:800; color:var(--primary)}
+.nvkm{font-size:1.2rem; color:var(--muted)}
+.nvinfo{font-size:1.15rem; margin-top:6px} .nvinfo.sm{font-size:.9rem; color:var(--muted)}
+.nvarr{margin-top:10px; padding:12px; border-radius:14px; background:#4cc38a; color:#06210f; font-size:1.4rem; font-weight:800}
+.nvdrift{margin:6px 0 14px}
+.nvchk{display:flex; align-items:center; gap:12px; font-size:1.2rem; font-weight:800; min-height:52px}
+.nvchk input{width:28px; height:28px}
+.nvdrift .chip.on{background:var(--primary); color:var(--on-primary); border-color:var(--primary); font-weight:800}
+.nvlist{list-style:none; margin:0 0 12px; padding:0; display:flex; flex-direction:column; gap:10px}
+.nvrow{display:flex; gap:8px; align-items:stretch}
+.nvpick{flex:1; min-width:0; text-align:start; font:inherit; background:var(--surface); color:var(--ink); border:2px solid var(--line); border-radius:14px; padding:10px 14px; min-height:64px; cursor:pointer; display:flex; flex-direction:column; justify-content:center; gap:2px}
+.nvpick b{font-size:1.2rem} .nvpick small{color:var(--muted); font-size:.85rem}
+.nvrow.sel .nvpick{border-color:#ffd23f; border-width:3px}
+.nvmini{flex:none; width:54px; font-size:1.3rem; background:var(--surface); color:var(--ink); border:2px solid var(--line); border-radius:14px; cursor:pointer}
+.nvempty{color:var(--muted); font-size:1.05rem; padding:8px; text-align:center}
+.nvsunbtn{width:100%; min-height:52px; font-size:1.05rem}
+/* sun mode: black on white, thick borders */
+.nv.sun{background:#ffffff; color:#000000; border:3px solid #000}
+.nv.sun h2,.nv.sun .nvmsg,.nv.sun .nvtgt b,.nv.sun .nvdist .n,.nv.sun .nvchk,.nv.sun .nvpick b,.nv.sun .nvinfo{color:#000}
+.nv.sun .nvwarn,.nv.sun .nvtgt,.nv.sun .nvkm,.nv.sun .nvinfo.sm,.nv.sun .nvpick small,.nv.sun .note,.nv.sun .nvempty{color:#222}
+.nv.sun .nvdist .u{color:#000}
+.nv.sun .nvlive,.nv.sun .nvpick,.nv.sun .nvmini{border-color:#000; background:#fff; color:#000}
+.nv.sun .nvbtn{border-color:#000}
+.nv.sun .nvbtn.catch{background:#ffd23f}.nv.sun .nvbtn.home{background:#fff}
+.nv.sun .nvbtn.go{background:#0b6e6e; color:#fff}
+.nv.sun .nvbtn.go.stop{background:#c1121f; color:#fff}
+.nv.sun .nvdial .rg{stroke:#000}.nv.sun .nvdial .lb text{fill:#000}
+.nv.sun .nvdial .ar path{fill:#c1121f; stroke:#000}
+.nv.sun .chip{background:#fff; color:#000; border-color:#000}
+.nv.sun .nvdrift .chip.on{background:#000; color:#fff}
+.nv.sun .nvrow.sel .nvpick{border-color:#c1121f}
