@@ -1,5 +1,5 @@
 /* Offline support: app shell is cached; config.json is network-first so rest dates can change without a new install. */
-var V='marsat-v18';
+var V='marsat-v21';
 var SHELL=['./','index.html','privacy.html','style.css','app.js','lang-extra.js','config.json','manifest.webmanifest','icon-192.png','icon-512.png','maskable-512.png'];
 
 self.addEventListener('install',function(e){
@@ -21,11 +21,13 @@ self.addEventListener('fetch',function(e){
     }).catch(function(){return caches.match('config.json')}));
     return;
   }
+  /* stale-while-revalidate: instant from cache, refreshed in the background, so updates arrive on the next open even if V is not bumped */
   e.respondWith(caches.match(req,{ignoreSearch:true}).then(function(hit){
-    if(hit)return hit;
-    return fetch(req).then(function(r){
+    var net=fetch(req).then(function(r){
       if(r&&r.ok){var copy=r.clone();caches.open(V).then(function(c){c.put(req,copy)})}
       return r;
-    }).catch(function(){return caches.match('index.html')});
+    }).catch(function(){return null});
+    if(hit){e.waitUntil(net);return hit}
+    return net.then(function(r){return r||caches.match('index.html')});
   }));
 });

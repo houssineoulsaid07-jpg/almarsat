@@ -38,6 +38,8 @@ var T={
   del:'حذف', sure:'تأكيد؟', total:'هذا الشهر', trips:'صيدة', kg:'كغ', top:'الأكثر',
   logNote:'السجل محفوظ على هاتفك فقط. مسح بيانات المتصفح يحذفه.',
   soonT:"اقترب موعد استئناف الصيد", soonD:"استعدوا للانطلاق: راجعوا تراخيص القوارب ومعدات السلامة البحرية. التوقيف ما زال ساريًا حتى صدور القرار الرسمي.", openT:"موسم الصيد مفتوح حاليًا", openD:"يُسمح بالصيد وفق القوانين المعمول بها، مع احترام الأحجام القانونية للأسماك.", 
+  updT:"يتوفر تحديث جديد", updB:"إعادة التحميل", updX:"لاحقًا", 
+  sndOn:"الصوت مفعّل، اضغط للكتم", sndOff:"الصوت مكتوم، اضغط للتفعيل", 
   exemptL:"الاستثناءات (غير مشمولة):", moreL:"عرض العقوبات والاستثناءات", quickSp:["أخطبوط","كوربين","دنيس","سبيط","بوري"],
   speciesList:['اسقمري','أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
   settings:'الإعدادات', lang:'اللغة', locT:'الموقع', city:'المدينة', useGps:'استخدم موقعي', gpsBusy:'جارٍ تحديد الموقع...',
@@ -83,6 +85,8 @@ var T={
   del:'Supprimer', sure:'Confirmer ?', total:'Ce mois-ci', trips:'prises', kg:'kg', top:'Principale',
   logNote:'Le journal est enregistré uniquement sur votre téléphone. Effacer les données du navigateur le supprime.',
   soonT:"Reprise de la pêche imminente", soonD:"Préparez vos embarcations ; vérifiez vos licences et équipements de sécurité. L’arrêt reste en vigueur jusqu’à la décision officielle.", openT:"Saison de pêche ouverte", openD:"La pêche est autorisée conformément à la réglementation et aux tailles légales.", 
+  updT:"Une mise à jour est disponible", updB:"Recharger", updX:"Plus tard", 
+  sndOn:"Son activé, appuyez pour couper", sndOff:"Son coupé, appuyez pour activer", 
   exemptL:"Exemptions (non concernées) :", moreL:"Voir les sanctions et exemptions", quickSp:["Poulpe","Courbine","Dorade","Calmar","Mulet"],
   speciesList:['Maquereau','Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
   settings:'Réglages', lang:'Langue', locT:'Lieu', city:'Ville', useGps:'Utiliser ma position', gpsBusy:'Localisation en cours...',
@@ -111,10 +115,11 @@ var SEA_POINTS=[CITIES[0],CITIES[1]];
 
 /* ---------- State and storage ---------- */
 var KEY='marsat.v1';
+var _ac=null,_dng=false; /* audio context and danger-chime state (declared early: the first render runs before the end of the file) */
 if(window.T_EXTRA)for(var _k in window.T_EXTRA)T[_k]=window.T_EXTRA[_k];
 var NAVI=["<path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10v9.5h13V10\"/><path d=\"M10 19.5v-5h4v5\"/>", "<path d=\"M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z\"/>", "<path d=\"M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z\"/><path d=\"M9 9h6M9 13h6\"/>", "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8\"/>"];
 var LANGS=[['ar','العربية'],['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['zh','中文']];
-var S={hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
+var S={sound:true,hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30,soonDays:7,openDays:3},
        status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
@@ -123,12 +128,12 @@ try{
   if(typeof sv.city==='number'&&CITIES[sv.city])S.city=sv.city;
   if(sv.mode==='gps'&&sv.gps)S.mode='gps';
   if(sv.gps&&typeof sv.gps.lat==='number')S.gps=sv.gps;
-  S.low=!!sv.low;S.alert=!!sv.alert;S.hideLoc=!!sv.hideLoc; S.lowHintOff=!!sv.lowHintOff;
-  if(Array.isArray(sv.log))S.log=sv.log;
+  if(typeof sv.sound==='boolean')S.sound=sv.sound;S.low=!!sv.low;S.alert=!!sv.alert;S.hideLoc=!!sv.hideLoc; S.lowHintOff=!!sv.lowHintOff;
+  if(Array.isArray(sv.log))S.log=sv.log.filter(function(e){return e&&typeof e==='object'&&typeof e.species==='string'&&typeof e.date==='string'});
   if(sv.sea&&typeof sv.sea.t==='number')S.sea=sv.sea;
 }catch(e){}
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
+  try{localStorage.setItem(KEY,JSON.stringify({sound:S.sound,lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
 }
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -147,7 +152,6 @@ function todayStr(){var d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()
 /* ---------- Location ---------- */
 function coords(){return S.mode==='gps'&&S.gps?{lat:S.gps.lat,lng:S.gps.lng}:{lat:CITIES[S.city].lat,lng:CITIES[S.city].lng}}
 function placeName(){return S.mode==='gps'&&S.gps?L().gps:cityName(S.city)}
-function distKm(a,b,c,d){var R=6371,p=Math.PI/180,x=(c-a)*p,y=(d-b)*p*Math.cos((a+c)/2*p);return R*Math.sqrt(x*x+y*y)}
 function seaCandidates(){
   var list=[], c=coords();
   if(S.mode==='gps'&&S.gps)list.push({p:[c.lat,c.lng],fallback:false});
@@ -164,8 +168,11 @@ function restInfo(){
   var now=new Date(), t=new Date(now.getFullYear(),now.getMonth(),now.getDate()), ps=S.cfg.restPeriods||[];
   var soonN=+S.cfg.soonDays>0?+S.cfg.soonDays:7, openN=+S.cfg.openDays>0?+S.cfg.openDays:3;
   for(var i=0;i<ps.length;i++){
+    if(!ps[i]||typeof ps[i]!=='object')continue;
     var a=parseD(ps[i].start), open=!ps[i].end, b=open?new Date(9999,0,1):parseD(ps[i].end);
-    if(!a||!b||isNaN(a)||isNaN(b)||b<a)continue;
+    /* a mistyped end date must never hide the ban: treat it as "end not announced" */
+    if(!open&&(!b||isNaN(b)||(a&&b<a))){open=true;b=new Date(9999,0,1)}
+    if(!a||isNaN(a))continue;
     if(!(ps[i].official||S.cfg.showUnofficial))continue;
     if(t>=a&&t<=b){
       var left=open?0:Math.round((b-t)/86400000)+1;
@@ -277,12 +284,12 @@ function logoSvg(){
 function build(){
   var t=L();
   document.documentElement.lang=S.lang; document.documentElement.dir=t.dir;
-  document.title=t.name+' Al Marsat';
+  document.title=t.name==='Al Marsat'?'Al Marsat':t.name+' Al Marsat';
   document.body.classList.toggle('low',S.low);
   var spOpts=t.speciesList.map(function(s){return '<option value="'+esc(s)+'"></option>'}).join('');
   var cityOpts=CITIES.map(function(c,i){return (i===5?'<optgroup label="'+SPOTSL[S.lang]+'">':'')+'<option value="'+i+'"'+(S.mode==='city'&&i===S.city?' selected':'')+'>'+esc(cityName(i))+'</option>'}).join('')+'</optgroup>';
   $('app').innerHTML=
-  '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+'</header>'+
+  '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+'<button type="button" class="snd" id="bSnd"></button></header>'+
 
   '<div class="tab" id="tab0">'+
    '<div id="hint"></div><div id="restBox"></div>'+
@@ -349,7 +356,8 @@ function build(){
 
   '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true">'+NAVI[i]+'</svg><span>'+n+'</span></button>'}).join('')+'</div></nav>';
 
-      $('bRefresh').onclick=function(){refreshSea(true)};
+      paintSnd();$('bSnd').onclick=function(){S.sound=!S.sound;save();paintSnd();if(S.sound)tick()};
+  $('bRefresh').onclick=function(){refreshSea(true)};
   $('citySel').onchange=function(){
     if(this.value==='gps')return;
     S.mode='city';S.city=+this.value;S.sea=null;save();rebuild();refreshSea(true);
@@ -389,6 +397,8 @@ function updateHint(){
   if($('hEnable'))$('hEnable').onclick=function(){S.low=true;save();rebuild();refreshSea(false)};
   if($('hOff'))$('hOff').onclick=function(){S.lowHintOff=true;save();updateHint()};
 }
+/* re-render the rest card only when its content changed, so an open details panel is not collapsed by the 60 s refresh */
+function setRest(h){var el=$('restBox');if(el&&el._h!==h){el.innerHTML=h;el._h=h}}
 function updateHome(){
   if(!$('arc'))return;
   var t=L(), r=restInfo(), d=S.sea, now=new Date(), age=moonAge(now), il=moonIllum(age);
@@ -403,14 +413,14 @@ function updateHome(){
     var cnt=r.open?'<div class="count"><b>'+r.days+'</b><span>'+t.since+'</span></div>':'<div class="count"><b>'+r.days+'</b><span>'+t.left+'</span></div>';
     if(r.soon)head=t.soonT;
     var soonNote=r.soon?'<p>'+t.soonD+'</p>':'';
-    $('restBox').innerHTML='<div class="rest'+(r.soon?' soon':'')+'"><h2>'+esc(head)+'</h2>'+cnt+soonNote+
+    setRest('<div class="rest'+(r.soon?' soon':'')+'"><h2>'+esc(head)+'</h2>'+cnt+soonNote+
       (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p>':'<p>'+t.prep+'</p>')+
       ((sc||pickTxt(r.penalty)||(r.open&&pickTxt(r.expected)))?'<details class="more"><summary>'+t.moreL+'</summary>'+(sc?'<p class="note"><b>'+t.exemptL+'</b></p>'+(pickList(r.exc)?'<ul class="exl">'+pickList(r.exc).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'<p class="note">'+t.exempt+'</p>'):'')+
       (pickTxt(r.penalty)?'<p class="note"><b>'+t.penL+'</b> '+esc(pickTxt(r.penalty))+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>'+ministryLinks():'')+
       (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+'</details>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
-      (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>';
-  }else if(r.justOpened)$('restBox').innerHTML='<div class="rest opened"><h2>'+t.openT+'</h2><p>'+t.openD+'</p></div>';
-  else $('restBox').innerHTML='';
+      (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>');
+  }else if(r.justOpened)setRest('<div class="rest opened"><h2>'+t.openT+'</h2><p>'+t.openD+'</p></div>');
+  else setRest('');
   $('scoreCard').hidden=r.active&&!anyTxt(r.scope);
   $('seaSub').textContent=(r.active&&!anyTxt(r.scope))?t.seaLearn:'';
 
@@ -430,7 +440,9 @@ function updateHome(){
     vd.className='verdict none'; vd.textContent=t.none; $('vtext').textContent=d?t.tOld:t.tNone;
     $('fw').textContent='-';$('fh').textContent='-';$('fm').textContent='-';
   }
-  $('danger').hidden=!(d&&fresh&&d.wave>2);
+  var dng=!!(d&&fresh&&d.wave>2);
+  $('danger').hidden=!dng;
+  if(dng&&!_dng)chime(2);_dng=dng;
 
   if(d){
     $('sWind').textContent=d.wind+' '+t.kmh; $('sWave').textContent=d.wave.toFixed(1)+' '+t.m;
@@ -509,10 +521,10 @@ function renderLog(){
   var items=S.log.slice().sort(function(a,b){return a.date<b.date?1:(a.date>b.date?-1:b.id-a.id)});
   if(!items.length){el.innerHTML='<li><span class="sub">'+t.empty+'</span></li>'}
   else el.innerHTML=items.map(function(e){
-    var sn=e.snap?('<small class="sn">'+t.wind+' '+e.snap.w+' '+t.kmh+' • '+t.wave+' '+e.snap.h+' '+t.m+' • '+t.tideN[e.snap.td]+'</small>'):'';
-    var loc=(e.lat!=null&&!S.hideLoc)?('<small class="sn">📍 '+e.lat+', '+e.lng+'</small>'):(e.lat!=null?'<small class="sn">📍 …</small>':'');
+    var sn=e.snap?('<small class="sn">'+t.wind+' '+esc(+e.snap.w||0)+' '+t.kmh+' • '+t.wave+' '+esc(+e.snap.h||0)+' '+t.m+' • '+esc(t.tideN[e.snap.td]||'')+'</small>'):'';
+    var loc=(e.lat!=null&&!S.hideLoc)?('<small class="sn">📍 '+esc(+e.lat||0)+', '+esc(+e.lng||0)+'</small>'):(e.lat!=null?'<small class="sn">📍 …</small>':'');
     return '<li><div class="l"><b>'+esc(e.species)+'</b><small>'+esc(e.date)+(e.place?' - '+esc(e.place):'')+(e.note?' - '+esc(e.note):'')+'</small>'+sn+loc+'</div>'+
-      '<span class="kg">'+(e.kg!=null?e.kg+' '+t.kg:'')+'</span><button class="del" type="button" data-del="'+e.id+'">'+t.del+'</button></li>';
+      '<span class="kg">'+(e.kg!=null?esc(+e.kg||0)+' '+t.kg:'')+'</span><button class="del" type="button" data-del="'+esc(+e.id||0)+'">'+t.del+'</button></li>';
   }).join('');
   Array.prototype.forEach.call(el.querySelectorAll('[data-del]'),function(b){
     b.onclick=function(){
@@ -639,9 +651,6 @@ function loadConfig(){
     if(c&&c.soonDays)S.cfg.soonDays=c.soonDays;
     if(c&&c.openDays)S.cfg.openDays=c.openDays;
     try{localStorage.setItem(KEY+'.cfg',JSON.stringify(S.cfg))}catch(e){}
-    if(c&&c.remoteConfigUrl)return getJSON(c.remoteConfigUrl,6000).then(function(r){
-      if(r&&Array.isArray(r.restPeriods)){S.cfg.restPeriods=r.restPeriods;S.cfg.showUnofficial=!!r.showUnofficial;try{localStorage.setItem(KEY+'.cfg',JSON.stringify(S.cfg))}catch(e){}}
-    },function(){});
   }).catch(function(){
     try{var s=JSON.parse(localStorage.getItem(KEY+'.cfg')||'null');if(s&&Array.isArray(s.restPeriods))S.cfg=s}catch(e){}
   });
@@ -662,7 +671,7 @@ function splash(){
 function loadFonts(){
   if(S.low||navigator.onLine===false)return;
   var l=document.createElement('link'); l.rel='stylesheet';
-  l.href='https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700&display=swap';
+  l.href='https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Reem+Kufi:wght@500;700&display=swap';
   document.head.appendChild(l);
 }
 
@@ -687,13 +696,35 @@ function paintViz(d){
     '<g class="wv" style="animation-duration:'+dur.toFixed(1)+'s" fill="'+col+'" opacity=".75"><path d="'+wave(amp,104,0)+'"/></g></svg>';
   el.hidden=false;
 }
-var _ac=null;
+function ac(){try{var A=window.AudioContext||window.webkitAudioContext;if(!A)return null;_ac=_ac||new A();if(_ac.state==='suspended')_ac.resume();return _ac}catch(e){return null}}
+/* one soft synthesized note: no audio files are used */
+function note(freq,t0,dur,vol,type){
+  var c=ac();if(!c)return;
+  var o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;
+  o.type=type||'sine';o.frequency.setValueAtTime(freq,t);
+  g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+.012);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+  o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.03);
+}
+function tick(){if(!S.sound)return;try{note(620,0,.07,.05,'sine');note(930,.012,.05,.025,'sine')}catch(e){}}
+function chime(n){if(!S.sound)return;try{var f=[784,988,1175],i;n=n||3;for(i=0;i<n;i++)note(f[i],i*.28,.9,.14,'sine')}catch(e){}}
+function paintSnd(){
+  var b=$('bSnd'),t=L();if(!b)return;
+  var on='<path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6M17.8 6.8a7.2 7.2 0 0 1 0 10.4"/>';
+  var off='<path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M16 9.5l5 5M21 9.5l-5 5"/>';
+  b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+(S.sound?on:off)+'</svg>';
+  b.setAttribute('aria-pressed',S.sound?'true':'false');
+  b.setAttribute('aria-label',S.sound?t.sndOn:t.sndOff);b.title=S.sound?t.sndOn:t.sndOff;
+}
+/* soft click on the main controls (tabs, buttons, chips, setting rows) */
+document.addEventListener('click',function(e){
+  var el=e.target&&e.target.closest&&e.target.closest('button,.btn,.chip,[data-go],.shead,.tgl');
+  if(!el||el.id==='bSnd'||el.id==='updNo')return;
+  tick();
+},true);
+['pointerdown','touchstart','keydown'].forEach(function(ev){document.addEventListener(ev,function(){if(S.sound||S.alert)ac()},{passive:true})});
 function beep(test){
-  try{if(navigator.vibrate)navigator.vibrate(test?[150]:[500,200,500,200,500]);
-    var A=window.AudioContext||window.webkitAudioContext;if(!A)return;_ac=_ac||new A();
-    [0,.35,.7].slice(0,test?1:3).forEach(function(t0){var o=_ac.createOscillator(),g=_ac.createGain();o.frequency.value=660;o.connect(g);g.connect(_ac.destination);
-      var t=_ac.currentTime+t0;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.25,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.start(t);o.stop(t+.32)});
-  }catch(e){}
+  try{if(navigator.vibrate)navigator.vibrate(test?[150]:[500,200,500,200,500])}catch(e){}
+  chime(test?1:3);
 }
 var _fired='';
 function checkAlert(){
@@ -706,7 +737,20 @@ function checkAlert(){
 setInterval(checkAlert,15000);
 
 
+/* ---------- Update notice: shown when a new service worker takes over an already-installed app ---------- */
+function showUpdate(){
+  if($('updBar'))return;
+  var t=L(), d=document.createElement('div'); d.id='updBar'; d.className='upd'; d.setAttribute('role','status');
+  d.innerHTML='<span>'+esc(t.updT)+'</span><button type="button" class="btn" id="updGo">'+esc(t.updB)+'</button><button type="button" class="updx" id="updNo" aria-label="'+esc(t.updX)+'">&times;</button>';
+  document.body.appendChild(d);
+  $('updGo').onclick=function(){location.reload()};
+  $('updNo').onclick=function(){d.remove()};
+}
 if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){
-  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){})});
+  var _hadCtl=!!navigator.serviceWorker.controller;
+  navigator.serviceWorker.addEventListener('controllerchange',function(){if(!_hadCtl){_hadCtl=true;return}showUpdate()});
+  window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(r){
+    document.addEventListener('visibilitychange',function(){if(!document.hidden)r.update().catch(function(){})});
+  }).catch(function(){})});
 }
 })();
