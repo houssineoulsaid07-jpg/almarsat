@@ -41,6 +41,7 @@ var T={
   updT:"يتوفر تحديث جديد", updB:"إعادة التحميل", updX:"لاحقًا", 
   sndOn:"الصوت مفعّل، اضغط للكتم", sndOff:"الصوت مكتوم، اضغط للتفعيل", 
  sfT:"السلامة والاستغاثة", sfSos:"استغاثة SOS", sfInfo:"يجهّز التطبيق رسالة فيها موقعك، وتضغط أنت «إرسال» في تطبيق الرسائل. يلزم وجود تغطية شبكة هاتف. هذه ليست خدمة إنقاذ رسمية: في الخطر الشديد اتصل بالجهات المختصة أيضًا.", sfNums:"أرقام الطوارئ (حتى 3)", sfNumPh:"رقم الهاتف", sfAdd:"إضافة", sfBad:"رقم غير صحيح.", sfDel:"حذف", sfNoNum:"أضف رقم طوارئ واحدًا على الأقل لإرسال الرسالة مباشرة.", sfConfT:"إرسال استغاثة؟", sfConfD:"سيُحدَّد موقعك ثم تُجهَّز رسالة لأرقام الطوارئ.", sfGo:"حدّد موقعي وجهّز الرسالة", sfCancel:"إلغاء", sfWait:"جارٍ تحديد موقعك...", sfSend:"فتح الرسائل وإرسال", sfCopy:"نسخ الرسالة", sfShare:"مشاركة", sfCopied:"تم النسخ.", sfLast:"تعذّر تحديد موقعك الآن. استُخدم آخر موقع معروف.", sfNoFix:"تعذّر تحديد الموقع. أرسل الرسالة بدونه.", sfBody:"استغاثة المرساة: أحتاج مساعدة في البحر.", sfPos:"موقعي", sfAcc:"الدقة", sfTime:"الساعة", sfRetT:"موعد العودة", sfRetD:"حدّد وقت رجوعك. إن تأخرت يذكّرك التطبيق (وهو مفتوح) ويجهّز لك رسالة لأهلك. اضبط منبّه الهاتف أيضًا.", sfH:"س", sfDue:"موعد العودة", sfNoRet:"لا يوجد موعد", sfClear:"إلغاء الموعد", sfOverT:"انتهى موعد العودة", sfOverD:"هل وصلت بسلام؟", sfOk:"وصلت بسلام", sfExt:"تمديد ساعة", sfTell:"أرسل موقعي لأهلي", sfLateBody:"تأخرت عن موعد عودتي. أنا بخير وسأعود، هذا موقعي:", sfDenied:"الموقع مرفوض: فعّل إذن الموقع للتطبيق من إعدادات المتصفح ثم أعد المحاولة.", sfRetry:"إعادة المحاولة", sfWarn:"تنبيه: تأكد أن شريحتك فيها رصيد رسائل SMS قبل الخروج إلى البحر، وجرّب زر SOS مرة على الشاطئ. إن لم تتوفر الرسائل فاستعمل «مشاركة» أو «نسخ» مع واتساب إن وُجد إنترنت.",
+ rdT:"الإبلاغ بالراديو والإشارات (بلا رصيد ولا إنترنت)", rdBtn:"شاشة الإبلاغ بالراديو", rdFl:"إشارة SOS ضوئية وصوتية", rdClose:"إغلاق", rdHow:"على جهاز VHF بحري: اضغط زر الإرسال، وقل ببطء: «MAYDAY، MAYDAY، MAYDAY. هنا [اسم القارب] ثلاث مرات. MAYDAY [اسم القارب]. موقعي كما أدناه. أحتاج مساعدة. عدد الأشخاص: ...». ثم اترك زر الإرسال وانتظر الرد. القناة الدولية للاستغاثة: 16.", rdPos:"موقعك الآن (درجات ودقائق)", rdN:"شمالًا", rdS:"جنوبًا", rdE:"شرقًا", rdW:"غربًا", rdOld:"آخر موقع معروف قبل", rdMin:"دقيقة", rdNoPos:"لا يوجد موقع بعد. اخرج إلى مكان مكشوف وانتظر.", rdFlInfo:"يراها ويسمعها من هو قريب منك فقط. لا ترسل شيئًا عبر الشبكة، ولا تغني عن VHF ولا المشاعل ولا منارة الاستغاثة.", rdFlStop:"المس الشاشة للإيقاف", rdCallT:"اتصال مباشر", rdCallN:"قد تعمل المكالمة بلا رصيد وقد لا تعمل. الأرقام من مصدر إخباري ولم يؤكدها أحد رسميًا: اتصل بها مرة على الشاطئ للتأكد.", rdMar:"الدرك البحري", rdGen:"الدرك الوطني", rdPol:"الشرطة",
   nvT:"بوصلة المصائد والانجراف", nvWarn:"مساعد فقط ولا يغني عن جهاز ملاحة بحرية ولا عن خبرتك. دقة GPS الهاتف تتفاوت، وبوصلته تتأثر بالمعادن. لا تعتمد عليه وحده في العودة. نقاطك تُحفظ في هاتفك فقط.", nvCatch:"حفظ نقطة المصيدة الحالية", nvHome:"حفظ نقطة المرسى / الشاطئ", nvWait:"جارٍ تحديد موقعك… قد يستغرق دقيقة في عرض البحر", nvSaved:"تم حفظ", nvErr:"تعذّر تحديد الموقع. فعّل GPS وتأكد أن الهاتف في مكان مكشوف للسماء.", nvNone:"لا توجد نقاط محفوظة بعد", nvPick:"اختر نقطة للتوجيه نحوها", nvStart:"بدء التوجيه", nvStop:"إيقاف التوجيه", nvDist:"المسافة المتبقية", nvM:"م", nvKm:"كم", nvBear:"الاتجاه", nvAcc:"الدقة ±", nvSrcG:"الاتجاه من GPS (أثناء الحركة)", nvSrcM:"الاتجاه من بوصلة الهاتف", nvNoHd:"حرّك الهاتف بشكل ثمانية لمعايرة البوصلة", nvArr:"وصلت إلى النقطة", nvRen:"تسمية", nvDel:"حذف", nvSure:"حذف هذه النقطة؟", nvName:"اسم النقطة", nvDrift:"إنذار الانجراف", nvDriftInfo:"ينبّه إذا ابتعد القارب عن النقطة المختارة أكثر من:", nvDriftAl:"انجراف! ابتعدت عن النقطة بمقدار", nvSun:"وضع الشمس (تباين عالٍ)", nvKindC:"مصيدة", nvKindH:"مرسى", nvFull:"اكتملت النقاط المسموحة (60). احذف نقطة قديمة.", nvSel:"النقطة المختارة", nvKeep:"أبقِ الشاشة مضاءة أثناء التوجيه", nvNoTarget:"لم تُختر نقطة", nvOff:"لا يعمل التوجيه", 
   exemptL:"الاستثناءات (غير مشمولة):", moreL:"عرض العقوبات والاستثناءات", quickSp:["أخطبوط","كوربين","دنيس","سبيط","بوري"],
   speciesList:['اسقمري','أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
@@ -90,6 +91,7 @@ var T={
   updT:"Une mise à jour est disponible", updB:"Recharger", updX:"Plus tard", 
   sndOn:"Son activé, appuyez pour couper", sndOff:"Son coupé, appuyez pour activer", 
  sfT:"Sécurité et SOS", sfSos:"SOS", sfInfo:"L'appli prépare un message avec votre position ; c'est vous qui appuyez sur « Envoyer » dans l'appli Messages. Il faut du réseau mobile. Ce n'est pas un service de secours officiel : en cas de danger grave, appelez aussi les secours.", sfNums:"Numéros d'urgence (3 max)", sfNumPh:"Numéro de téléphone", sfAdd:"Ajouter", sfBad:"Numéro invalide.", sfDel:"Supprimer", sfNoNum:"Ajoutez au moins un numéro d'urgence pour envoyer directement le message.", sfConfT:"Envoyer un SOS ?", sfConfD:"Votre position sera relevée puis un message sera préparé pour vos numéros d'urgence.", sfGo:"Localiser et préparer le message", sfCancel:"Annuler", sfWait:"Localisation en cours...", sfSend:"Ouvrir Messages et envoyer", sfCopy:"Copier le message", sfShare:"Partager", sfCopied:"Copié.", sfLast:"Position actuelle introuvable. Dernière position connue utilisée.", sfNoFix:"Position introuvable. Envoyez le message sans.", sfBody:"استغاثة المرساة: أحتاج مساعدة في البحر.", sfPos:"Ma position", sfAcc:"Précision", sfTime:"Heure", sfRetT:"Heure de retour", sfRetD:"Fixez votre heure de retour. Si vous êtes en retard, l'appli (ouverte) vous le rappelle et prépare un message pour vos proches. Réglez aussi une alarme sur le téléphone.", sfH:"h", sfDue:"Retour prévu", sfNoRet:"Aucune heure fixée", sfClear:"Annuler l'heure", sfOverT:"Heure de retour dépassée", sfOverD:"Êtes-vous bien rentré ?", sfOk:"Je suis arrivé", sfExt:"Prolonger d'1 h", sfTell:"Envoyer ma position à ma famille", sfLateBody:"Je suis en retard sur mon heure de retour. Je vais bien et je rentre, voici ma position :", sfDenied:"Localisation refusée : autorisez la position pour l'appli dans les réglages du navigateur, puis réessayez.", sfRetry:"Réessayer", sfWarn:"Attention : vérifiez que votre SIM a du crédit SMS avant de partir en mer et testez SOS une fois à terre. Sans SMS, utilisez « Partager » ou « Copier » avec WhatsApp si vous avez internet.",
+ rdT:"Message radio et signaux (sans crédit ni internet)", rdBtn:"Écran message radio", rdFl:"Signal SOS lumineux et sonore", rdClose:"Fermer", rdHow:"Sur une VHF marine : appuyez sur l'émission et dites lentement : « MAYDAY, MAYDAY, MAYDAY. Ici [nom du bateau] trois fois. MAYDAY [nom du bateau]. Ma position est ci-dessous. J'ai besoin d'aide. Nombre de personnes : ... ». Relâchez et attendez la réponse. Canal international de détresse : 16.", rdPos:"Votre position (degrés et minutes)", rdN:"nord", rdS:"sud", rdE:"est", rdW:"ouest", rdOld:"Dernière position connue il y a", rdMin:"min", rdNoPos:"Pas encore de position. Placez-vous à découvert et attendez.", rdFlInfo:"Seuls ceux qui sont près de vous la voient et l'entendent. Rien n'est envoyé par le réseau ; ne remplace ni la VHF, ni les fusées, ni une balise de détresse.", rdFlStop:"Touchez l'écran pour arrêter", rdCallT:"Appel direct", rdCallN:"L'appel peut ou non fonctionner sans crédit. Numéros issus d'un site d'information, non confirmés officiellement : appelez-les une fois à terre pour vérifier.", rdMar:"Gendarmerie maritime", rdGen:"Gendarmerie nationale", rdPol:"Police",
   nvT:"Boussole des spots et dérive", nvWarn:"Aide seulement : ne remplace ni un appareil de navigation marine ni votre expérience. La précision du GPS du téléphone varie et sa boussole est sensible aux métaux. Ne vous y fiez pas seul pour rentrer. Vos points restent sur votre téléphone.", nvCatch:"Enregistrer le spot de pêche actuel", nvHome:"Enregistrer le mouillage / la plage", nvWait:"Localisation en cours… peut prendre une minute en mer", nvSaved:"Enregistré", nvErr:"Position introuvable. Activez le GPS et placez le téléphone à ciel dégagé.", nvNone:"Aucun point enregistré", nvPick:"Choisissez un point à rejoindre", nvStart:"Démarrer le guidage", nvStop:"Arrêter le guidage", nvDist:"Distance restante", nvM:"m", nvKm:"km", nvBear:"Cap", nvAcc:"Précision ±", nvSrcG:"Cap du GPS (en mouvement)", nvSrcM:"Cap de la boussole du téléphone", nvNoHd:"Faites un huit avec le téléphone pour calibrer la boussole", nvArr:"Vous êtes arrivé au point", nvRen:"Renommer", nvDel:"Supprimer", nvSure:"Supprimer ce point ?", nvName:"Nom du point", nvDrift:"Alarme de dérive", nvDriftInfo:"Alerte si le bateau s’éloigne du point choisi de plus de :", nvDriftAl:"Dérive ! Vous êtes à", nvSun:"Mode soleil (fort contraste)", nvKindC:"Spot", nvKindH:"Mouillage", nvFull:"Nombre maximum de points atteint (60). Supprimez un ancien point.", nvSel:"Point choisi", nvKeep:"Garder l’écran allumé pendant le guidage", nvNoTarget:"Aucun point choisi", nvOff:"Guidage arrêté", 
   exemptL:"Exemptions (non concernées) :", moreL:"Voir les sanctions et exemptions", quickSp:["Poulpe","Courbine","Dorade","Calmar","Mulet"],
   speciesList:['Maquereau','Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
@@ -119,7 +121,8 @@ var SEA_POINTS=[CITIES[0],CITIES[1]];
 
 /* ---------- State and storage ---------- */
 var KEY='marsat.v1';
-var _ac=null,_dng=false; /* audio context and danger-chime state (declared early: the first render runs before the end of the file) */
+var _ac=null,_dng=false;
+var EMG=[{k:'rdMar',n:'45253990'},{k:'rdGen',n:'116'},{k:'rdPol',n:'117'}]; /* audio context and danger-chime state (declared early: the first render runs before the end of the file) */
 if(window.T_EXTRA)for(var _k in window.T_EXTRA)T[_k]=window.T_EXTRA[_k];
 var NAVI=["<path d=\"M3 11.5 12 4l9 7.5\"/><path d=\"M5.5 10v9.5h13V10\"/><path d=\"M10 19.5v-5h4v5\"/>", "<path d=\"M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z\"/>", "<path d=\"M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z\"/><path d=\"M9 9h6M9 13h6\"/>", "<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.6 5.6l1.8 1.8M16.6 16.6l1.8 1.8M5.6 18.4l1.8-1.8M16.6 7.4l1.8-1.8\"/>"];
 NAVI.push('<circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="1.6"/><path d="M12 2.5v4M12 17.5v4M2.5 12h4M17.5 12h4"/>');
@@ -363,7 +366,7 @@ function build(){
    '<p class="sub" id="noSet" hidden style="text-align:center;margin-top:20px">'+t.noSet+'</p>'+
   '</div>'+
 
-  '<div class="tab" id="tab4" hidden>'+sfHtml(t)+navHtml(t)+'</div>'+
+  '<div class="tab" id="tab4" hidden>'+sfHtml(t)+rdHtml(t)+navHtml(t)+'</div>'+
 
   '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true">'+NAVI[i]+'</svg><span>'+n+'</span></button>'}).join('')+'</div></nav>';
 
@@ -383,7 +386,7 @@ function build(){
   $('bCompass').onclick=toggleCompass;
   $('bInstall').onclick=doInstall;
   Array.prototype.forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tab=+b.getAttribute('data-go');showTab();window.scrollTo(0,0)}});
-  bindNav();bindSafe();
+  bindNav();bindSafe();bindRad();
   if(deferredPrompt)$('bInstall').hidden=false;
   if(isIos()&&!isStandalone())$('iosNote').hidden=false;
   if(isStandalone()){$('installCard').querySelector('small').textContent=t.installed}
@@ -1001,6 +1004,60 @@ function bindSafe(){
 }
 setInterval(sfCheck,20000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)sfCheck()});
+
+
+/* ---------- Radio-call screen, SOS light/sound signal, direct-call list (all work with no credit and no internet) ---------- */
+function rdHtml(t){
+  return '<section class="card sf" id="rdBox"><h2>'+t.rdT+'</h2>'+
+   '<div class="sfbtns"><button type="button" class="btn" id="rdRadio">'+t.rdBtn+'</button><button type="button" class="btn bad" id="rdFlash">'+t.rdFl+'</button></div>'+
+   '<h3>'+t.rdCallT+'</h3><div class="sfbtns">'+EMG.map(function(e){return '<a class="btn ghost" href="tel:'+(e.n.length>3?'+222':'')+e.n+'">'+esc(t[e.k])+' <bdi dir="ltr">'+e.n+'</bdi></a>'}).join('')+'</div>'+
+   '<p class="note">'+t.rdCallN+'</p></section>';
+}
+function rdDM(v,pos,neg){
+  var a=Math.abs(v),d=Math.floor(a),m=(a-d)*60,L2=L();
+  if(m>=59.9995){d++;m=0}
+  return '<bdi dir="ltr">'+d+'° '+m.toFixed(3)+'′</bdi> '+(v>=0?L2[pos]:L2[neg]);
+}
+function rdRadio(){
+  var t=L(),o=sfModal('<h2>'+esc(t.rdBtn)+'</h2><p class="note">'+esc(t.rdHow)+'</p><div class="rdpos" id="rdPos"></div><p class="nvmsg" id="rdSub"></p><div class="sfbtns"><button type="button" class="btn ghost" id="rdX">'+esc(t.rdClose)+'</button></div>'),w=null;
+  function paint(p,stale){
+    var b=$('rdPos'),s=$('rdSub');if(!b)return;
+    if(!p){b.textContent=t.rdWait||t.sfWait;s.textContent=t.rdNoPos;return}
+    b.innerHTML='<div>'+rdDM(p.lat,'rdN','rdS')+'</div><div>'+rdDM(p.lng,'rdE','rdW')+'</div>';
+    var age=p.ts?Math.round((Date.now()-p.ts)/60000):0;
+    s.textContent=(stale&&age>0?t.rdOld+' '+age+' '+t.rdMin+' · ':'')+(p.acc?t.sfAcc+' ±'+Math.round(p.acc)+' m':'');
+  }
+  var last=NV.pos&&NV.pos.lat!=null?NV.pos:SF.pos;paint(last,true);
+  if(navigator.geolocation){try{w=navigator.geolocation.watchPosition(function(p){var c=p.coords;SF.pos={lat:c.latitude,lng:c.longitude,acc:c.accuracy,ts:Date.now()};paint(SF.pos,false)},function(){},{enableHighAccuracy:true,maximumAge:0,timeout:30000})}catch(e){}}
+  var wl=null;try{if(navigator.wakeLock)navigator.wakeLock.request('screen').then(function(x){wl=x}).catch(function(){})}catch(e){}
+  $('rdX').onclick=function(){try{if(w!=null)navigator.geolocation.clearWatch(w)}catch(e){}try{if(wl)wl.release()}catch(e){}o.close()};
+}
+/* SOS in Morse: ... --- ... ; unit 250 ms; flashes the screen, beeps and vibrates until touched */
+function rdFlash(){
+  var t=L(),u=250,seq=[1,1,1,1,1,1,0,3,1,3,1,3,0,3,1,1,1,1,1,1],pat=[],i;
+  /* seq alternates on/off durations: build explicit on/off list */
+  var sym='...---...',on=[];for(i=0;i<sym.length;i++)on.push(sym[i]==='.'?1:3);
+  var o=document.createElement('div');o.className='rdfl';o.setAttribute('role','alertdialog');
+  o.innerHTML='<div class="rdflt">SOS</div><p>'+esc(t.rdFlInfo)+'</p><p><b>'+esc(t.rdFlStop)+'</b></p>';
+  document.body.appendChild(o);
+  var stop=false,wl=null;try{if(navigator.wakeLock)navigator.wakeLock.request('screen').then(function(x){wl=x}).catch(function(){})}catch(e){}
+  ac();
+  function cycle(){
+    if(stop)return;
+    var tm=0,vib=[];
+    on.forEach(function(n,k){
+      var d=n*u;
+      (function(at,dd){setTimeout(function(){if(stop)return;o.classList.add('lit');try{note(880,0,dd/1000,.5,'square')}catch(e){}},at);setTimeout(function(){o.classList.remove('lit')},at+dd)})(tm,d);
+      vib.push(d);tm+=d;
+      var gap=(k===on.length-1)?7*u:(k%3===2?3*u:u);vib.push(gap);tm+=gap;
+    });
+    try{if(navigator.vibrate)navigator.vibrate(vib.slice(0,-1))}catch(e){}
+    setTimeout(cycle,tm);
+  }
+  cycle();
+  o.onclick=function(){stop=true;try{if(navigator.vibrate)navigator.vibrate(0)}catch(e){}try{if(wl)wl.release()}catch(e){}o.parentNode&&o.parentNode.removeChild(o)};
+}
+function bindRad(){if(!$('rdBox'))return;$('rdRadio').onclick=rdRadio;$('rdFlash').onclick=rdFlash}
 
 
 /* ---------- Update notice: shown when a new service worker takes over an already-installed app ---------- */

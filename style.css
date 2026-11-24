@@ -283,3 +283,11 @@ nav.tabs button[data-go="4"]{order:5}
 .sfover .btn.ghost{background:rgba(255,255,255,.2); color:#fff}
 .sfover .btn.bad{background:#000; color:#fff}
 .sfwarn{color:var(--bad,#c1121f); font-weight:700}
+
+/* ---- radio-call screen, SOS signal ---- */
+.rdpos{font-size:1.7rem; font-weight:800; line-height:1.5; text-align:center; padding:14px 8px; margin:10px 0; background:var(--bg); border:2px solid var(--primary); border-radius:12px}
+.rdpos bdi{font-variant-numeric:tabular-nums}
+.rdfl{position:fixed; inset:0; z-index:200; background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:24px; gap:10px; cursor:pointer}
+.rdfl.lit{background:#fff; color:#000}
+.rdflt{font-size:5rem; font-weight:900; letter-spacing:.1em}
+.rdfl p{max-width:30ch; font-size:1rem; margin:0}
