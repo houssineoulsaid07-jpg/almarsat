@@ -919,7 +919,7 @@ function sfPaint(){
   Array.prototype.forEach.call(ul.querySelectorAll('[data-d]'),function(b){b.onclick=function(){S.safe.nums.splice(+b.getAttribute('data-d'),1);save();sfPaint()}});
 }
 function sfBodyText(extra,pos){
-  var t=L(),s=extra+(pos?' '+t.sfPos+': '+pos.lat.toFixed(5)+', '+pos.lng.toFixed(5)+(pos.acc?' ('+t.sfAcc+' ±'+Math.round(pos.acc)+' m)':'')+' '+t.sfTime+' '+new Date(pos.ts||Date.now()).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' https://maps.google.com/?q='+pos.lat.toFixed(5)+','+pos.lng.toFixed(5):'');
+  var t=L(),s=extra+(pos?' '+t.sfPos+': \u2066'+pos.lat.toFixed(5)+', '+pos.lng.toFixed(5)+'\u2069'+(pos.acc?' ('+t.sfAcc+' \u2066±'+Math.round(pos.acc)+' m\u2069)':'')+' '+t.sfTime+' \u2066'+new Date(pos.ts||Date.now()).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+'\u2069\n https://maps.google.com/?q='+pos.lat.toFixed(5)+','+pos.lng.toFixed(5):'');
   return s;
 }
 function sfGetPos(cb){
