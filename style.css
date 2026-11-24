@@ -282,3 +282,4 @@ nav.tabs button[data-go="4"]{order:5}
 .sfover .btn{background:#fff; color:#c1121f}
 .sfover .btn.ghost{background:rgba(255,255,255,.2); color:#fff}
 .sfover .btn.bad{background:#000; color:#fff}
+.sfwarn{color:var(--bad,#c1121f); font-weight:700}
