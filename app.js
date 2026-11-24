@@ -40,6 +40,7 @@ var T={
   soonT:"اقترب موعد استئناف الصيد", soonD:"استعدوا للانطلاق: راجعوا تراخيص القوارب ومعدات السلامة البحرية. التوقيف ما زال ساريًا حتى صدور القرار الرسمي.", openT:"موسم الصيد مفتوح حاليًا", openD:"يُسمح بالصيد وفق القوانين المعمول بها، مع احترام الأحجام القانونية للأسماك.", 
   updT:"يتوفر تحديث جديد", updB:"إعادة التحميل", updX:"لاحقًا", 
   sndOn:"الصوت مفعّل، اضغط للكتم", sndOff:"الصوت مكتوم، اضغط للتفعيل", 
+ sfT:"السلامة والاستغاثة", sfSos:"استغاثة SOS", sfInfo:"يجهّز التطبيق رسالة فيها موقعك، وتضغط أنت «إرسال» في تطبيق الرسائل. يلزم وجود تغطية شبكة هاتف. هذه ليست خدمة إنقاذ رسمية: في الخطر الشديد اتصل بالجهات المختصة أيضًا.", sfNums:"أرقام الطوارئ (حتى 3)", sfNumPh:"رقم الهاتف", sfAdd:"إضافة", sfBad:"رقم غير صحيح.", sfDel:"حذف", sfNoNum:"أضف رقم طوارئ واحدًا على الأقل لإرسال الرسالة مباشرة.", sfConfT:"إرسال استغاثة؟", sfConfD:"سيُحدَّد موقعك ثم تُجهَّز رسالة لأرقام الطوارئ.", sfGo:"حدّد موقعي وجهّز الرسالة", sfCancel:"إلغاء", sfWait:"جارٍ تحديد موقعك...", sfSend:"فتح الرسائل وإرسال", sfCopy:"نسخ الرسالة", sfShare:"مشاركة", sfCopied:"تم النسخ.", sfLast:"تعذّر تحديد موقعك الآن. استُخدم آخر موقع معروف.", sfNoFix:"تعذّر تحديد الموقع. أرسل الرسالة بدونه.", sfBody:"استغاثة من تطبيق المرساة: أحتاج مساعدة في البحر.", sfPos:"موقعي", sfAcc:"الدقة", sfTime:"الساعة", sfRetT:"موعد العودة", sfRetD:"حدّد وقت رجوعك. إن تأخرت يذكّرك التطبيق (وهو مفتوح) ويجهّز لك رسالة لأهلك. اضبط منبّه الهاتف أيضًا.", sfH:"س", sfDue:"موعد العودة", sfNoRet:"لا يوجد موعد", sfClear:"إلغاء الموعد", sfOverT:"انتهى موعد العودة", sfOverD:"هل وصلت بسلام؟", sfOk:"وصلت بسلام", sfExt:"تمديد ساعة", sfTell:"أرسل موقعي لأهلي", sfLateBody:"تأخرت عن موعد عودتي. أنا بخير وسأعود، هذا موقعي:",
   nvT:"بوصلة المصائد والانجراف", nvWarn:"مساعد فقط ولا يغني عن جهاز ملاحة بحرية ولا عن خبرتك. دقة GPS الهاتف تتفاوت، وبوصلته تتأثر بالمعادن. لا تعتمد عليه وحده في العودة. نقاطك تُحفظ في هاتفك فقط.", nvCatch:"حفظ نقطة المصيدة الحالية", nvHome:"حفظ نقطة المرسى / الشاطئ", nvWait:"جارٍ تحديد موقعك… قد يستغرق دقيقة في عرض البحر", nvSaved:"تم حفظ", nvErr:"تعذّر تحديد الموقع. فعّل GPS وتأكد أن الهاتف في مكان مكشوف للسماء.", nvNone:"لا توجد نقاط محفوظة بعد", nvPick:"اختر نقطة للتوجيه نحوها", nvStart:"بدء التوجيه", nvStop:"إيقاف التوجيه", nvDist:"المسافة المتبقية", nvM:"م", nvKm:"كم", nvBear:"الاتجاه", nvAcc:"الدقة ±", nvSrcG:"الاتجاه من GPS (أثناء الحركة)", nvSrcM:"الاتجاه من بوصلة الهاتف", nvNoHd:"حرّك الهاتف بشكل ثمانية لمعايرة البوصلة", nvArr:"وصلت إلى النقطة", nvRen:"تسمية", nvDel:"حذف", nvSure:"حذف هذه النقطة؟", nvName:"اسم النقطة", nvDrift:"إنذار الانجراف", nvDriftInfo:"ينبّه إذا ابتعد القارب عن النقطة المختارة أكثر من:", nvDriftAl:"انجراف! ابتعدت عن النقطة بمقدار", nvSun:"وضع الشمس (تباين عالٍ)", nvKindC:"مصيدة", nvKindH:"مرسى", nvFull:"اكتملت النقاط المسموحة (60). احذف نقطة قديمة.", nvSel:"النقطة المختارة", nvKeep:"أبقِ الشاشة مضاءة أثناء التوجيه", nvNoTarget:"لم تُختر نقطة", nvOff:"لا يعمل التوجيه", 
   exemptL:"الاستثناءات (غير مشمولة):", moreL:"عرض العقوبات والاستثناءات", quickSp:["أخطبوط","كوربين","دنيس","سبيط","بوري"],
   speciesList:['اسقمري','أخطبوط','دنيس','سول','بوري','جمبري','سبيط','سردين','ثيوف'],
@@ -88,6 +89,7 @@ var T={
   soonT:"Reprise de la pêche imminente", soonD:"Préparez vos embarcations ; vérifiez vos licences et équipements de sécurité. L’arrêt reste en vigueur jusqu’à la décision officielle.", openT:"Saison de pêche ouverte", openD:"La pêche est autorisée conformément à la réglementation et aux tailles légales.", 
   updT:"Une mise à jour est disponible", updB:"Recharger", updX:"Plus tard", 
   sndOn:"Son activé, appuyez pour couper", sndOff:"Son coupé, appuyez pour activer", 
+ sfT:"Sécurité et SOS", sfSos:"SOS", sfInfo:"L'appli prépare un message avec votre position ; c'est vous qui appuyez sur « Envoyer » dans l'appli Messages. Il faut du réseau mobile. Ce n'est pas un service de secours officiel : en cas de danger grave, appelez aussi les secours.", sfNums:"Numéros d'urgence (3 max)", sfNumPh:"Numéro de téléphone", sfAdd:"Ajouter", sfBad:"Numéro invalide.", sfDel:"Supprimer", sfNoNum:"Ajoutez au moins un numéro d'urgence pour envoyer directement le message.", sfConfT:"Envoyer un SOS ?", sfConfD:"Votre position sera relevée puis un message sera préparé pour vos numéros d'urgence.", sfGo:"Localiser et préparer le message", sfCancel:"Annuler", sfWait:"Localisation en cours...", sfSend:"Ouvrir Messages et envoyer", sfCopy:"Copier le message", sfShare:"Partager", sfCopied:"Copié.", sfLast:"Position actuelle introuvable. Dernière position connue utilisée.", sfNoFix:"Position introuvable. Envoyez le message sans.", sfBody:"SOS depuis l'appli Al Marsat : j'ai besoin d'aide en mer.", sfPos:"Ma position", sfAcc:"Précision", sfTime:"Heure", sfRetT:"Heure de retour", sfRetD:"Fixez votre heure de retour. Si vous êtes en retard, l'appli (ouverte) vous le rappelle et prépare un message pour vos proches. Réglez aussi une alarme sur le téléphone.", sfH:"h", sfDue:"Retour prévu", sfNoRet:"Aucune heure fixée", sfClear:"Annuler l'heure", sfOverT:"Heure de retour dépassée", sfOverD:"Êtes-vous bien rentré ?", sfOk:"Je suis arrivé", sfExt:"Prolonger d'1 h", sfTell:"Envoyer ma position à ma famille", sfLateBody:"Je suis en retard sur mon heure de retour. Je vais bien et je rentre, voici ma position :",
   nvT:"Boussole des spots et dérive", nvWarn:"Aide seulement : ne remplace ni un appareil de navigation marine ni votre expérience. La précision du GPS du téléphone varie et sa boussole est sensible aux métaux. Ne vous y fiez pas seul pour rentrer. Vos points restent sur votre téléphone.", nvCatch:"Enregistrer le spot de pêche actuel", nvHome:"Enregistrer le mouillage / la plage", nvWait:"Localisation en cours… peut prendre une minute en mer", nvSaved:"Enregistré", nvErr:"Position introuvable. Activez le GPS et placez le téléphone à ciel dégagé.", nvNone:"Aucun point enregistré", nvPick:"Choisissez un point à rejoindre", nvStart:"Démarrer le guidage", nvStop:"Arrêter le guidage", nvDist:"Distance restante", nvM:"m", nvKm:"km", nvBear:"Cap", nvAcc:"Précision ±", nvSrcG:"Cap du GPS (en mouvement)", nvSrcM:"Cap de la boussole du téléphone", nvNoHd:"Faites un huit avec le téléphone pour calibrer la boussole", nvArr:"Vous êtes arrivé au point", nvRen:"Renommer", nvDel:"Supprimer", nvSure:"Supprimer ce point ?", nvName:"Nom du point", nvDrift:"Alarme de dérive", nvDriftInfo:"Alerte si le bateau s’éloigne du point choisi de plus de :", nvDriftAl:"Dérive ! Vous êtes à", nvSun:"Mode soleil (fort contraste)", nvKindC:"Spot", nvKindH:"Mouillage", nvFull:"Nombre maximum de points atteint (60). Supprimez un ancien point.", nvSel:"Point choisi", nvKeep:"Garder l’écran allumé pendant le guidage", nvNoTarget:"Aucun point choisi", nvOff:"Guidage arrêté", 
   exemptL:"Exemptions (non concernées) :", moreL:"Voir les sanctions et exemptions", quickSp:["Poulpe","Courbine","Dorade","Calmar","Mulet"],
   speciesList:['Maquereau','Poulpe','Dorade','Sole','Mulet','Crevette','Seiche','Sardine','Thiof'],
@@ -124,7 +126,7 @@ NAVI.push('<circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="1.6"/><pa
 var LANGS=[['ar','العربية'],['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['zh','中文']];
 var S={pts:[],navId:null,driftOn:false,driftR:100,sun:false,sound:true,hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30,soonDays:7,openDays:3},
-       status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
+       safe:{nums:[],due:0},status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
   var sv=JSON.parse(localStorage.getItem(KEY)||'{}');
   if(typeof sv.lang==='string'&&T[sv.lang])S.lang=sv.lang;
@@ -136,10 +138,11 @@ try{
   if(sv.sea&&typeof sv.sea.t==='number')S.sea=sv.sea;
   if(Array.isArray(sv.pts))S.pts=sv.pts.filter(function(p){return p&&typeof p.lat==='number'&&typeof p.lng==='number'&&isFinite(p.lat)&&isFinite(p.lng)&&Math.abs(p.lat)<=90&&Math.abs(p.lng)<=180&&typeof p.name==='string'}).slice(0,60);
   if(typeof sv.navId==='number'&&S.pts.some(function(p){return p.id===sv.navId}))S.navId=sv.navId;
+  if(sv.safe&&typeof sv.safe==='object'){if(Array.isArray(sv.safe.nums))S.safe.nums=sv.safe.nums.filter(function(n){return typeof n==='string'&&/^\+?\d{7,15}$/.test(n)}).slice(0,3);if(typeof sv.safe.due==='number'&&isFinite(sv.safe.due))S.safe.due=sv.safe.due}
   S.driftOn=!!sv.driftOn;if([50,100,200,500].indexOf(sv.driftR)>-1)S.driftR=sv.driftR;S.sun=!!sv.sun;
 }catch(e){}
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({pts:S.pts,navId:S.navId,driftOn:S.driftOn,driftR:S.driftR,sun:S.sun,sound:S.sound,lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea}))}catch(e){}
+  try{localStorage.setItem(KEY,JSON.stringify({pts:S.pts,navId:S.navId,driftOn:S.driftOn,driftR:S.driftR,sun:S.sun,sound:S.sound,lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea,safe:S.safe}))}catch(e){}
 }
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -295,7 +298,7 @@ function build(){
   var spOpts=t.speciesList.map(function(s){return '<option value="'+esc(s)+'"></option>'}).join('');
   var cityOpts=CITIES.map(function(c,i){return (i===5?'<optgroup label="'+SPOTSL[S.lang]+'">':'')+'<option value="'+i+'"'+(S.mode==='city'&&i===S.city?' selected':'')+'>'+esc(cityName(i))+'</option>'}).join('')+'</optgroup>';
   $('app').innerHTML=
-  '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+'<button type="button" class="snd" id="bSnd"></button></header>'+
+  '<header><div class="brand">'+logoSvg()+'<div><h1>'+t.name+'</h1><small>'+t.tagline+'</small></div></div>'+'<div class="hbtns"><button type="button" class="hsos" id="hSos" aria-label="'+esc(t.sfSos)+'">SOS</button><button type="button" class="snd" id="bSnd"></button></div></header>'+
 
   '<div class="tab" id="tab0">'+
    '<div id="hint"></div><div id="restBox"></div>'+
@@ -360,7 +363,7 @@ function build(){
    '<p class="sub" id="noSet" hidden style="text-align:center;margin-top:20px">'+t.noSet+'</p>'+
   '</div>'+
 
-  '<div class="tab" id="tab4" hidden>'+navHtml(t)+'</div>'+
+  '<div class="tab" id="tab4" hidden>'+sfHtml(t)+navHtml(t)+'</div>'+
 
   '<nav class="tabs" aria-label="Navigation"><div class="in">'+t.tabs.map(function(n,i){return '<button type="button" data-go="'+i+'"><svg class="ni" viewBox="0 0 24 24" aria-hidden="true">'+NAVI[i]+'</svg><span>'+n+'</span></button>'}).join('')+'</div></nav>';
 
@@ -380,7 +383,7 @@ function build(){
   $('bCompass').onclick=toggleCompass;
   $('bInstall').onclick=doInstall;
   Array.prototype.forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tab=+b.getAttribute('data-go');showTab();window.scrollTo(0,0)}});
-  bindNav();
+  bindNav();bindSafe();
   if(deferredPrompt)$('bInstall').hidden=false;
   if(isIos()&&!isStandalone())$('iosNote').hidden=false;
   if(isStandalone()){$('installCard').querySelector('small').textContent=t.installed}
@@ -585,7 +588,7 @@ function onNavOrient(e){
 }
 function onNavPos(p){
   var c=p.coords;
-  NV.pos={lat:c.latitude,lng:c.longitude,acc:c.accuracy,speed:c.speed,course:c.heading};
+  NV.pos={lat:c.latitude,lng:c.longitude,acc:c.accuracy,speed:c.speed,course:c.heading,ts:Date.now()};
   var pt=navPt();
   if(pt){
     var d=distKm(c.latitude,c.longitude,pt.lat,pt.lng)*1000;
@@ -885,6 +888,114 @@ function checkAlert(){
       var b=document.createElement('div');b.className='danger';b.style.cssText='position:fixed;top:10px;left:10px;right:10px;z-index:50;text-align:center';b.textContent=L().alertNow(L().prayers[i]);b.onclick=function(){b.remove()};document.body.appendChild(b);setTimeout(function(){b.remove()},60000);return}}
 }
 setInterval(checkAlert,15000);
+
+
+/* ---------- Safety: SOS by SMS + return-time check-in ---------- */
+var SF={pos:null,busy:false,_t:0};
+function sfNorm(s){
+  var d=String(s||'').replace(/[٠-٩]/g,function(c){return c.charCodeAt(0)-1632}).replace(/[^\d+]/g,'');
+  if(d.indexOf('00')===0)d='+'+d.slice(2);
+  if(/^\d{8}$/.test(d))d='+222'+d;
+  var n=d.replace(/\D/g,'');
+  return(n.length>=7&&n.length<=15&&/^\+?\d+$/.test(d))?(d.charAt(0)==='+'?d:'+'+d):null;
+}
+function sfHtml(t){
+  return '<section class="card sf" id="sfBox"><h2>'+t.sfT+'</h2>'+
+   '<button type="button" class="sfsos" id="sfSos">'+t.sfSos+'</button>'+
+   '<p class="note">'+t.sfInfo+'</p>'+
+   '<h3>'+t.sfNums+'</h3><ul class="sfnums" id="sfNums"></ul>'+
+   '<div class="sfadd"><input type="tel" inputmode="tel" dir="ltr" id="sfNum" maxlength="20" placeholder="'+esc(t.sfNumPh)+'" aria-label="'+esc(t.sfNumPh)+'"><button type="button" class="btn ghost" id="sfAdd">'+t.sfAdd+'</button></div>'+
+   '<p class="nvmsg" id="sfMsg" role="status" aria-live="polite"></p>'+
+   '<h3>'+t.sfRetT+'</h3><p class="note">'+t.sfRetD+'</p>'+
+   '<div class="chips" id="sfH">'+[2,4,6,8,12].map(function(h){return '<button type="button" class="chip" data-h="'+h+'">+'+h+' '+t.sfH+'</button>'}).join('')+'</div>'+
+   '<p class="sfdue" id="sfDue"></p></section>';
+}
+function sfPaint(){
+  var t=L(),ul=$('sfNums');if(!ul)return;
+  ul.innerHTML=S.safe.nums.map(function(n,i){return '<li><bdi dir="ltr">'+esc(n)+'</bdi><button type="button" class="chip" data-d="'+i+'">'+esc(t.sfDel)+'</button></li>'}).join('');
+  var d=$('sfDue'),due=S.safe.due;
+  d.innerHTML=due?t.sfDue+': <b><bdi dir="ltr">'+new Date(due).toLocaleTimeString(t.loc||undefined,{hour:'2-digit',minute:'2-digit'})+'</bdi></b> <button type="button" class="chip" id="sfClr">'+esc(t.sfClear)+'</button>':t.sfNoRet;
+  var c=$('sfClr');if(c)c.onclick=function(){S.safe.due=0;save();sfPaint();sfCheck()};
+  Array.prototype.forEach.call(ul.querySelectorAll('[data-d]'),function(b){b.onclick=function(){S.safe.nums.splice(+b.getAttribute('data-d'),1);save();sfPaint()}});
+}
+function sfBodyText(extra,pos){
+  var t=L(),s=extra+(pos?' '+t.sfPos+': '+pos.lat.toFixed(5)+', '+pos.lng.toFixed(5)+(pos.acc?' ('+t.sfAcc+' ±'+Math.round(pos.acc)+' m)':'')+' '+t.sfTime+' '+new Date(pos.ts||Date.now()).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})+' https://maps.google.com/?q='+pos.lat.toFixed(5)+','+pos.lng.toFixed(5):'');
+  return s;
+}
+function sfGetPos(cb){
+  var t=L(),fb=function(){var p=NV.pos&&NV.pos.lat!=null?NV.pos:SF.pos;cb(p||null,!!p)};
+  if(!navigator.geolocation){fb();return}
+  navigator.geolocation.getCurrentPosition(function(p){var c=p.coords;SF.pos={lat:c.latitude,lng:c.longitude,acc:c.accuracy,ts:Date.now()};cb(SF.pos,false)},fb,{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+}
+function sfModal(html){
+  var o=document.createElement('div');o.className='sfmod';o.setAttribute('role','dialog');o.setAttribute('aria-modal','true');
+  o.innerHTML='<div class="sfbox">'+html+'</div>';document.body.appendChild(o);
+  o.close=function(){if(o.parentNode)o.parentNode.removeChild(o)};return o;
+}
+function sfSmsUrl(body){
+  var ios=isIos(),nums=S.safe.nums.join(',');
+  return 'sms:'+nums+(ios?'&':'?')+'body='+encodeURIComponent(body);
+}
+function sfDeliver(o,body,note){
+  var t=L(),has=S.safe.nums.length;
+  o.querySelector('.sfbox').innerHTML='<h2>'+esc(t.sfConfT)+'</h2>'+(note?'<p class="note">'+esc(note)+'</p>':'')+
+   '<textarea class="sftxt" readonly>'+esc(body)+'</textarea>'+(has?'':'<p class="note">'+esc(t.sfNoNum)+'</p>')+
+   '<div class="sfbtns">'+(has?'<a class="btn bad" id="sfLink" href="'+esc(sfSmsUrl(body))+'">'+esc(t.sfSend)+'</a>':'')+
+   '<button type="button" class="btn ghost" id="sfCp">'+esc(t.sfCopy)+'</button>'+
+   (navigator.share?'<button type="button" class="btn ghost" id="sfSh">'+esc(t.sfShare)+'</button>':'')+
+   '<button type="button" class="btn ghost" id="sfX">'+esc(t.sfCancel)+'</button></div><p class="nvmsg" id="sfM2" role="status"></p>';
+  $('sfX').onclick=o.close;
+  $('sfCp').onclick=function(){
+    var ok=function(){$('sfM2').textContent=t.sfCopied};
+    try{navigator.clipboard.writeText(body).then(ok,function(){var a=o.querySelector('textarea');a.select();document.execCommand('copy');ok()})}catch(e){var a=o.querySelector('textarea');a.select();try{document.execCommand('copy')}catch(_){}ok()}
+  };
+  if($('sfSh'))$('sfSh').onclick=function(){try{navigator.share({text:body}).catch(function(){})}catch(e){}};
+}
+function sfPrepare(o,intro){
+  var t=L();
+  o.querySelector('.sfbox').innerHTML='<h2>'+esc(t.sfWait)+'</h2><p class="note">'+esc(t.sfConfD)+'</p>';
+  sfGetPos(function(p,old){
+    var note=p?(old?t.sfLast:''):t.sfNoFix;
+    sfDeliver(o,sfBodyText(intro,p),note);
+  });
+}
+function sfSos(){
+  var t=L(),o=sfModal('<h2>'+esc(t.sfConfT)+'</h2><p>'+esc(t.sfConfD)+'</p><div class="sfbtns"><button type="button" class="btn bad" id="sfGo">'+esc(t.sfGo)+'</button><button type="button" class="btn ghost" id="sfNo">'+esc(t.sfCancel)+'</button></div>');
+  $('sfNo').onclick=o.close;$('sfGo').onclick=function(){sfPrepare(o,t.sfBody)};
+  try{if(navigator.vibrate)navigator.vibrate(200)}catch(e){}
+}
+function sfAddNum(){
+  var t=L(),i=$('sfNum'),m=$('sfMsg'),n=sfNorm(i.value);
+  if(!n){m.textContent=t.sfBad;return}
+  if(S.safe.nums.length>=3){m.textContent=t.sfBad;return}
+  if(S.safe.nums.indexOf(n)<0)S.safe.nums.push(n);
+  i.value='';m.textContent='';save();sfPaint();
+}
+var _sfRing=0;
+function sfCheck(){
+  var b=$('sfOver'),due=S.safe.due,t=L();
+  if(!due||Date.now()<due){if(b&&b.parentNode)b.parentNode.removeChild(b);return}
+  if(!b){
+    b=document.createElement('div');b.id='sfOver';b.className='sfover';b.setAttribute('role','alertdialog');
+    b.innerHTML='<b>'+esc(t.sfOverT)+'</b><span>'+esc(t.sfOverD)+'</span><div class="sfbtns"><button type="button" class="btn" id="sfOk">'+esc(t.sfOk)+'</button><button type="button" class="btn ghost" id="sfEx">'+esc(t.sfExt)+'</button><button type="button" class="btn bad" id="sfTl">'+esc(t.sfTell)+'</button></div>';
+    document.body.appendChild(b);
+    $('sfOk').onclick=function(){S.safe.due=0;save();sfPaint();sfCheck()};
+    $('sfEx').onclick=function(){S.safe.due=Date.now()+3600000;save();sfPaint();sfCheck()};
+    $('sfTl').onclick=function(){sfPrepare(sfModal(''),t.sfLateBody)};
+  }
+  if(Date.now()-_sfRing>45000){_sfRing=Date.now();chime(3);try{if(navigator.vibrate)navigator.vibrate([400,200,400])}catch(e){}}
+}
+function bindSafe(){
+  if(!$('sfBox'))return;
+  $('sfSos').onclick=sfSos;$('hSos').onclick=sfSos;
+  $('sfAdd').onclick=sfAddNum;
+  $('sfNum').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();sfAddNum()}};
+  Array.prototype.forEach.call(document.querySelectorAll('#sfH [data-h]'),function(b){b.onclick=function(){S.safe.due=Date.now()+(+b.getAttribute('data-h'))*3600000;_sfRing=0;save();sfPaint();sfCheck()}});
+  var ob=$('sfOver');if(ob&&ob.parentNode)ob.parentNode.removeChild(ob);
+  sfPaint();sfCheck();
+}
+setInterval(sfCheck,20000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden)sfCheck()});
 
 
 /* ---------- Update notice: shown when a new service worker takes over an already-installed app ---------- */

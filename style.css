@@ -258,3 +258,27 @@ nav.tabs button[data-go="4"]{order:5}
 .nv.sun .chip{background:#fff; color:#000; border-color:#000}
 .nv.sun .nvdrift .chip.on{background:#000; color:#fff}
 .nv.sun .nvrow.sel .nvpick{border-color:#c1121f}
+
+/* ---- Safety: SOS + return time ---- */
+.hbtns{display:flex; align-items:center; gap:8px}
+.hsos{flex:none; height:42px; min-width:56px; padding:0 12px; border-radius:21px; border:2px solid #fff; background:#c1121f; color:#fff; font:inherit; font-weight:800; letter-spacing:.04em; cursor:pointer}
+.hsos:active{filter:brightness(.85)}
+.sf h3{margin:16px 0 6px; font-size:1rem}
+.sfsos{display:block; width:100%; min-height:64px; font:inherit; font-size:1.5rem; font-weight:800; border:3px solid #fff; border-radius:16px; background:#c1121f; color:#fff; cursor:pointer; margin:6px 0 10px}
+.sfsos:active{filter:brightness(.85)}
+.sfnums{list-style:none; margin:0 0 8px; padding:0}
+.sfnums li{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 0; border-bottom:1px solid var(--line)}
+.sfadd{display:flex; gap:8px}
+.sfadd input{flex:1; min-width:0; font:inherit; font-size:1rem; padding:10px 12px; min-height:44px; border:1px solid var(--line); border-radius:10px; background:var(--surface); color:var(--ink)}
+.sfdue{margin:6px 0 0}
+.sfmod{position:fixed; inset:0; z-index:100; background:rgba(0,0,0,.72); display:flex; align-items:center; justify-content:center; padding:16px}
+.sfbox{width:100%; max-width:440px; max-height:92vh; overflow:auto; background:var(--surface); color:var(--ink); border:2px solid #c1121f; border-radius:16px; padding:16px}
+.sfbox h2{margin-top:0}
+.sftxt{width:100%; min-height:110px; font:inherit; padding:10px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); resize:vertical; box-sizing:border-box}
+.sfbtns{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+.sfbtns .btn{text-decoration:none; display:inline-flex; align-items:center; justify-content:center; flex:1 1 140px}
+.sfover{position:fixed; inset-inline:10px; top:10px; z-index:90; background:#c1121f; color:#fff; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:6px; box-shadow:0 8px 28px rgba(0,0,0,.45); text-align:center}
+.sfover b{font-size:1.15rem}
+.sfover .btn{background:#fff; color:#c1121f}
+.sfover .btn.ghost{background:rgba(255,255,255,.2); color:#fff}
+.sfover .btn.bad{background:#000; color:#fff}
