@@ -172,7 +172,7 @@ function seaCandidates(){
 }
 
 /* ---------- Rest period ---------- */
-function parseD(s){var p=(s||'').split('-');return p.length===3?new Date(+p[0],+p[1]-1,+p[2]):null}
+function parseD(s){if(typeof s!=='string')return null;var p=s.split('-');if(p.length!==3)return null;var d=new Date(+p[0],+p[1]-1,+p[2]);return isNaN(d.getTime())?null:d}
 function restInfo(){
   var now=new Date(), t=new Date(now.getFullYear(),now.getMonth(),now.getDate()), ps=S.cfg.restPeriods||[];
   var soonN=+S.cfg.soonDays>0?+S.cfg.soonDays:7, openN=+S.cfg.openDays>0?+S.cfg.openDays:3;

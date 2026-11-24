@@ -277,7 +277,7 @@ nav.tabs button[data-go="4"]{order:5}
 .sftxt{width:100%; min-height:110px; font:inherit; padding:10px; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); resize:vertical; box-sizing:border-box}
 .sfbtns{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
 .sfbtns .btn{text-decoration:none; display:inline-flex; align-items:center; justify-content:center; flex:1 1 140px}
-.sfover{position:fixed; inset-inline:10px; top:10px; z-index:90; background:#c1121f; color:#fff; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:6px; box-shadow:0 8px 28px rgba(0,0,0,.45); text-align:center}
+.sfover{position:fixed; inset-inline:10px; bottom:calc(84px + env(safe-area-inset-bottom)); z-index:90; background:#c1121f; color:#fff; border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:6px; box-shadow:0 8px 28px rgba(0,0,0,.45); text-align:center}
 .sfover b{font-size:1.15rem}
 .sfover .btn{background:#fff; color:#c1121f}
 .sfover .btn.ghost{background:rgba(255,255,255,.2); color:#fff}
