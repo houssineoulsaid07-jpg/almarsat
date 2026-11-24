@@ -1022,7 +1022,7 @@ function rdRadio(){
   var t=L(),o=sfModal('<h2>'+esc(t.rdBtn)+'</h2><p class="note">'+esc(t.rdHow)+'</p><div class="rdpos" id="rdPos"></div><p class="nvmsg" id="rdSub"></p><div class="sfbtns"><button type="button" class="btn ghost" id="rdX">'+esc(t.rdClose)+'</button></div>'),w=null;
   function paint(p,stale){
     var b=$('rdPos'),s=$('rdSub');if(!b)return;
-    if(!p){b.textContent=t.rdWait||t.sfWait;s.textContent=t.rdNoPos;return}
+    if(!p){b.textContent=t.sfWait;s.textContent=t.rdNoPos;return}
     b.innerHTML='<div>'+rdDM(p.lat,'rdN','rdS')+'</div><div>'+rdDM(p.lng,'rdE','rdW')+'</div>';
     var age=p.ts?Math.round((Date.now()-p.ts)/60000):0;
     s.textContent=(stale&&age>0?t.rdOld+' '+age+' '+t.rdMin+' · ':'')+(p.acc?t.sfAcc+' ±'+Math.round(p.acc)+' m':'');
