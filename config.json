@@ -9,8 +9,8 @@
       "scope_fr": "pêche des céphalopodes (poulpe, calmar, seiche) et chalut de fond, dans toutes les eaux mauritaniennes",
       "penalty_ar": "المادتان 84 و 88 من مدونة الصيد البحري: غرامات مالية ومصادرة المعدات والمحجوزات.",
       "penalty_fr": "Articles 84 et 88 du Code des Pêches : amendes et saisie du matériel et des captures.",
-      "expected_ar": "حوالي 10 ديسمبر 2026 (غير مؤكد). القرار الرسمي هو المعتمد.",
-      "expected_fr": "Vers le 10 décembre 2026 (non confirmée). Seule la décision officielle fait foi.",
+      "expected_ar": "بلاغ الوزارة رقم 000010 (24 نوفمبر 2026): تم تمديد التوقف البيولوجي الثاني، وتأجّل استئناف صيد الأخطبوط (التقليدي والساحلي) والصيد القاعي في أعالي البحار إلى 19 ديسمبر 2026. سيُبلَّغ الجدول الزمني للاستئناف حسب نوع الصيد لاحقًا. لا تبدأ الصيد قبل الإعلان الرسمي.",
+      "expected_fr": "Message du Ministère n° 000010 (24 nov. 2026) : le deuxième arrêt biologique est prolongé ; la reprise de la pêche céphalopodière artisanale et côtière et de la pêche hauturière de fond est repoussée au 19 décembre 2026. Le calendrier de reprise par type de pêche sera communiqué ultérieurement. Ne reprenez pas avant l'annonce officielle.",
       "scope_en": "fishing of cephalopods (octopus, squid, cuttlefish) and bottom trawling, in all Mauritanian waters",
       "scope_es": "pesca de cefalópodos (pulpo, calamar, sepia) y arrastre de fondo, en todas las aguas mauritanas",
       "scope_pt": "pesca de cefalópodes (polvo, lula, choco) e arrasto de fundo, em todas as águas mauritanas",
@@ -19,10 +19,10 @@
       "penalty_es": "Artículos 84 y 88 del Código de Pesca: multas y decomiso de equipos y capturas.",
       "penalty_pt": "Artigos 84.º e 88.º do Código das Pescas: multas e apreensão de equipamentos e capturas.",
       "penalty_zh": "《渔业法典》第84条和第88条：罚款，并没收渔具和渔获。",
-      "expected_en": "Around 10 December 2026 (not confirmed). Only the official decision applies.",
-      "expected_es": "Hacia el 10 de diciembre de 2026 (sin confirmar). Solo vale la decisión oficial.",
-      "expected_pt": "Por volta de 10 de dezembro de 2026 (por confirmar). Só a decisão oficial é válida.",
-      "expected_zh": "约2026年12月10日（未确认）。以官方决定为准。",
+      "expected_en": "Ministry message no. 000010 (24 Nov 2026): the second biological rest is extended; the resumption of artisanal and coastal cephalopod fishing and deep-sea bottom fishing is postponed to 19 December 2026. The resumption calendar by fishing type will be announced later. Do not resume before the official announcement.",
+      "expected_es": "Comunicado del Ministerio n.º 000010 (24 nov. 2026): se prorroga la segunda veda biológica; la reanudación de la pesca artesanal y costera de cefalópodos y de la pesca de altura de fondo se aplaza al 19 de diciembre de 2026. El calendario de reanudación por tipo de pesca se comunicará más adelante. No reanudes antes del anuncio oficial.",
+      "expected_pt": "Comunicado do Ministério n.º 000010 (24 nov. 2026): o segundo defeso biológico é prolongado; a retoma da pesca artesanal e costeira de cefalópodes e da pesca de alto mar de fundo é adiada para 19 de dezembro de 2026. O calendário de retoma por tipo de pesca será comunicado mais tarde. Não retome antes do anúncio oficial.",
+      "expected_zh": "部委第000010号通知（2026年11月24日）：第二次生物休渔期延长；传统和近海头足类捕捞及远洋底拖网捕捞推迟至2026年12月19日恢复。各类捕捞的具体恢复时间表将另行通知。在正式公告前请勿恢复捕捞。",
       "exceptions_ar": [
         "القشريات (باستثناء جراد البحر وسرطان البحر من الفئة الأولى)",
         "سمك النازلي الأسود بالجر والخيط في الأعماق",
@@ -53,8 +53,14 @@
         "深水拖网和延绳钓黑鳕鱼",
         "深海蟹"
       ],
-      "expected_end": "2026-12-10",
-      "end_confirmed": false
+      "expected_end": "2026-12-19",
+      "end_confirmed": false,
+      "chip_ar": "الاستئناف مؤجل إلى 19 ديسمبر 2026 — الجدول لاحقًا",
+      "chip_fr": "Reprise repoussée au 19 déc. 2026 — calendrier à venir",
+      "chip_en": "Resumption postponed to 19 Dec 2026 — calendar to follow",
+      "chip_es": "Reanudación aplazada al 19 dic. 2026 — calendario pendiente",
+      "chip_pt": "Retoma adiada para 19 dez. 2026 — calendário a seguir",
+      "chip_zh": "推迟至2026年12月19日恢复，时间表另行通知"
     }
   ],
   "remoteConfigUrl": "",
@@ -63,7 +69,7 @@
     "phone": "+222 45 25 99 70",
     "website": "https://peches.gov.mr"
   },
-  "lastUpdated": "2026-11-21",
+  "lastUpdated": "2026-11-24",
   "soonDays": 7,
   "openDays": 3
 }

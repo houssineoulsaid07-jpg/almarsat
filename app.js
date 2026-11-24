@@ -188,7 +188,7 @@ function restInfo(){
     if(!(ps[i].official||S.cfg.showUnofficial))continue;
     if(t>=a&&t<=b){
       var left=open?0:Math.round((b-t)/86400000)+1;
-      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:left,soon:!open&&left<=soonN,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected'),exc:cfgList(ps[i],'exceptions')};
+      return {active:true,open:open,start:a,end:b,days:open?Math.round((t-a)/86400000)+1:left,soon:!open&&left<=soonN,official:!!ps[i].official,scope:cfgPick(ps[i],'scope'),penalty:cfgPick(ps[i],'penalty'),expected:cfgPick(ps[i],'expected'),chip:cfgPick(ps[i],'chip'),exc:cfgList(ps[i],'exceptions')};
     }
     if(!open&&t>b&&Math.round((t-b)/86400000)<=openN)return {active:false,justOpened:true};
   }
@@ -433,7 +433,7 @@ function updateHome(){
       (sc?'<p><b>'+t.scopeL+'</b> '+esc(sc)+'</p>':'<p>'+t.prep+'</p>')+
       ((sc||pickTxt(r.penalty)||(r.open&&pickTxt(r.expected)))?'<details class="more"><summary>'+t.moreL+'</summary>'+(sc?'<p class="note"><b>'+t.exemptL+'</b></p>'+(pickList(r.exc)?'<ul class="exl">'+pickList(r.exc).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul>':'<p class="note">'+t.exempt+'</p>'):'')+
       (pickTxt(r.penalty)?'<p class="note"><b>'+t.penL+'</b> '+esc(pickTxt(r.penalty))+'</p>':'')+(sc?'<p class="note">'+t.refer+'</p>'+ministryLinks():'')+
-      (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+'</details>':'')+(r.open?'<p><span class="tag warn">'+t.noEnd+'</span></p>':'')+
+      (r.open&&pickTxt(r.expected)?'<p class="note"><b>'+t.expL+'</b> '+esc(pickTxt(r.expected))+'</p>':'')+'</details>':'')+(r.open?'<p><span class="tag warn">'+esc(pickTxt(r.chip)||t.noEnd)+'</span></p>':'')+
       (r.official?'':'<p><span class="tag warn">'+t.unofficial+'</span></p>')+'</div>');
   }else if(r.justOpened)setRest('<div class="rest opened"><h2>'+t.openT+'</h2><p>'+t.openD+'</p></div>');
   else setRest('');
