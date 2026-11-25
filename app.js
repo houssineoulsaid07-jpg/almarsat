@@ -1,6 +1,18 @@
 (function(){
 'use strict';
 
+/* Local error log: the last 20 errors stay in this phone only; nothing is sent anywhere */
+var ERRK='marsat.err';
+function errRead(){try{var a=JSON.parse(localStorage.getItem(ERRK)||'[]');return Array.isArray(a)?a:[]}catch(e){return []}}
+function errAdd(m,src){
+  try{
+    var a=errRead();a.push({t:new Date().toISOString(),m:String(m||'').slice(0,200),s:String(src||'').replace(/^https?:\/\/[^/]+/,'').slice(0,80)});
+    localStorage.setItem(ERRK,JSON.stringify(a.slice(-20)));
+  }catch(e){}
+}
+window.addEventListener('error',function(e){errAdd(e.message,(e.filename||'')+':'+(e.lineno||0)+':'+(e.colno||0))});
+window.addEventListener('unhandledrejection',function(e){var r=e.reason;errAdd('promise: '+(r&&r.message?r.message:r),'')});
+
 /* ---------- Strings (Arabic + French; others in lang-extra.js) ---------- */
 var T={
  ar:{
@@ -40,7 +52,8 @@ var T={
   soonT:"اقترب موعد استئناف الصيد", soonD:"استعدوا للانطلاق: راجعوا تراخيص القوارب ومعدات السلامة البحرية. التوقيف ما زال ساريًا حتى صدور القرار الرسمي.", openT:"موسم الصيد مفتوح حاليًا", openD:"يُسمح بالصيد وفق القوانين المعمول بها، مع احترام الأحجام القانونية للأسماك.", 
   updT:"يتوفر تحديث جديد", updB:"إعادة التحميل", updX:"لاحقًا", 
   sndOn:"الصوت مفعّل، اضغط للكتم", sndOff:"الصوت مكتوم، اضغط للتفعيل", 
- sfT:"السلامة والاستغاثة", sfSos:"استغاثة SOS", sfInfo:"يجهّز التطبيق رسالة فيها موقعك، وتضغط أنت «إرسال» في تطبيق الرسائل. يلزم وجود تغطية شبكة هاتف. هذه ليست خدمة إنقاذ رسمية: في الخطر الشديد اتصل بالجهات المختصة أيضًا.", sfNums:"أرقام الطوارئ (حتى 3)", sfNumPh:"رقم الهاتف", sfAdd:"إضافة", sfBad:"رقم غير صحيح.", sfDel:"حذف", sfNoNum:"أضف رقم طوارئ واحدًا على الأقل لإرسال الرسالة مباشرة.", sfConfT:"إرسال استغاثة؟", sfConfD:"سيُحدَّد موقعك ثم تُجهَّز رسالة لأرقام الطوارئ.", sfGo:"حدّد موقعي وجهّز الرسالة", sfCancel:"إلغاء", sfWait:"جارٍ تحديد موقعك...", sfSend:"فتح الرسائل وإرسال", sfCopy:"نسخ الرسالة", sfShare:"مشاركة", sfCopied:"تم النسخ.", sfLast:"تعذّر تحديد موقعك الآن. استُخدم آخر موقع معروف.", sfNoFix:"تعذّر تحديد الموقع. أرسل الرسالة بدونه.", sfBody:"استغاثة المرساة: أحتاج مساعدة في البحر.", sfPos:"موقعي", sfAcc:"الدقة", sfTime:"الساعة", sfRetT:"موعد العودة", sfRetD:"حدّد وقت رجوعك. إن تأخرت يذكّرك التطبيق (وهو مفتوح) ويجهّز لك رسالة لأهلك. اضبط منبّه الهاتف أيضًا.", sfH:"س", sfDue:"موعد العودة", sfNoRet:"لا يوجد موعد", sfClear:"إلغاء الموعد", sfOverT:"انتهى موعد العودة", sfOverD:"هل وصلت بسلام؟", sfOk:"وصلت بسلام", sfExt:"تمديد ساعة", sfTell:"أرسل موقعي لأهلي", sfLateBody:"تأخرت عن موعد عودتي. أنا بخير وسأعود، هذا موقعي:", sfDenied:"الموقع مرفوض: فعّل إذن الموقع للتطبيق من إعدادات المتصفح ثم أعد المحاولة.", sfRetry:"إعادة المحاولة", sfWarn:"تنبيه: تأكد أن شريحتك فيها رصيد رسائل SMS قبل الخروج إلى البحر، وجرّب زر SOS مرة على الشاطئ. إن لم تتوفر الرسائل فاستعمل «مشاركة» أو «نسخ» مع واتساب إن وُجد إنترنت.", banNote:"الصيد ممنوع حاليًا. هذه النسبة تخص حالة البحر للسلامة فقط.",
+ sfT:"السلامة والاستغاثة", sfSos:"استغاثة SOS", sfInfo:"يجهّز التطبيق رسالة فيها موقعك، وتضغط أنت «إرسال» في تطبيق الرسائل. يلزم وجود تغطية شبكة هاتف. هذه ليست خدمة إنقاذ رسمية: في الخطر الشديد اتصل بالجهات المختصة أيضًا.", sfNums:"أرقام الطوارئ (حتى 3)", sfNumPh:"رقم الهاتف", sfAdd:"إضافة", sfBad:"رقم غير صحيح.", sfDel:"حذف", sfNoNum:"أضف رقم طوارئ واحدًا على الأقل لإرسال الرسالة مباشرة.", sfConfT:"إرسال استغاثة؟", sfConfD:"سيُحدَّد موقعك ثم تُجهَّز رسالة لأرقام الطوارئ.", sfGo:"حدّد موقعي وجهّز الرسالة", sfCancel:"إلغاء", sfWait:"جارٍ تحديد موقعك...", sfSend:"فتح الرسائل وإرسال", sfCopy:"نسخ الرسالة", sfShare:"مشاركة", sfCopied:"تم النسخ.", sfLast:"تعذّر تحديد موقعك الآن. استُخدم آخر موقع معروف.", sfNoFix:"تعذّر تحديد الموقع. أرسل الرسالة بدونه.", sfBody:"استغاثة المرساة: أحتاج مساعدة في البحر.", sfPos:"موقعي", sfAcc:"الدقة", sfTime:"الساعة", sfRetT:"موعد العودة", sfRetD:"حدّد وقت رجوعك. إن تأخرت يذكّرك التطبيق (وهو مفتوح) ويجهّز لك رسالة لأهلك. اضبط منبّه الهاتف أيضًا.", sfH:"س", sfDue:"موعد العودة", sfNoRet:"لا يوجد موعد", sfClear:"إلغاء الموعد", sfOverT:"انتهى موعد العودة", sfOverD:"هل وصلت بسلام؟", sfOk:"وصلت بسلام", sfExt:"تمديد ساعة", sfTell:"أرسل موقعي لأهلي", sfLateBody:"تأخرت عن موعد عودتي. أنا بخير وسأعود، هذا موقعي:", sfDenied:"الموقع مرفوض: فعّل إذن الموقع للتطبيق من إعدادات المتصفح ثم أعد المحاولة.", sfRetry:"إعادة المحاولة", sfWarn:"تنبيه: تأكد أن شريحتك فيها رصيد رسائل SMS قبل الخروج إلى البحر، وجرّب زر SOS مرة على الشاطئ. إن لم تتوفر الرسائل فاستعمل «مشاركة» أو «نسخ» مع واتساب إن وُجد إنترنت.", banNote:"الصيد ممنوع حاليًا. هذه النسبة تخص حالة البحر للسلامة فقط.", sfMsgLang:"لغة رسالة الاستغاثة (لمن يستلمها)",
+ rpT:"الإبلاغ عن مشكلة", rpInfo:"إن حدث خطأ في التطبيق، انسخ التقرير وأرسله للمطوّر. فيه معلومات تقنية فقط (رقم النسخة ونص الخطأ)، ولا يحتوي موقعك ولا أرقامك ولا بيانات الصيد. لا يُرسل شيء إلا إذا ضغطتَ أنت.", rpCopy:"نسخ التقرير", rpWa:"إرسال بالواتساب", rpClr:"مسح السجل", rpNone:"لا أخطاء مسجلة. (التطبيق سليم)", rpCopied:"تم نسخ التقرير.", rpN:"أخطاء مسجلة:",
  rdT:"الإبلاغ بالراديو والإشارات (بلا رصيد ولا إنترنت)", rdBtn:"شاشة الإبلاغ بالراديو", rdFl:"إشارة SOS ضوئية وصوتية", rdClose:"إغلاق", rdHow:"على جهاز VHF بحري: اضغط زر الإرسال، وقل ببطء: «MAYDAY، MAYDAY، MAYDAY. هنا [اسم القارب] ثلاث مرات. MAYDAY [اسم القارب]. موقعي كما أدناه. أحتاج مساعدة. عدد الأشخاص: ...». ثم اترك زر الإرسال وانتظر الرد. القناة الدولية للاستغاثة: 16.", rdPos:"موقعك الآن (درجات ودقائق)", rdN:"شمالًا", rdS:"جنوبًا", rdE:"شرقًا", rdW:"غربًا", rdOld:"آخر موقع معروف قبل", rdMin:"دقيقة", rdNoPos:"لا يوجد موقع بعد. اخرج إلى مكان مكشوف وانتظر.", rdFlInfo:"يراها ويسمعها من هو قريب منك فقط. لا ترسل شيئًا عبر الشبكة، ولا تغني عن VHF ولا المشاعل ولا منارة الاستغاثة.", rdFlStop:"المس الشاشة للإيقاف", rdCallT:"اتصال مباشر", rdCallN:"قد تعمل المكالمة بلا رصيد وقد لا تعمل. الأرقام من مصدر إخباري ولم يؤكدها أحد رسميًا: اتصل بها مرة على الشاطئ للتأكد.", rdMar:"الدرك البحري", rdGen:"الدرك الوطني", rdPol:"الشرطة",
   nvT:"بوصلة المصائد والانجراف", nvWarn:"مساعد فقط ولا يغني عن جهاز ملاحة بحرية ولا عن خبرتك. دقة GPS الهاتف تتفاوت، وبوصلته تتأثر بالمعادن. لا تعتمد عليه وحده في العودة. نقاطك تُحفظ في هاتفك فقط.", nvCatch:"حفظ نقطة المصيدة الحالية", nvHome:"حفظ نقطة المرسى / الشاطئ", nvWait:"جارٍ تحديد موقعك… قد يستغرق دقيقة في عرض البحر", nvSaved:"تم حفظ", nvErr:"تعذّر تحديد الموقع. فعّل GPS وتأكد أن الهاتف في مكان مكشوف للسماء.", nvNone:"لا توجد نقاط محفوظة بعد", nvPick:"اختر نقطة للتوجيه نحوها", nvStart:"بدء التوجيه", nvStop:"إيقاف التوجيه", nvDist:"المسافة المتبقية", nvM:"م", nvKm:"كم", nvBear:"الاتجاه", nvAcc:"الدقة ±", nvSrcG:"الاتجاه من GPS (أثناء الحركة)", nvSrcM:"الاتجاه من بوصلة الهاتف", nvNoHd:"حرّك الهاتف بشكل ثمانية لمعايرة البوصلة", nvArr:"وصلت إلى النقطة", nvRen:"تسمية", nvDel:"حذف", nvSure:"حذف هذه النقطة؟", nvName:"اسم النقطة", nvDrift:"إنذار الانجراف", nvDriftInfo:"ينبّه إذا ابتعد القارب عن النقطة المختارة أكثر من:", nvDriftAl:"انجراف! ابتعدت عن النقطة بمقدار", nvSun:"وضع الشمس (تباين عالٍ)", nvKindC:"مصيدة", nvKindH:"مرسى", nvFull:"اكتملت النقاط المسموحة (60). احذف نقطة قديمة.", nvSel:"النقطة المختارة", nvKeep:"أبقِ الشاشة مضاءة أثناء التوجيه", nvNoTarget:"لم تُختر نقطة", nvOff:"لا يعمل التوجيه", 
   exemptL:"الاستثناءات (غير مشمولة):", moreL:"عرض العقوبات والاستثناءات", quickSp:["أخطبوط","كوربين","دنيس","سبيط","بوري"],
@@ -90,7 +103,8 @@ var T={
   soonT:"Reprise de la pêche imminente", soonD:"Préparez vos embarcations ; vérifiez vos licences et équipements de sécurité. L’arrêt reste en vigueur jusqu’à la décision officielle.", openT:"Saison de pêche ouverte", openD:"La pêche est autorisée conformément à la réglementation et aux tailles légales.", 
   updT:"Une mise à jour est disponible", updB:"Recharger", updX:"Plus tard", 
   sndOn:"Son activé, appuyez pour couper", sndOff:"Son coupé, appuyez pour activer", 
- sfT:"Sécurité et SOS", sfSos:"SOS", sfInfo:"L'appli prépare un message avec votre position ; c'est vous qui appuyez sur « Envoyer » dans l'appli Messages. Il faut du réseau mobile. Ce n'est pas un service de secours officiel : en cas de danger grave, appelez aussi les secours.", sfNums:"Numéros d'urgence (3 max)", sfNumPh:"Numéro de téléphone", sfAdd:"Ajouter", sfBad:"Numéro invalide.", sfDel:"Supprimer", sfNoNum:"Ajoutez au moins un numéro d'urgence pour envoyer directement le message.", sfConfT:"Envoyer un SOS ?", sfConfD:"Votre position sera relevée puis un message sera préparé pour vos numéros d'urgence.", sfGo:"Localiser et préparer le message", sfCancel:"Annuler", sfWait:"Localisation en cours...", sfSend:"Ouvrir Messages et envoyer", sfCopy:"Copier le message", sfShare:"Partager", sfCopied:"Copié.", sfLast:"Position actuelle introuvable. Dernière position connue utilisée.", sfNoFix:"Position introuvable. Envoyez le message sans.", sfBody:"استغاثة المرساة: أحتاج مساعدة في البحر.", sfPos:"Ma position", sfAcc:"Précision", sfTime:"Heure", sfRetT:"Heure de retour", sfRetD:"Fixez votre heure de retour. Si vous êtes en retard, l'appli (ouverte) vous le rappelle et prépare un message pour vos proches. Réglez aussi une alarme sur le téléphone.", sfH:"h", sfDue:"Retour prévu", sfNoRet:"Aucune heure fixée", sfClear:"Annuler l'heure", sfOverT:"Heure de retour dépassée", sfOverD:"Êtes-vous bien rentré ?", sfOk:"Je suis arrivé", sfExt:"Prolonger d'1 h", sfTell:"Envoyer ma position à ma famille", sfLateBody:"Je suis en retard sur mon heure de retour. Je vais bien et je rentre, voici ma position :", sfDenied:"Localisation refusée : autorisez la position pour l'appli dans les réglages du navigateur, puis réessayez.", sfRetry:"Réessayer", sfWarn:"Attention : vérifiez que votre SIM a du crédit SMS avant de partir en mer et testez SOS une fois à terre. Sans SMS, utilisez « Partager » ou « Copier » avec WhatsApp si vous avez internet.", banNote:"La pêche est actuellement interdite. Ce pourcentage ne concerne que l'état de la mer, pour la sécurité.",
+ sfT:"Sécurité et SOS", sfSos:"SOS", sfInfo:"L'appli prépare un message avec votre position ; c'est vous qui appuyez sur « Envoyer » dans l'appli Messages. Il faut du réseau mobile. Ce n'est pas un service de secours officiel : en cas de danger grave, appelez aussi les secours.", sfNums:"Numéros d'urgence (3 max)", sfNumPh:"Numéro de téléphone", sfAdd:"Ajouter", sfBad:"Numéro invalide.", sfDel:"Supprimer", sfNoNum:"Ajoutez au moins un numéro d'urgence pour envoyer directement le message.", sfConfT:"Envoyer un SOS ?", sfConfD:"Votre position sera relevée puis un message sera préparé pour vos numéros d'urgence.", sfGo:"Localiser et préparer le message", sfCancel:"Annuler", sfWait:"Localisation en cours...", sfSend:"Ouvrir Messages et envoyer", sfCopy:"Copier le message", sfShare:"Partager", sfCopied:"Copié.", sfLast:"Position actuelle introuvable. Dernière position connue utilisée.", sfNoFix:"Position introuvable. Envoyez le message sans.", sfBody:"Appli Al Marsat : j'ai besoin d'aide en mer.", sfPos:"Ma position", sfAcc:"Précision", sfTime:"Heure", sfRetT:"Heure de retour", sfRetD:"Fixez votre heure de retour. Si vous êtes en retard, l'appli (ouverte) vous le rappelle et prépare un message pour vos proches. Réglez aussi une alarme sur le téléphone.", sfH:"h", sfDue:"Retour prévu", sfNoRet:"Aucune heure fixée", sfClear:"Annuler l'heure", sfOverT:"Heure de retour dépassée", sfOverD:"Êtes-vous bien rentré ?", sfOk:"Je suis arrivé", sfExt:"Prolonger d'1 h", sfTell:"Envoyer ma position à ma famille", sfLateBody:"Je suis en retard sur mon heure de retour. Je vais bien et je rentre, voici ma position :", sfDenied:"Localisation refusée : autorisez la position pour l'appli dans les réglages du navigateur, puis réessayez.", sfRetry:"Réessayer", sfWarn:"Attention : vérifiez que votre SIM a du crédit SMS avant de partir en mer et testez SOS une fois à terre. Sans SMS, utilisez « Partager » ou « Copier » avec WhatsApp si vous avez internet.", banNote:"La pêche est actuellement interdite. Ce pourcentage ne concerne que l'état de la mer, pour la sécurité.", sfMsgLang:"Langue du message SOS (pour le destinataire)",
+ rpT:"Signaler un problème", rpInfo:"En cas d'erreur, copiez le rapport et envoyez-le au développeur. Il ne contient que des informations techniques (version et texte de l'erreur), ni votre position, ni vos numéros, ni vos données de pêche. Rien n'est envoyé sans votre action.", rpCopy:"Copier le rapport", rpWa:"Envoyer par WhatsApp", rpClr:"Effacer le journal", rpNone:"Aucune erreur enregistrée. (L'appli va bien)", rpCopied:"Rapport copié.", rpN:"Erreurs enregistrées :",
  rdT:"Message radio et signaux (sans crédit ni internet)", rdBtn:"Écran message radio", rdFl:"Signal SOS lumineux et sonore", rdClose:"Fermer", rdHow:"Sur une VHF marine : appuyez sur l'émission et dites lentement : « MAYDAY, MAYDAY, MAYDAY. Ici [nom du bateau] trois fois. MAYDAY [nom du bateau]. Ma position est ci-dessous. J'ai besoin d'aide. Nombre de personnes : ... ». Relâchez et attendez la réponse. Canal international de détresse : 16.", rdPos:"Votre position (degrés et minutes)", rdN:"nord", rdS:"sud", rdE:"est", rdW:"ouest", rdOld:"Dernière position connue il y a", rdMin:"min", rdNoPos:"Pas encore de position. Placez-vous à découvert et attendez.", rdFlInfo:"Seuls ceux qui sont près de vous la voient et l'entendent. Rien n'est envoyé par le réseau ; ne remplace ni la VHF, ni les fusées, ni une balise de détresse.", rdFlStop:"Touchez l'écran pour arrêter", rdCallT:"Appel direct", rdCallN:"L'appel peut ou non fonctionner sans crédit. Numéros issus d'un site d'information, non confirmés officiellement : appelez-les une fois à terre pour vérifier.", rdMar:"Gendarmerie maritime", rdGen:"Gendarmerie nationale", rdPol:"Police",
   nvT:"Boussole des spots et dérive", nvWarn:"Aide seulement : ne remplace ni un appareil de navigation marine ni votre expérience. La précision du GPS du téléphone varie et sa boussole est sensible aux métaux. Ne vous y fiez pas seul pour rentrer. Vos points restent sur votre téléphone.", nvCatch:"Enregistrer le spot de pêche actuel", nvHome:"Enregistrer le mouillage / la plage", nvWait:"Localisation en cours… peut prendre une minute en mer", nvSaved:"Enregistré", nvErr:"Position introuvable. Activez le GPS et placez le téléphone à ciel dégagé.", nvNone:"Aucun point enregistré", nvPick:"Choisissez un point à rejoindre", nvStart:"Démarrer le guidage", nvStop:"Arrêter le guidage", nvDist:"Distance restante", nvM:"m", nvKm:"km", nvBear:"Cap", nvAcc:"Précision ±", nvSrcG:"Cap du GPS (en mouvement)", nvSrcM:"Cap de la boussole du téléphone", nvNoHd:"Faites un huit avec le téléphone pour calibrer la boussole", nvArr:"Vous êtes arrivé au point", nvRen:"Renommer", nvDel:"Supprimer", nvSure:"Supprimer ce point ?", nvName:"Nom du point", nvDrift:"Alarme de dérive", nvDriftInfo:"Alerte si le bateau s’éloigne du point choisi de plus de :", nvDriftAl:"Dérive ! Vous êtes à", nvSun:"Mode soleil (fort contraste)", nvKindC:"Spot", nvKindH:"Mouillage", nvFull:"Nombre maximum de points atteint (60). Supprimez un ancien point.", nvSel:"Point choisi", nvKeep:"Garder l’écran allumé pendant le guidage", nvNoTarget:"Aucun point choisi", nvOff:"Guidage arrêté", 
   exemptL:"Exemptions (non concernées) :", moreL:"Voir les sanctions et exemptions", quickSp:["Poulpe","Courbine","Dorade","Calmar","Mulet"],
@@ -129,10 +143,11 @@ NAVI.push('<circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="1.6"/><pa
 var LANGS=[['ar','العربية'],['fr','Français'],['en','English'],['es','Español'],['pt','Português'],['zh','中文']];
 var S={pts:[],navId:null,driftOn:false,driftR:100,sun:false,sound:true,hideLoc:false,alert:false,lang:'ar',tab:0,city:0,mode:'city',gps:null,low:false,log:[],sea:null,lowHintOff:false,
        cfg:{showUnofficial:false,restPeriods:[],seaTtlMinutes:30,soonDays:7,openDays:3},
-       safe:{nums:[],due:0},status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
+       safe:{nums:[],due:0},smsLang:'ar',status:'',statusKind:'',busy:false,heading:null,compass:false,msg:{}};
 try{
   var sv=JSON.parse(localStorage.getItem(KEY)||'{}');
   if(typeof sv.lang==='string'&&T[sv.lang])S.lang=sv.lang;
+  if(typeof sv.smsLang==='string'&&T[sv.smsLang])S.smsLang=sv.smsLang;
   if(typeof sv.city==='number'&&CITIES[sv.city])S.city=sv.city;
   if(sv.mode==='gps'&&sv.gps)S.mode='gps';
   if(sv.gps&&typeof sv.gps.lat==='number')S.gps=sv.gps;
@@ -145,7 +160,7 @@ try{
   S.driftOn=!!sv.driftOn;if([50,100,200,500].indexOf(sv.driftR)>-1)S.driftR=sv.driftR;S.sun=!!sv.sun;
 }catch(e){}
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({pts:S.pts,navId:S.navId,driftOn:S.driftOn,driftR:S.driftR,sun:S.sun,sound:S.sound,lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea,safe:S.safe}))}catch(e){}
+  try{localStorage.setItem(KEY,JSON.stringify({pts:S.pts,navId:S.navId,driftOn:S.driftOn,driftR:S.driftR,sun:S.sun,sound:S.sound,lang:S.lang,city:S.city,mode:S.mode,gps:S.gps,low:S.low,alert:S.alert,hideLoc:S.hideLoc,lowHintOff:S.lowHintOff,log:S.log,sea:S.sea,safe:S.safe,smsLang:S.smsLang}))}catch(e){}
 }
 function $(id){return document.getElementById(id)}
 function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -357,6 +372,7 @@ function build(){
     sRow({title:t.alertT,sub:t.alertInfo,sw:'alSw',on:S.alert})+
    '</div></div>'+
    '<div class="sgroup"><h3 class="sh">'+t.gApp+'</h3><div class="slist">'+
+    sRow({id:'reportCard',title:t.rpT,tap:1,body:'<p class="note">'+t.rpInfo+'</p><p class="note" id="rpCount"></p><div class="btns"><button class="btn" id="rpCopy" type="button">'+t.rpCopy+'</button><button class="btn ghost" id="rpWa" type="button">'+t.rpWa+'</button><button class="btn ghost" id="rpClr" type="button">'+t.rpClr+'</button></div><p class="nvmsg" id="rpMsg" role="status"></p>'})+
     sRow({id:'installCard',title:t.install,sub:t.installInfo,open:1,body:'<div class="btns"><button class="btn" id="bInstall" type="button" hidden>'+t.install+'</button></div><p class="note" id="iosNote" style="margin-top:8px" hidden>'+t.installIos+'</p>'})+
    '</div></div>'+
    '<div class="sgroup"><h3 class="sh">'+t.gInfo+'</h3><div class="slist">'+
@@ -387,7 +403,7 @@ function build(){
   $('bCompass').onclick=toggleCompass;
   $('bInstall').onclick=doInstall;
   Array.prototype.forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tab=+b.getAttribute('data-go');showTab();window.scrollTo(0,0)}});
-  bindNav();bindSafe();bindRad();
+  bindNav();bindSafe();bindRad();bindReport();
   if(deferredPrompt)$('bInstall').hidden=false;
   if(isIos()&&!isStandalone())$('iosNote').hidden=false;
   if(isStandalone()){$('installCard').querySelector('small').textContent=t.installed}
@@ -908,6 +924,7 @@ function sfHtml(t){
   return '<section class="card sf" id="sfBox"><h2>'+t.sfT+'</h2>'+
    '<button type="button" class="sfsos" id="sfSos">'+t.sfSos+'</button>'+
    '<p class="note">'+t.sfInfo+'</p><p class="note sfwarn">'+t.sfWarn+'</p>'+
+   '<h3>'+t.sfMsgLang+'</h3><div class="chips" id="sfLangs">'+LANGS.map(function(l){return '<button type="button" class="chip'+(S.smsLang===l[0]?' on':'')+'" data-sl="'+l[0]+'" aria-pressed="'+(S.smsLang===l[0])+'">'+l[1]+'</button>'}).join('')+'</div>'+
    '<h3>'+t.sfNums+'</h3><ul class="sfnums" id="sfNums"></ul>'+
    '<div class="sfadd"><input type="tel" inputmode="tel" dir="ltr" id="sfNum" maxlength="20" placeholder="'+esc(t.sfNumPh)+'" aria-label="'+esc(t.sfNumPh)+'"><button type="button" class="btn ghost" id="sfAdd">'+t.sfAdd+'</button></div>'+
    '<p class="nvmsg" id="sfMsg" role="status" aria-live="polite"></p>'+
@@ -923,8 +940,9 @@ function sfPaint(){
   var c=$('sfClr');if(c)c.onclick=function(){S.safe.due=0;save();sfPaint();sfCheck()};
   Array.prototype.forEach.call(ul.querySelectorAll('[data-d]'),function(b){b.onclick=function(){S.safe.nums.splice(+b.getAttribute('data-d'),1);save();sfPaint()}});
 }
+function SM(){return T[S.smsLang]||T.ar}
 function sfBodyText(extra,pos){
-  return extra+(pos?' '+L().sfPos+': \u2066'+pos.lat.toFixed(5)+', '+pos.lng.toFixed(5)+'\u2069 https://maps.google.com/?q='+pos.lat.toFixed(5)+','+pos.lng.toFixed(5):'');
+  return extra+(pos?' '+SM().sfPos+': \u2066'+pos.lat.toFixed(5)+', '+pos.lng.toFixed(5)+'\u2069 https://maps.google.com/?q='+pos.lat.toFixed(5)+','+pos.lng.toFixed(5):'');
 }
 function sfGetPos(cb){
   var fb=function(den){var p=NV.pos&&NV.pos.lat!=null?NV.pos:SF.pos;cb(p||null,!!p,den)};
@@ -971,7 +989,7 @@ function sfPrepare(o,intro){
 }
 function sfSos(){
   var t=L(),o=sfModal('<h2>'+esc(t.sfConfT)+'</h2><p>'+esc(t.sfConfD)+'</p><div class="sfbtns"><button type="button" class="btn bad" id="sfGo">'+esc(t.sfGo)+'</button><button type="button" class="btn ghost" id="sfNo">'+esc(t.sfCancel)+'</button></div>');
-  $('sfNo').onclick=o.close;$('sfGo').onclick=function(){sfPrepare(o,t.sfBody)};
+  $('sfNo').onclick=o.close;$('sfGo').onclick=function(){sfPrepare(o,(/^SOS/i.test(SM().sfBody)?'':'SOS ')+SM().sfBody)};
   try{if(navigator.vibrate)navigator.vibrate(200)}catch(e){}
 }
 function sfAddNum(){
@@ -991,13 +1009,14 @@ function sfCheck(){
     document.body.appendChild(b);
     $('sfOk').onclick=function(){S.safe.due=0;save();sfPaint();sfCheck()};
     $('sfEx').onclick=function(){S.safe.due=Date.now()+3600000;save();sfPaint();sfCheck()};
-    $('sfTl').onclick=function(){sfPrepare(sfModal(''),t.sfLateBody)};
+    $('sfTl').onclick=function(){sfPrepare(sfModal(''),SM().sfLateBody)};
   }
   if(Date.now()-_sfRing>45000){_sfRing=Date.now();chime(3);try{if(navigator.vibrate)navigator.vibrate([400,200,400])}catch(e){}}
 }
 function bindSafe(){
   if(!$('sfBox'))return;
   $('sfSos').onclick=sfSos;$('hSos').onclick=sfSos;
+  Array.prototype.forEach.call(document.querySelectorAll('#sfLangs [data-sl]'),function(b){b.onclick=function(){S.smsLang=b.getAttribute('data-sl');save();Array.prototype.forEach.call(document.querySelectorAll('#sfLangs [data-sl]'),function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)})}});
   $('sfAdd').onclick=sfAddNum;
   $('sfNum').onkeydown=function(e){if(e.key==='Enter'){e.preventDefault();sfAddNum()}};
   Array.prototype.forEach.call(document.querySelectorAll('#sfH [data-h]'),function(b){b.onclick=function(){S.safe.due=Date.now()+(+b.getAttribute('data-h'))*3600000;_sfRing=0;save();sfPaint();sfCheck()}});
@@ -1061,6 +1080,31 @@ function rdFlash(){
 }
 function bindRad(){if(!$('rdBox'))return;$('rdRadio').onclick=rdRadio;$('rdFlash').onclick=rdFlash}
 
+
+/* ---------- Problem report (copy / WhatsApp), technical info only ---------- */
+function rpBuild(cb){
+  function done(ver){
+    var a=errRead(),t=L();
+    var txt='Al Marsat report\nversion: '+ver+'\nlang: '+S.lang+'\nscreen: '+screen.width+'x'+screen.height+'\nua: '+(navigator.userAgent||'').slice(0,160)+'\nerrors: '+a.length+'\n'+
+      a.map(function(x,i){return (i+1)+') '+x.t+' | '+x.m+' | '+x.s}).join('\n');
+    cb(txt);
+  }
+  try{caches.keys().then(function(k){var v=(k.filter(function(x){return /^marsat-v/.test(x)})[0]||'unknown');done(v)},function(){done('unknown')})}catch(e){done('unknown')}
+}
+function bindReport(){
+  if(!$('reportCard'))return;
+  var n=function(){$('rpCount').textContent=errRead().length?L().rpN+' '+errRead().length:L().rpNone};n();
+  var hd=document.querySelector('#reportCard .shead');if(hd)hd.addEventListener('click',n);
+  $('rpCopy').onclick=function(){rpBuild(function(txt){
+    var ok=function(){$('rpMsg').textContent=L().rpCopied};
+    try{navigator.clipboard.writeText(txt).then(ok,function(){ok()})}catch(e){ok()}
+  })};
+  $('rpWa').onclick=function(){rpBuild(function(txt){
+    if(navigator.share){try{navigator.share({text:txt}).catch(function(){});return}catch(e){}}
+    window.open('https://wa.me/?text='+encodeURIComponent(txt),'_blank','noopener');
+  })};
+  $('rpClr').onclick=function(){try{localStorage.removeItem(ERRK)}catch(e){}n()};
+}
 
 /* ---------- Update notice: shown when a new service worker takes over an already-installed app ---------- */
 function showUpdate(){

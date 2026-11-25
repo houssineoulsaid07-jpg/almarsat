@@ -292,3 +292,4 @@ nav.tabs button[data-go="4"]{order:5}
 .rdflt{font-size:5rem; font-weight:900; letter-spacing:.1em}
 .rdfl p{max-width:30ch; font-size:1rem; margin:0}
 .bannote{margin:10px 0 0; padding:8px 10px; border-radius:10px; background:rgba(245,166,35,.15); border:1px solid #f5a623; color:var(--ink); font-weight:700; font-size:.95rem}
+.sf .chip.on{background:var(--primary); color:var(--on-primary); border-color:var(--primary); font-weight:800}
